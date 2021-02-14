@@ -4,19 +4,21 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import setAuthToken from './utils/setAuthToken'
 
 import Register from './pages/register'
+import AddExpense from './pages/addExpense'
 
 const getJwtFromLS = () => {
   if (localStorage.jwtToken) {
-    const decoded = jwt_decode(localStorage.getItem('jwtToken'))
-    
-    if (decoded.exp * 1000 < Date.now()) {
-      localStorage.removeItem('jwtToken')
-      setAuthToken(false)
-      window.location.href= '/register'
-    } else {
+    const token = localStorage.getItem('jwtToken')
+    const decoded = jwt_decode(token)
+    console.log(decoded)
+    // if (decoded.exp * 1000 < Date.now()) {
+    //   localStorage.removeItem('jwtToken')
+    //   setAuthToken(false)
+    //   window.location.href= '/register'
+    // } else {
       // console.log(decoded.exp, Date.now())
-      setAuthToken(localStorage.jwtToken)
-    }
+      setAuthToken(token)
+    // }
   }
 }
 
@@ -28,6 +30,9 @@ function App() {
     <Router>
       <Route path="/register" exact>
         <Register />
+      </Route>
+      <Route path="/addExpense" exact>
+        <AddExpense/>
       </Route>
     </Router>
   );

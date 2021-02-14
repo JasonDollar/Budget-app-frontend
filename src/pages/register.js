@@ -9,7 +9,7 @@ const Register = () => {
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
 
-  const formSubmitHnadler = async e => {
+  const formSubmitHandler = async e => {
     e.preventDefault()
     const res = await axios.post('http://localhost:3080/api/v1/users', {name, email, password, passwordConfirm})
     localStorage.setItem('jwtToken', res.data.data.token)
@@ -19,7 +19,7 @@ const Register = () => {
 
   return (
     <div>
-      <form onSubmit={formSubmitHnadler}>
+      <form onSubmit={formSubmitHandler}>
         <input type="text" value={name} onChange={e => setName(e.target.value)}/>
         <input type="text" value={email} onChange={e => setEmail(e.target.value)}/>
         <input type="text" value={password} onChange={e => setPassword(e.target.value)}/>
