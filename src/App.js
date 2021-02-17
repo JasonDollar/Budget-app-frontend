@@ -1,6 +1,9 @@
 import {useEffect} from 'react'
 import jwt_decode from 'jwt-decode'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { Provider } from "react-redux"
+
+import store from './store'
 import setAuthToken from './utils/setAuthToken'
 
 import Register from './pages/register'
@@ -27,14 +30,16 @@ function App() {
     getJwtFromLS()
   }, [])
   return (
-    <Router>
-      <Route path="/register" exact>
-        <Register />
-      </Route>
-      <Route path="/addExpense" exact>
-        <AddExpense/>
-      </Route>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Route path="/register" exact>
+          <Register />
+        </Route>
+        <Route path="/addExpense" exact>
+          <AddExpense/>
+        </Route>
+      </Router>
+    </Provider>
   );
 }
 
