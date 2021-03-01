@@ -3,11 +3,14 @@ import jwt_decode from 'jwt-decode'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Provider } from "react-redux"
 
+
 import store from './store'
 import setAuthToken from './utils/setAuthToken'
 
 import Register from './pages/register'
 import AddExpense from './pages/addExpense'
+import Expenses from './pages/expenses'
+
 
 const getJwtFromLS = () => {
   if (localStorage.jwtToken) {
@@ -29,6 +32,7 @@ function App() {
   useEffect(() => {
     getJwtFromLS()
   }, [])
+
   return (
     <Provider store={store}>
       <Router>
@@ -37,6 +41,9 @@ function App() {
         </Route>
         <Route path="/addExpense" exact>
           <AddExpense/>
+        </Route>
+        <Route path="/" exact>
+          <Expenses />
         </Route>
       </Router>
     </Provider>

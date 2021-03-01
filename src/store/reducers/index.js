@@ -1,9 +1,8 @@
-const initialState = {
-  expenses: [{id: 1, title: "test", amount: 123}]
-};
+import {combineReducers} from 'redux'
+import expenseReducer from './expenses'
 
-function rootReducer(state = initialState, action) {
-  return state;
-};
+const rootReducer = combineReducers({
+  expenses: expenseReducer
+})
 
 export default rootReducer

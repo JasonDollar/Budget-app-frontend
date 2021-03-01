@@ -12,9 +12,9 @@ const Register = () => {
   const formSubmitHandler = async e => {
     e.preventDefault()
     const res = await axios.post('http://localhost:3080/api/v1/users', {name, email, password, passwordConfirm})
-    localStorage.setItem('jwtToken', res.data.data.token)
-    console.log(res.data.data.token)
-    setAuthToken(res.data.data.token)
+    const token = res.data.userData.token
+    localStorage.setItem('jwtToken', token)
+    setAuthToken(token)
   }
 
   return (
