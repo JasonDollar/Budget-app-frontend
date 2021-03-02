@@ -2,34 +2,34 @@ import axios from 'axios'
 import * as types from './actionTypes'
 import { baseUrl } from '../../config/apiUrl'
 
-const setExpenses = expenses => ({
+const setExpensesToStore = expenses => ({
   type: types.SET_EXPENSES,
   payload: expenses
 })
 
-export const setExpensesToStore = () => async dispatch => {
+export const setExpenses = () => async dispatch => {
   try {
     const res = await axios.get(`${baseUrl}/expenses`)
     if (res.statusText === 'OK') {
       const expenses = res.data.expenses
-       dispatch(setExpenses(expenses))
+       dispatch(setExpensesToStore(expenses))
     }
   } catch (e) {
     console.log(e.message)
   }
 }
 
-const addExpense = (expense) => ({
+const addExpenseToStore = (expense) => ({
   type: types.ADD_EXPENSE,
   payload: expense
 })
 
-export const addExpenseToStore = (expenseData) => async dispatch => {
+export const addExpense = (expenseData) => async dispatch => {
   try {
     const res = await axios.post(`${baseUrl}/expenses`, expenseData)
     if (res.statusText === 'Created') {
       const expense = res.data.expense
-       dispatch(addExpense(expense))
+       dispatch(addExpenseToStore(expense))
     }
   } catch (e) {
 

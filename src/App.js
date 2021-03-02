@@ -5,7 +5,7 @@ import { Provider } from "react-redux"
 
 
 import store from './store'
-import { setExpensesToStore } from './store/actions/expenses'
+import { setExpenses } from './store/actions/expenses'
 import setAuthToken from './utils/setAuthToken'
 
 import Register from './pages/register'
@@ -25,7 +25,7 @@ const getJwtFromLS = () => {
     const decoded = jwt_decode(token)
     console.log(decoded)
     setAuthToken(token)
-    store.dispatch(setExpensesToStore())
+    store.dispatch(setExpenses())
   }
 }
 
