@@ -1,14 +1,19 @@
 import React, { useState } from 'react'
-import axios from 'axios'
+import { useDispatch } from 'react-redux'
+// import axios from 'axios'
+
+import { addExpenseToStore } from '../store/actions/expenses'
 
 const AddExpense = () => {
+  const dispatch = useDispatch()
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [amount, setAmount] = useState(0)
   const formHandler = async e => {
     e.preventDefault()
-    const res = await axios.post('http://localhost:3080/api/v1/expenses', {title, description, amount})
-    console.log(res.data)
+    await dispatch(addExpenseToStore({title, description, amount}))
+    // const res = await axios.post('http://localhost:3080/api/v1/expenses', {title, description, amount})
+    // console.log(res.data)
   }
   return (
     <div>

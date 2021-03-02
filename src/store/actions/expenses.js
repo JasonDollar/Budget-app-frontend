@@ -18,3 +18,20 @@ export const setExpensesToStore = () => async dispatch => {
     console.log(e.message)
   }
 }
+
+const addExpense = (expense) => ({
+  type: types.ADD_EXPENSE,
+  payload: expense
+})
+
+export const addExpenseToStore = (expenseData) => async dispatch => {
+  try {
+    const res = await axios.post(`${baseUrl}/expenses`, expenseData)
+    if (res.statusText === 'Created') {
+      const expense = res.data.expense
+       dispatch(addExpense(expense))
+    }
+  } catch (e) {
+
+  }
+}
