@@ -8,6 +8,8 @@ const expenseReducer = (state = initialState, action) => {
       return action.payload
     case types.ADD_EXPENSE:
       return [...state, action.payload]
+    case types.REMOVE_EXPENSE:
+      return state.filter(item => item._id !== action.payload)
     default:
       return state
   }

@@ -29,7 +29,25 @@ export const addExpense = (expenseData) => async dispatch => {
     const res = await axios.post(`${baseUrl}/expenses`, expenseData)
     if (res.statusText === 'Created') {
       const expense = res.data.expense
-       dispatch(addExpenseToStore(expense))
+      dispatch(addExpenseToStore(expense))
+    }
+  } catch (e) {
+
+  }
+}
+
+const removeExpenseFromStore = id => ({
+  type: types.REMOVE_EXPENSE,
+  payload: id
+})
+
+export const removeExpense = (id) => async dispatch => {
+  try {
+    const res = await axios.delete(`${baseUrl}/expenses/${id}`)
+    console.log(res)
+    if (res.statusText === 'OK') {
+      dispatch(removeExpenseFromStore(id))
+      
     }
   } catch (e) {
 
