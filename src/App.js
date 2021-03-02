@@ -11,6 +11,7 @@ import setAuthToken from './utils/setAuthToken'
 import Register from './pages/register'
 import AddExpense from './pages/addExpense'
 import Expenses from './pages/expenses'
+import Expense from './pages/expense'
 
 
 function App() {
@@ -37,6 +38,9 @@ const getJwtFromLS = () => {
         </Route>
         <Route path="/addExpense" exact>
           <AddExpense/>
+        </Route>
+        <Route path="/expenses/:expenseId">
+          <Expense />
         </Route>
         <Route path="/" exact>
           <Expenses />
