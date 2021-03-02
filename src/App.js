@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import jwt_decode from 'jwt-decode'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import { Provider } from "react-redux"
 
 
@@ -33,6 +33,10 @@ const getJwtFromLS = () => {
   return (
     <Provider store={store}>
       <Router>
+        {/* redirect to expenses page immediately */}
+        <Route path="/" exact>
+          <Redirect to="expenses" />
+        </Route>
         <Route path="/register" exact>
           <Register />
         </Route>
@@ -42,7 +46,7 @@ const getJwtFromLS = () => {
         <Route path="/expenses/:expenseId">
           <Expense />
         </Route>
-        <Route path="/" exact>
+        <Route path="/expenses" exact>
           <Expenses />
         </Route>
       </Router>
