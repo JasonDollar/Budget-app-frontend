@@ -1,10 +1,11 @@
-import {useEffect} from 'react'
+import { useEffect } from 'react'
 import jwt_decode from 'jwt-decode'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Provider } from "react-redux"
 
 
 import store from './store'
+import { setExpensesToStore } from './store/actions/expenses'
 import setAuthToken from './utils/setAuthToken'
 
 import Register from './pages/register'
@@ -12,26 +13,21 @@ import AddExpense from './pages/addExpense'
 import Expenses from './pages/expenses'
 
 
-const getJwtFromLS = () => {
-  if (localStorage.jwtToken) {
-    const token = localStorage.getItem('jwtToken')
-    const decoded = jwt_decode(token)
-    console.log(decoded)
-    // if (decoded.exp * 1000 < Date.now()) {
-    //   localStorage.removeItem('jwtToken')
-    //   setAuthToken(false)
-    //   window.location.href= '/register'
-    // } else {
-      // console.log(decoded.exp, Date.now())
-      setAuthToken(token)
-    // }
-  }
-}
-
 function App() {
   useEffect(() => {
     getJwtFromLS()
   }, [])
+
+  
+const getJwtFromLS = () => {
+  const token = localStorage.getItem('jwtToken')
+  if (token) {
+    const decoded = jwt_decode(token)
+    console.log(decoded)
+    setAuthToken(token)
+    store.dispatch(setExpensesToStore())
+  }
+}
 
   return (
     <Provider store={store}>
