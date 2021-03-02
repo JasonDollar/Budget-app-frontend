@@ -3,7 +3,7 @@ import axios from 'axios'
 
 // Below compoenent is created to test registration and for easily setting jwt
 import setAuthToken from '../utils/setAuthToken'
-const Register = () => {
+const RegisterPage = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -30,4 +30,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default RegisterPage

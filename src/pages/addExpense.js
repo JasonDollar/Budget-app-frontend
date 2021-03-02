@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 
 import { addExpense } from '../store/actions/expenses'
 
-const AddExpense = () => {
+const AddExpensePage = () => {
   const dispatch = useDispatch()
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
@@ -27,4 +27,4 @@ const AddExpense = () => {
   )
 }
 
-export default AddExpense
+export default AddExpensePage

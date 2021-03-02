@@ -4,7 +4,7 @@ import ExpensesList from '../components/ExpensesList'
 
 // import { setExpensesToStore } from '../store/actions/expenses'
 
-const Expenses = () => {
+const ExpensesPage = () => {
   const expenses = useSelector(state => state.expenses)
   console.log(expenses)
   // const dispatch = useDispatch()
@@ -19,4 +19,4 @@ const Expenses = () => {
   )
 }
 
-export default Expenses
+export default ExpensesPage
