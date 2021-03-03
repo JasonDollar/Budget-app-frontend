@@ -7,7 +7,7 @@ import ExpensesList from '../components/ExpensesList'
 const ExpensesPage = () => {
   const expenses = useSelector(state => state.expenses.expenses)
   const expensesLoading = useSelector(state => state.expenses.loading)
-  console.log(expenses)
+  // console.log(expenses)
   // const dispatch = useDispatch()
   // useEffect(() => {
   //   dispatch(setExpensesToStore())
