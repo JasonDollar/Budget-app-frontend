@@ -2,6 +2,10 @@ import axios from 'axios'
 import * as types from './actionTypes'
 import { baseUrl } from '../../config/apiUrl'
 
+const loadingStart = () => ({
+  type: types.LOADING_START,
+})
+
 const setExpensesToStore = expenses => ({
   type: types.SET_EXPENSES,
   payload: expenses
@@ -9,6 +13,7 @@ const setExpensesToStore = expenses => ({
 
 export const setExpenses = () => async dispatch => {
   try {
+    dispatch(loadingStart())
     const res = await axios.get(`${baseUrl}/expenses`)
     if (res.statusText === 'OK') {
       const expenses = res.data.expenses
@@ -32,7 +37,9 @@ export const addExpense = (expenseData) => async dispatch => {
       dispatch(addExpenseToStore(expense))
     }
   } catch (e) {
-
+    // add error handling
+    console.log(e.response)
+    console.log(e.message)
   }
 }
 
@@ -53,3 +60,4 @@ export const removeExpense = (id) => async dispatch => {
 
   }
 }
+

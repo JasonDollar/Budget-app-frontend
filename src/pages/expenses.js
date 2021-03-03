@@ -5,7 +5,8 @@ import ExpensesList from '../components/ExpensesList'
 // import { setExpensesToStore } from '../store/actions/expenses'
 
 const ExpensesPage = () => {
-  const expenses = useSelector(state => state.expenses)
+  const expenses = useSelector(state => state.expenses.expenses)
+  const expensesLoading = useSelector(state => state.expenses.loading)
   console.log(expenses)
   // const dispatch = useDispatch()
   // useEffect(() => {
@@ -14,7 +15,7 @@ const ExpensesPage = () => {
   // }, [])
   return (
     <div>
-      <ExpensesList expenses={expenses}/>
+      <ExpensesList expenses={expenses} loading={expensesLoading}/>
     </div>
   )
 }

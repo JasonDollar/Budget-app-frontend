@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { removeExpense } from '../store/actions/expenses'
 
 const Expense = ({ expenseId }) => {
-  const expense = useSelector(state => state.expenses.find(item => item._id === expenseId))
+  const expense = useSelector(state => state.expenses.expenses.find(item => item._id === expenseId))
   const dispatch = useDispatch()
 
   const removeExpenseHandler = () => {

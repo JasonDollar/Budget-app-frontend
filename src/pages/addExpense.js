@@ -11,7 +11,7 @@ const AddExpensePage = () => {
   const [amount, setAmount] = useState(0)
   const formHandler = async e => {
     e.preventDefault()
-    await dispatch(addExpense({title, description, amount}))
+    dispatch(addExpense({title, description, amount}))
     // const res = await axios.post('http://localhost:3080/api/v1/expenses', {title, description, amount})
     // console.log(res.data)
   }

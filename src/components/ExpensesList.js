@@ -1,7 +1,10 @@
 import React from 'react'
 import ExpenseListItem from './ExpenseListItem'
 
-const ExpensesList = ({expenses}) => {
+const ExpensesList = ({ expenses, loading }) => {
+  if (loading) {
+    return <div>Loading</div>
+  }
   return (
     <div>
       <ul>
