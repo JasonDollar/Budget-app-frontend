@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import ExpensesList from '../components/ExpensesList'
+import Total from '../components/Total'
 
 // import { setExpensesToStore } from '../store/actions/expenses'
 
@@ -15,6 +16,7 @@ const ExpensesPage = () => {
   // }, [])
   return (
     <div>
+      <Total expenses={expenses} />
       <ExpensesList expenses={expenses} loading={expensesLoading}/>
     </div>
   )
