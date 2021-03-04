@@ -21,7 +21,7 @@ const expenseReducer = (state = initialState, action) => {
         expenses: [...state.expenses, action.payload]
       }
     case types.REMOVE_EXPENSE:
-      const filteredExpenses = state.filter(item => item._id !== action.payload)
+      const filteredExpenses = state.expenses.filter(item => item._id !== action.payload)
       return {
         loading: false,
         error: '',
@@ -33,6 +33,7 @@ const expenseReducer = (state = initialState, action) => {
         loading: true,
       }
     default:
+      console.log('default')
       return state
   }
 }
