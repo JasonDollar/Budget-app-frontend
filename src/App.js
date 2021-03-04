@@ -13,6 +13,7 @@ import AddExpense from './pages/addExpense'
 import Expenses from './pages/expenses'
 import Expense from './pages/expense'
 
+import { GlobalStyle } from './components/styles/globalStyles'
 
 function App() {
   useEffect(() => {
@@ -32,6 +33,7 @@ const getJwtFromLS = () => {
 
   return (
     <Provider store={store}>
+      <GlobalStyle />
       <Router>
         {/* redirect to expenses page immediately */}
         <Route path="/" exact>
