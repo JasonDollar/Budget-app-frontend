@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import ExpensesList from '../components/ExpensesList'
 import Total from '../components/Total'
 

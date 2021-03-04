@@ -3,7 +3,16 @@ import * as types from '../actions/actionTypes'
 const initialState = {
   loading: false,
   error: '',
-  expenses: []
+  expenses: [{
+    _id: '603e8a3bc4e77e04d869c708',
+    title: 'asd',
+    amount: 123,
+    description: '123',
+    owner: '603d436854bb723cac11917a',
+    createdAt: '2021-03-02T18:55:55.542Z',
+    updatedAt: '2021-03-02T18:55:55.542Z',
+    __v: 0
+  }]
 }
 
 const expenseReducer = (state = initialState, action) => {
