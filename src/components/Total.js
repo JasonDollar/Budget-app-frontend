@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { calculateTotal } from '../lib/calcTotal'
+import { calculateTotal, calculateTodayExpenses } from '../lib/calcMoney'
 
 const TotalBox = styled.div`
   margin: 0 1.5rem;
@@ -55,12 +55,13 @@ const TotalBox = styled.div`
 
 const Total = ({ expenses, totalComponentHeight, setTotalComponentHeight }) => {
   const [totalAmount, setTotalAmount] = useState('')
+  const [todayAmount, setTodayAmount] = useState('')
   const boxRef = useRef()
   useEffect(() => {
     const totalAmountCalc = calculateTotal(expenses)
+    const todayExpense = calculateTodayExpenses(expenses)
     setTotalAmount(totalAmountCalc)
-    // setTotalComponentHeight()
-    // console.log(boxRef.current.clientHeight)
+    setTodayAmount(todayExpense)
   }, [expenses])
   useEffect(() => {
     setTotalComponentHeight(boxRef.current?.clientHeight)
@@ -78,7 +79,7 @@ const Total = ({ expenses, totalComponentHeight, setTotalComponentHeight }) => {
         </Link>
       </div>
       <p className="today">
-        $123 today
+        ${todayAmount} today
       </p>
     </TotalBox>
   )
