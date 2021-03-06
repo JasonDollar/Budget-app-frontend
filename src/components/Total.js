@@ -54,7 +54,7 @@ const TotalBox = styled.div`
 `
 
 const Total = ({ expenses, totalComponentHeight, setTotalComponentHeight }) => {
-  const [totalAmount, setTotalAmount] = useState(0)
+  const [totalAmount, setTotalAmount] = useState('')
   const boxRef = useRef()
   useEffect(() => {
     const totalAmountCalc = calculateTotal(expenses)

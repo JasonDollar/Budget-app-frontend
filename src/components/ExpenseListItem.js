@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { format } from 'date-fns'
+
 
 const ListItem = styled.li`
   margin: 1rem 0;
@@ -48,7 +50,7 @@ const ExpenseListItem = ({expense}) => {
         <h2 className="expense">{expense.title}</h2>
         <div className="details">
           <p className="amount">${expense.amount}</p>
-          <p className="date">3 days ago</p>
+          <p className="date">{format(new Date(expense.createdAt), 'd LLL')}</p>
         </div>
       </Link>
     </ListItem>
