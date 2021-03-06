@@ -5,8 +5,8 @@ const initialState = {
   error: '',
   expenses: [{
     _id: '603e8a3bc4e77e04d869c708',
-    title: 'asd',
-    amount: 123,
+    title: 'Pizza',
+    amount: 40,
     description: '123',
     owner: '603d436854bb723cac11917a',
     createdAt: '2021-03-02T18:55:55.542Z',

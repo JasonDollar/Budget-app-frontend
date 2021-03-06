@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 const ListItem = styled.li`
   margin: 1rem 0;
-  padding: 1.5rem 1rem;
+  padding: 1.2rem 1rem;
   /* border: 1px solid red; */
   border-radius: 1rem;
 
@@ -16,8 +16,28 @@ const ListItem = styled.li`
     align-items: center;
   }
 
-  h2 {
+  .expense {
     margin: 0;
+  }
+
+  .details {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: flex-end; */
+    align-items: flex-end;
+  }
+
+  .amount {
+    color: ${props => props.theme.indigo};
+    font-size: 2rem;
+    /* line-height: 1.15; */
+  }
+
+  .date {
+    /* margin-top: .5rem; */
+    font-size: 1.2rem;
+    color: #777;
+    /* text-align: right; */
   }
 `
 
@@ -25,8 +45,11 @@ const ExpenseListItem = ({expense}) => {
   return (
     <ListItem>
       <Link to={`/expenses/${expense._id}`} className="expenseLink">
-        <h2>{expense.title}</h2>
-        <p>{expense.amount}</p>
+        <h2 className="expense">{expense.title}</h2>
+        <div className="details">
+          <p className="amount">${expense.amount}</p>
+          <p className="date">3 days ago</p>
+        </div>
       </Link>
     </ListItem>
   )
