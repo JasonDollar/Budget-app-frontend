@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import ExpensesList from '../components/ExpensesList'
 import Total from '../components/Total'
+import Header from '../components/Header'
 
 // import { setExpensesToStore } from '../store/actions/expenses'
 
@@ -16,6 +17,7 @@ const ExpensesPage = () => {
   // }, [])
   return (
     <div>
+      <Header />
       <Total expenses={expenses} />
       <ExpensesList expenses={expenses} loading={expensesLoading}/>
     </div>

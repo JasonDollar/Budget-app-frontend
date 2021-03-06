@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { calculateTotal } from '../lib/calcTotal'
 
 const TotalBox = styled.div`
   margin: 1.5rem;
+  margin-top: -${props => props?.boxSize / 2}px;
   background: #fff;
   box-shadow: 0px 2px 20px -10px #999;
   border-radius: 10px;
@@ -13,12 +14,7 @@ const TotalBox = styled.div`
   flex-direction: column;
   line-height: 1;
 
-  p {
-    /* margin: .5rem; */
-  }
-
   .header {
-    /* margin: -5rem; */
     font-size: 1.4rem;
     font-weight: 600;
   }
@@ -35,6 +31,7 @@ const TotalBox = styled.div`
   }
 
   .link {
+    cursor: pointer;
     background: ${props => props.theme.indigo};
     padding: 3rem;
     border-radius: 50%; 
@@ -57,13 +54,15 @@ const TotalBox = styled.div`
 
 const Total = ({ expenses }) => {
   const [totalAmount, setTotalAmount] = useState(0)
+  const boxRef = useRef()
   useEffect(() => {
     const totalAmountCalc = calculateTotal(expenses)
     setTotalAmount(totalAmountCalc)
+    // console.log(boxRef.current.clientHeight)
   }, [expenses])
   
   return (
-    <TotalBox>
+    <TotalBox ref={boxRef} boxSize={boxRef.current?.clientHeight}>
       <p className="header">Total</p>
       <div className="main">
         <div className="total">
