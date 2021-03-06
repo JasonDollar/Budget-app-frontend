@@ -4,8 +4,9 @@ import styled from 'styled-components'
 import { calculateTotal } from '../lib/calcTotal'
 
 const TotalBox = styled.div`
-  margin: 1.5rem;
+  margin: 0 1.5rem;
   margin-top: -${props => props?.boxSize / 2}px;
+  margin-bottom: 3rem;
   background: #fff;
   box-shadow: 0px 2px 20px -10px #999;
   border-radius: 10px;
