@@ -52,17 +52,21 @@ const TotalBox = styled.div`
   }
 `
 
-const Total = ({ expenses }) => {
+const Total = ({ expenses, totalComponentHeight, setTotalComponentHeight }) => {
   const [totalAmount, setTotalAmount] = useState(0)
   const boxRef = useRef()
   useEffect(() => {
     const totalAmountCalc = calculateTotal(expenses)
     setTotalAmount(totalAmountCalc)
+    // setTotalComponentHeight()
     // console.log(boxRef.current.clientHeight)
   }, [expenses])
+  useEffect(() => {
+    setTotalComponentHeight(boxRef.current?.clientHeight)
+  }, [])
   
   return (
-    <TotalBox ref={boxRef} boxSize={boxRef.current?.clientHeight}>
+    <TotalBox ref={boxRef} boxSize={totalComponentHeight}>
       <p className="header">Total</p>
       <div className="main">
         <div className="total">
