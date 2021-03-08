@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useSelector } from 'react-redux'
 import ExpenseListItem from './ExpenseListItem'
 
 const List = styled.ul`
@@ -9,8 +10,11 @@ const List = styled.ul`
 `
 
 
-const ExpensesList = ({ expenses, loading }) => {
-  if (loading) {
+const ExpensesList = () => {
+  const expenses = useSelector(state => state.expenses.expenses)
+  const expensesLoading = useSelector(state => state.expenses.loading)
+
+  if (expensesLoading) {
     return <div>Loading</div>
   }
   return (

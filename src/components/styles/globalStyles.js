@@ -25,4 +25,9 @@ p {
     text-decoration: none;
     color: inherit;
   }
+
+  .mainContainer {
+    max-width: 114rem;
+    margin: 0 auto;
+  }
 `

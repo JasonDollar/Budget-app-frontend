@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { calculateTotal, calculateTodayExpenses } from '../lib/calcMoney'
 
@@ -53,16 +54,19 @@ const TotalBox = styled.div`
   }
 `
 
-const Total = ({ expenses, totalComponentHeight, setTotalComponentHeight }) => {
+const Total = ({ totalComponentHeight, setTotalComponentHeight }) => {
   const [totalAmount, setTotalAmount] = useState('')
   const [todayAmount, setTodayAmount] = useState('')
+  const expenses = useSelector(state => state.expenses.expenses)
   const boxRef = useRef()
+
   useEffect(() => {
     const totalAmountCalc = calculateTotal(expenses)
     const todayExpense = calculateTodayExpenses(expenses)
     setTotalAmount(totalAmountCalc)
     setTodayAmount(todayExpense)
   }, [expenses])
+  
   useEffect(() => {
     setTotalComponentHeight(boxRef.current?.clientHeight)
   }, [])
