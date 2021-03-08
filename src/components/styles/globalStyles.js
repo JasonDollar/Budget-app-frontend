@@ -30,4 +30,12 @@ p {
     max-width: 114rem;
     margin: 0 auto;
   }
+
+  .margin-r-l {
+    margin: 0 1.5rem;
+
+    @media(min-width: 576px) {
+      margin: 0 1rem;
+    }
+  }
 `

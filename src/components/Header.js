@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -21,15 +21,22 @@ const Container = styled.div`
     padding: 1rem 1.5rem;
     padding-bottom: 0rem;
   }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+  }
 `
 
 const Header = ({ totalComponentHeight }) => {
   return (
     <Container bottomAdditionalSpace={totalComponentHeight}>
-      <div className="desktopContainer">
+      <header className="desktopContainer header">
+        <Link to="/">
+          <h1>Budget</h1>
+        </Link>
         <p>Menu</p>
-        <h1>Budget</h1>
-      </div>
+      </header>
     </Container>
   )
 }

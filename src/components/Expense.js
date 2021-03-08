@@ -20,7 +20,7 @@ const Expense = ({ expenseId }) => {
     )
   }
   return (
-    <div>
+    <div className="margin-r-l">
       <h2>{expense.title}</h2>
       <p>{expense.amount}</p>
       <button onClick={removeExpenseHandler}>X</button>

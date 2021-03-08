@@ -17,7 +17,7 @@ const ExpenseForm = ({ titleExpense = '', descriptionExpense = '', amountExpense
     }
   }
   return (
-    <div>
+    <div className="margin-r-l">
       <form onSubmit={formHandler}>
         <input type="text" value={title} onChange={e => setTitle(e.target.value)}/>
         <input type="text" value={description} onChange={e => setDescription(e.target.value)}/>
