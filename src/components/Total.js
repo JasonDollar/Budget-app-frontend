@@ -29,12 +29,12 @@ const TotalBox = styled.div`
 
   .total {
     font-size: 4.5rem;
-    color: ${props => props.theme.indigo};
+    color: ${props => props.theme.mainThemeColor};
   }
 
   .link {
     cursor: pointer;
-    background: ${props => props.theme.indigo};
+    background: ${props => props.theme.mainThemeColor};
     padding: 3rem;
     border-radius: 50%; 
     position: relative;

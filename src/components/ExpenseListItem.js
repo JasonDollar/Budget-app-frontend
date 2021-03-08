@@ -27,7 +27,7 @@ const ListItem = styled.li`
   }
 
   .amount {
-    color: ${props => props.theme.indigo};
+    color: ${props => props.theme.mainThemeColor};
     font-size: 2rem;
   }
 

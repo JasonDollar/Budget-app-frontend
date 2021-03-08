@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 const Container = styled.div`
   max-height: 30rem;
-  background: ${props => props.theme.indigo};
+  background: ${props => props.theme.mainThemeColor};
   margin: 0;
   padding-bottom: ${props => props.bottomAdditionalSpace / 2}px;
 
