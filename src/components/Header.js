@@ -26,8 +26,10 @@ const Container = styled.div`
 const Header = ({ totalComponentHeight }) => {
   return (
     <Container bottomAdditionalSpace={totalComponentHeight}>
-      <p>Menu</p>
-      <h1>Budget</h1>
+      <div className="desktopContainer">
+        <p>Menu</p>
+        <h1>Budget</h1>
+      </div>
     </Container>
   )
 }

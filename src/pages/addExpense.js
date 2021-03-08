@@ -5,7 +5,7 @@ const AddExpensePage = () => {
 
   return (
     <div>
-      <ExpenseForm />
+      <ExpenseForm newExpense/>
     </div>
   )
 }

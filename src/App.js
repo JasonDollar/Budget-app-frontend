@@ -41,8 +41,8 @@ function App() {
         <GlobalStyle />
         <Router>
           <Header totalComponentHeight={totalComponentHeight}/>
+          <div className="desktopContainer">
           <Total totalComponentHeight={totalComponentHeight} setTotalComponentHeight={setTotalComponentHeight}/>
-          <div className="mainContainer">
             {/* redirect to expenses page immediately */}
             <Route path="/" exact>
               <Redirect to="expenses" />

@@ -26,7 +26,7 @@ p {
     color: inherit;
   }
 
-  .mainContainer {
+  .desktopContainer {
     max-width: 114rem;
     margin: 0 auto;
   }
