@@ -11,7 +11,7 @@ const ExpenseForm = ({ titleExpense = '', descriptionExpense = '', amountExpense
   const formHandler = async e => {
     e.preventDefault()
     if (newExpense) {
-      dispatch(addExpense({title, description, amount}))
+      dispatch(addExpense({title, description, amount: amount * 100})) // save expense as whole number
       return
     }
   }

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { calculateTotal, calculateTodayExpenses } from '../lib/calcMoney'
+import formatMoney from '../lib/formatMoney'
 
 const TotalBox = styled.div`
   margin: 0 1.5rem;
@@ -76,14 +77,14 @@ const Total = ({ totalComponentHeight, setTotalComponentHeight }) => {
       <p className="header">Total</p>
       <div className="main">
         <div className="total">
-          ${totalAmount}
+          {formatMoney(totalAmount)}
         </div>
         <Link to='/addExpense' className="link">
           <span>+</span>
         </Link>
       </div>
       <p className="today">
-        ${todayAmount} today
+        {formatMoney(todayAmount)} today
       </p>
     </TotalBox>
   )

@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { format } from 'date-fns'
 
+import formatMoney from '../lib/formatMoney'
+
 const ListItem = styled.li`
   margin: 1rem 0;
   padding: 1.2rem 1rem;
@@ -43,7 +45,7 @@ const ExpenseListItem = ({expense}) => {
       <Link to={`/expenses/${expense._id}`} className="expenseLink">
         <h2 className="expense">{expense.title}</h2>
         <div className="details">
-          <p className="amount">${expense.amount}</p>
+          <p className="amount">{formatMoney(expense.amount)}</p>
           <p className="date">{format(new Date(expense.createdAt), 'd LLL')}</p>
         </div>
       </Link>

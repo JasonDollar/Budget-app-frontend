@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { removeExpense } from '../store/actions/expenses'
+import formatMoney from '../lib/formatMoney'
 
 const Expense = ({ expenseId }) => {
   const expense = useSelector(state => state.expenses.expenses.find(item => item._id === expenseId))
@@ -19,7 +20,7 @@ const Expense = ({ expenseId }) => {
   return (
     <div className="margin-r-l">
       <h2>{expense.title}</h2>
-      <p>{expense.amount}</p>
+      <p>{formatMoney(expense.amount)}</p>
       <button onClick={removeExpenseHandler}>X</button>
     </div>
   )
