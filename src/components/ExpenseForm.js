@@ -10,17 +10,21 @@ const ExpenseForm = ({ titleExpense = '', descriptionExpense = '', amountExpense
   const [amount, setAmount] = useState(amountExpense)
   const formHandler = async e => {
     e.preventDefault()
+    // simple validation
+    if (!title || amount <= 0) return
     if (newExpense) {
-      dispatch(addExpense({title, description, amount: amount * 100})) // save expense as whole number
+      // save expense as whole number
+      const validAmount = Math.ceil(amount * 100)
+      dispatch(addExpense({title, description, amount: validAmount})) 
       return
     }
   }
   return (
     <div className="margin-r-l">
       <form onSubmit={formHandler}>
-        <input type="text" value={title} onChange={e => setTitle(e.target.value)}/>
+        <input type="text" value={title} onChange={e => setTitle(e.target.value)} required/>
         <input type="text" value={description} onChange={e => setDescription(e.target.value)}/>
-        <input type="number" value={amount} onChange={e => setAmount(e.target.value)}/>
+        <input type="number" step="0.01" value={amount} onChange={e => setAmount(e.target.value)} required/>
         <button type="submit">Submit</button>
       </form>
     </div>
