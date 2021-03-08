@@ -24,6 +24,25 @@ const Container = styled.div`
   .header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+  }
+
+  .menuIconMobile {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    width: 3rem;
+    margin: 1.5rem 2rem;
+
+    span {
+      width: 100%;
+      height: 3px;
+      background: #fff;
+
+      &:not(:last-child) {
+        margin-bottom: .5rem;
+      }
+    }
   }
 `
 
@@ -34,7 +53,11 @@ const Header = ({ totalComponentHeight }) => {
         <Link to="/">
           <h1>Budget</h1>
         </Link>
-        <p>Menu</p>
+        <div className="menuIconMobile">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </header>
     </Container>
   )
