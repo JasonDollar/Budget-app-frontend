@@ -1,24 +1,24 @@
 import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
-html {
-  font-size: 62.5%;
-  box-sizing: border-box;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-p {
-  margin: 0;
-}
+  html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+  }
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+  p {
+    margin: 0;
+  }
   body {
     margin: 0;
     padding: 0;
     font-family: 'Noto Sans', sans-serif;
     font-size: 1.6rem;
-    color: #111;
+    color: ${props => props.theme.textColor};
   }
 
   a {
@@ -33,9 +33,5 @@ p {
 
   .margin-r-l {
     margin: 0 1.5rem;
-
-    @media(min-width: 576px) {
-      margin: 0 1rem;
-    }
   }
 `

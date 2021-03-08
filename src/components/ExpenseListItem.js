@@ -33,7 +33,7 @@ const ListItem = styled.li`
 
   .date {
     font-size: 1.2rem;
-    color: #777;
+    color: ${props => props.theme.textGreyColor};
   }
 `
 
