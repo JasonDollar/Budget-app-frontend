@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Container = styled.div`
-  /* height: 30vh; */
   max-height: 30rem;
   background: ${props => props.theme.indigo};
   margin: 0;

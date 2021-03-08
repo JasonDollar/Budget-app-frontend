@@ -3,11 +3,9 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { format } from 'date-fns'
 
-
 const ListItem = styled.li`
   margin: 1rem 0;
   padding: 1.2rem 1rem;
-  /* border: 1px solid red; */
   border-radius: 1rem;
 
   background: #fff;
@@ -25,21 +23,17 @@ const ListItem = styled.li`
   .details {
     display: flex;
     flex-direction: column;
-    /* justify-content: flex-end; */
     align-items: flex-end;
   }
 
   .amount {
     color: ${props => props.theme.indigo};
     font-size: 2rem;
-    /* line-height: 1.15; */
   }
 
   .date {
-    /* margin-top: .5rem; */
     font-size: 1.2rem;
     color: #777;
-    /* text-align: right; */
   }
 `
 

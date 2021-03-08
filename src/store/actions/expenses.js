@@ -1,6 +1,7 @@
 import axios from 'axios'
 import * as types from './actionTypes'
 import { baseUrl } from '../../config/apiUrl'
+import history from '../../lib/history'
 
 const loadingStart = () => ({
   type: types.LOADING_START,
@@ -35,6 +36,7 @@ export const addExpense = (expenseData) => async dispatch => {
     if (res.statusText === 'Created') {
       const expense = res.data.expense
       dispatch(addExpenseToStore(expense))
+      history.push('/expenses')
     }
   } catch (e) {
     // add error handling
@@ -54,7 +56,7 @@ export const removeExpense = (id) => async dispatch => {
     console.log(res)
     if (res.statusText === 'OK') {
       dispatch(removeExpenseFromStore(id))
-      
+      history.push('/expenses')
     }
   } catch (e) {
 

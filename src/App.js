@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import jwt_decode from 'jwt-decode'
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { Router, Route, Redirect } from 'react-router-dom'
 import { Provider } from "react-redux"
 import { ThemeProvider } from 'styled-components'
 
 import store from './store'
 import { setExpenses } from './store/actions/expenses'
-import setAuthToken from './utils/setAuthToken'
+import setAuthToken from './lib/setAuthToken'
+import history from './lib/history'
 
 import Register from './pages/register'
 import AddExpense from './pages/addExpense'
@@ -39,7 +40,7 @@ function App() {
     <Provider store={store}>
       <ThemeProvider theme={theme} >
         <GlobalStyle />
-        <Router>
+        <Router history={history}>
           <Header totalComponentHeight={totalComponentHeight}/>
           <div className="desktopContainer">
           <Total totalComponentHeight={totalComponentHeight} setTotalComponentHeight={setTotalComponentHeight}/>

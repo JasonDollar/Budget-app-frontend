@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import axios from 'axios'
 
 // Below compoenent is created to test registration and for easily setting jwt
-import setAuthToken from '../utils/setAuthToken'
+import setAuthToken from '../lib/setAuthToken'
 const RegisterPage = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
