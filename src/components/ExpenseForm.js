@@ -32,6 +32,9 @@ const SaveButton = styled.button`
   background: ${props => props.theme.mainThemeColor};
   color: ${props => props.theme.textColorInverted};
   padding: 1rem 0;
+  border: none;
+  border-radius: 10px;a
+  box-shadow: ${props => props.theme.boxShadow};
 `
 
 
