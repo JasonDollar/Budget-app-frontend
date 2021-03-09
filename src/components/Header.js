@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+
+import Nav from './Nav'
 
 const Container = styled.div`
   max-height: 30rem;
@@ -47,17 +49,27 @@ const Container = styled.div`
 `
 
 const Header = ({ totalComponentHeight }) => {
+  const [navOpen, toggleNavOpen] = useState(false)
+  const handleNavToggling = () => {
+    console.log(navOpen)
+    if (navOpen) {
+      toggleNavOpen(false)
+      return
+    }
+    toggleNavOpen(true)
+  }
   return (
     <Container bottomAdditionalSpace={totalComponentHeight}>
       <header className="desktopContainer header">
         <Link to="/">
           <h1>Budget</h1>
         </Link>
-        <div className="menuIconMobile">
+        <div className="menuIconMobile onlyMobile" onClick={handleNavToggling}>
           <span></span>
           <span></span>
           <span></span>
         </div>
+        <Nav isOpen={navOpen} toggleNavOpen={handleNavToggling}/>
       </header>
     </Container>
   )

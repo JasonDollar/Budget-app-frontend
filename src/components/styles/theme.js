@@ -4,4 +4,5 @@ export const theme = {
   textGreyColor: '#777',
   textColor: '#111',
   textColorInverted: '#fff',
+  textColorWhite: '#fff',
 }

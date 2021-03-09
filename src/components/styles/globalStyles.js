@@ -34,4 +34,10 @@ export const GlobalStyle = createGlobalStyle`
   .margin-r-l {
     margin: 0 1.5rem;
   }
+
+  .onlyMobile {
+    @media (min-width: 576px) {
+      display: none !important;
+    }
+  }
 `
