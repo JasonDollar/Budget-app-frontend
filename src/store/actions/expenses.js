@@ -63,3 +63,21 @@ export const removeExpense = (id) => async dispatch => {
   }
 }
 
+
+const editExpenseInStore = expense => ({
+  type: types.EDIT_EXPENSE,
+  payload: expense
+})
+
+export const editExpense = (id, updates) => async dispatch => {
+  try {
+    const res = await axios.patch(`${baseUrl}/expenses/${id}`, updates)
+    // console.log(res)
+    if (res.statusText === 'OK') {
+      dispatch(editExpenseInStore(res.data.expense))
+      history.push('/expenses')
+    }
+  } catch (e) {
+
+  }
+}

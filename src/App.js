@@ -11,6 +11,7 @@ import history from './lib/history'
 
 import Register from './pages/register'
 import AddExpense from './pages/addExpense'
+import EditExpense from './pages/editExpense'
 import Expenses from './pages/expenses'
 import Expense from './pages/expense'
 
@@ -54,8 +55,11 @@ function App() {
             <Route path="/addExpense" exact>
               <AddExpense/>
             </Route>
-            <Route path="/expenses/:expenseId">
+            <Route path="/expenses/:expenseId" exact>
               <Expense />
+            </Route>
+            <Route path="/expenses/edit/:expenseId" exact>
+              <EditExpense />
             </Route>
             <Route path="/expenses" exact>
               <Expenses />

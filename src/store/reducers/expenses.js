@@ -36,6 +36,18 @@ const expenseReducer = (state = initialState, action) => {
         error: '',
         expenses: filteredExpenses
       }
+    case types.EDIT_EXPENSE:
+      const mappedExpenses = state.expenses.map(item => {
+        if (item._id === action.payload._id) {
+          return action.payload
+        }
+        return item
+      })
+      return {
+        loading: false,
+        error: '',
+        expenses: mappedExpenses
+      }
     case types.LOADING_START:
       return {
         ...state,

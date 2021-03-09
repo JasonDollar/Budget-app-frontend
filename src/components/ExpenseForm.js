@@ -38,7 +38,7 @@ const SaveButton = styled.button`
 const ExpenseForm = ({ titleExpense = '', descriptionExpense = '', amountExpense = '', handleSubmit }) => {
   const [title, setTitle] = useState(titleExpense)
   const [description, setDescription] = useState(descriptionExpense)
-  const [amount, setAmount] = useState(amountExpense)
+  const [amount, setAmount] = useState(amountExpense && amountExpense / 100)
   const formHandler = async e => {
     e.preventDefault()
     // simple validation
