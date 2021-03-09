@@ -14,8 +14,8 @@ const AddExpensePage = () => {
       // save expense as whole number
       const validAmount = Math.ceil(amount * 100)
       dispatch(addExpense({title, description, amount: validAmount})) 
-
   }
+  
   return (
     <div className="margin-r-l">
       <Header>Add Expense</Header>
