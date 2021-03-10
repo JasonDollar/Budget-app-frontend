@@ -3,9 +3,7 @@ import * as types from './actionTypes'
 import { baseUrl } from '../../config/apiUrl'
 import history from '../../lib/history'
 
-const loadingStart = () => ({
-  type: types.LOADING_START,
-})
+import { loadingStart } from './shared'
 
 const setExpensesToStore = expenses => ({
   type: types.SET_EXPENSES,

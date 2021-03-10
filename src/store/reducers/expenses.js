@@ -54,7 +54,6 @@ const expenseReducer = (state = initialState, action) => {
         loading: true,
       }
     default:
-      console.log('default')
       return state
   }
 }

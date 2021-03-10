@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components'
 
 import store from './store'
 import { setExpenses } from './store/actions/expenses'
+import { getUserData } from './store/actions/user'
 import setAuthToken from './lib/setAuthToken'
 import history from './lib/history'
 
@@ -34,6 +35,7 @@ function App() {
       console.log(decoded)
       setAuthToken(token)
       store.dispatch(setExpenses())
+      store.dispatch(getUserData())
     }
   }
 

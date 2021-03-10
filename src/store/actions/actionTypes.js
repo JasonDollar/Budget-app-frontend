@@ -3,3 +3,5 @@ export const ADD_EXPENSE = 'ADD_EXPENSE'
 export const EDIT_EXPENSE = 'EDIT_EXPENSE'
 export const REMOVE_EXPENSE = 'REMOVE_EXPENSE'
 export const LOADING_START = 'LOADING_START'
+
+export const SET_USER_DATA = 'SET_USER_DATA'
