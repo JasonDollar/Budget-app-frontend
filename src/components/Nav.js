@@ -85,7 +85,7 @@ const Nav = ({ isOpen, toggleNavOpen }) => {
           <button onClick={toggleNavOpen} className="closeMenu">Close</button>
         </li>
         <li>
-          <NavLink to="/">Menu item 1</NavLink>
+          <NavLink to="/user">User</NavLink>
         </li>
         <li>
           <NavLink to="/">Menu item 2</NavLink>
