@@ -5,14 +5,14 @@ import { getThemeData } from './styles/theme'
 
 const SettingContainer = styled.div`
   .appTheme {
-    @media (min-width: 576px) {
+    @media (min-width: 768px) {
       width: 50%;
     }
   }
 
   .themes {
     display: flex;
-    /* justify-content: space-evenly; */
+    justify-content: space-evenly;
     margin: 1rem 0;
   }
 
@@ -20,6 +20,7 @@ const SettingContainer = styled.div`
 `
 
 const ThemeColor = styled.div`
+flex: 1;
   margin: 0 2rem;
   display: flex;
   flex-direction: column;

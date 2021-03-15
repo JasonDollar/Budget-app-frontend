@@ -33,6 +33,7 @@ const EditExpense = () => {
   }
   return (
     <div className="margin-r-l">
+      <h2>Edit expense</h2>
       <ExpenseForm titleExpense={expense.title} descriptionExpense={expense.description} amountExpense={expense.amount} handleSubmit={editExpenseHandler}/>
     </div>
   )

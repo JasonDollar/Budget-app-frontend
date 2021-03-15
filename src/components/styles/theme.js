@@ -29,6 +29,16 @@ const theme = {
     textColorInverted: '#fff',
     textColorWhite: '#fff',
   },
+  blue: {
+    id: 'blue',
+    name: 'Blue',
+    mainThemeColor: '#1b77e0',
+    boxShadow: '0px 2px 20px -10px #999',
+    textGreyColor: '#777',
+    textColor: '#111',
+    textColorInverted: '#fff',
+    textColorWhite: '#fff',
+  },
 }
 
 export const getTheme = (id = 'violet') => {
