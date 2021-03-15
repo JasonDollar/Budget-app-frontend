@@ -30,7 +30,7 @@ function App() {
     if (themeIdFromLS) return themeIdFromLS
     return 'violet'
   })
-
+  
   useEffect(() => {
     getJwtFromLS()
   }, [])
@@ -72,7 +72,7 @@ function App() {
                   <Redirect to="expenses" />
                 </Route>
                 <Route path="/user" >
-                  <User />
+                  <User changeAppTheme={changeAppTheme} themeId={themeId}/>
                 </Route>
                 <Route path="/addExpense" exact>
                   <AddExpense/>
