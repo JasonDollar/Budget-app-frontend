@@ -18,13 +18,18 @@ import Expense from './pages/expense'
 import User from './pages/user'
 
 import { GlobalStyle } from './components/styles/globalStyles'
-import { theme } from './components/styles/theme'
+import { getTheme } from './components/styles/theme'
 import Header from './components/Header'
 import Total from './components/Total'
 
 function App() {
   const [totalComponentHeight, setTotalComponentHeight] = useState(0)
   const [userLogged, setUserLogged] = useState()
+  const [themeId, changeThemeId] = useState(() => {
+    const themeIdFromLS = localStorage.getItem('theme')
+    if (themeIdFromLS) return themeIdFromLS
+    return 'violet'
+  })
 
   useEffect(() => {
     getJwtFromLS()
@@ -41,9 +46,14 @@ function App() {
     }
   }
 
+  const changeAppTheme = (themeId) => {
+    localStorage.setItem('theme', themeId)
+    changeThemeId(themeId)
+  }
+
   return (
     <Provider store={store}>
-      <ThemeProvider theme={theme} >
+      <ThemeProvider theme={() => getTheme(themeId)} >
         <GlobalStyle />
         <Router history={history}>
           <Header totalComponentHeight={totalComponentHeight}/>
@@ -78,7 +88,6 @@ function App() {
                 </Route>
               </Switch>
             </Route>
-            
           </Switch>
           </div> 
         </Router>
