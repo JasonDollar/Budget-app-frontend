@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import { removeExpense } from '../store/actions/expenses'
 import formatMoney from '../lib/formatMoney'
 
+import Loading from './styles/Loading'
+
 const Expense = ({ expenseId }) => {
   const expense = useSelector(state => state.expenses.expenses.find(item => item._id === expenseId))
   const dispatch = useDispatch()
@@ -15,7 +17,7 @@ const Expense = ({ expenseId }) => {
   
   if (!expense) {
     return (
-      <div>Loading</div>
+      <Loading />
     )
   }
   return (
