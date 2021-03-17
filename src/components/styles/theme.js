@@ -8,6 +8,8 @@ const theme = {
     textColor: '#111',
     textColorInverted: '#fff',
     textColorWhite: '#fff',
+    colorDanger: '#ad0c0c',
+    colorAlert: '#c4c408'
   },
   pumpkin: {
     id: 'pumpkin',
@@ -18,6 +20,8 @@ const theme = {
     textColor: '#111',
     textColorInverted: '#fff',
     textColorWhite: '#fff',
+    colorDanger: '#ad0c0c',
+    colorAlert: '#c4c408'
   },
   sea: {
     id: 'sea',
@@ -28,6 +32,8 @@ const theme = {
     textColor: '#111',
     textColorInverted: '#fff',
     textColorWhite: '#fff',
+    colorDanger: '#ad0c0c',
+    colorAlert: '#c4c408'
   },
   blue: {
     id: 'blue',
@@ -38,6 +44,8 @@ const theme = {
     textColor: '#111',
     textColorInverted: '#fff',
     textColorWhite: '#fff',
+    colorDanger: '#ad0c0c',
+    colorAlert: '#c4c408'
   },
 }
 

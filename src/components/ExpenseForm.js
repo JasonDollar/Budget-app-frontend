@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import DatePicker from 'react-date-picker'
 
+import BigButton from './styles/BigButton'
+
 const FormContainer = styled.div`
   .form {
     display: flex;
@@ -26,18 +28,6 @@ const FormContainer = styled.div`
     height: 10rem;
   }
 `
-
-const SaveButton = styled.button`
-  cursor: pointer;
-  font-size: 2rem;
-  background: ${props => props.theme.mainThemeColor};
-  color: ${props => props.theme.textColorInverted};
-  padding: 1rem 0;
-  border: none;
-  border-radius: 10px;
-  box-shadow: ${props => props.theme.boxShadow};
-`
-
 
 const ExpenseForm = ({ titleExpense = '', descriptionExpense = '', amountExpense = '', handleSubmit, dateExpense }) => {
   const [title, setTitle] = useState(titleExpense)
@@ -87,7 +77,7 @@ const ExpenseForm = ({ titleExpense = '', descriptionExpense = '', amountExpense
           value={description} 
           onChange={e => setDescription(e.target.value)}
         />
-        <SaveButton type="submit">Save expense</SaveButton>
+        <BigButton type="submit">Save expense</BigButton>
       </form>
     </FormContainer>
   )
