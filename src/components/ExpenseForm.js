@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import DatePicker from 'react-date-picker'
 
-import BigButton from './styles/BigButton'
+import { BigButton } from './styles/BigButton'
 
 const FormContainer = styled.div`
   .form {
