@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import DatePicker from 'react-date-picker'
 
 const FormContainer = styled.div`
   .form {
@@ -38,16 +39,18 @@ const SaveButton = styled.button`
 `
 
 
-const ExpenseForm = ({ titleExpense = '', descriptionExpense = '', amountExpense = '', handleSubmit }) => {
+const ExpenseForm = ({ titleExpense = '', descriptionExpense = '', amountExpense = '', handleSubmit, dateExpense }) => {
   const [title, setTitle] = useState(titleExpense)
   const [description, setDescription] = useState(descriptionExpense)
   const [amount, setAmount] = useState(amountExpense && amountExpense / 100)
+  const [expenseDate, setExpenseDate] = useState(dateExpense ? new Date(dateExpense) : new Date())
+
   const formHandler = async e => {
     e.preventDefault()
     // simple validation
     if (!title || amount <= 0) return
 
-    await handleSubmit(title, description, amount)
+    await handleSubmit(title, description, amount, expenseDate)
   }
   return (
     <FormContainer>
@@ -68,6 +71,14 @@ const ExpenseForm = ({ titleExpense = '', descriptionExpense = '', amountExpense
           onChange={e => setAmount(e.target.value)} 
           step="0.01" 
           required
+        />
+        <DatePicker 
+          value={expenseDate} 
+          onChange={date => setExpenseDate(date)}  
+          clearIcon={false}
+          minDetail="year"
+          required
+          format="dd.MM.y"
         />
         <textarea 
           className="textarea" 

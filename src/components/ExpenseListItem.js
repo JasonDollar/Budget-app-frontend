@@ -40,13 +40,14 @@ const ListItem = styled.li`
 `
 
 const ExpenseListItem = ({expense}) => {
+  
   return (
     <ListItem>
       <Link to={`/expenses/${expense._id}`} className="expenseLink">
         <h2 className="expense">{expense.title}</h2>
         <div className="details">
           <p className="amount">{formatMoney(expense.amount)}</p>
-          <p className="date">{format(new Date(expense.createdAt), 'd LLL')}</p>
+          <p className="date">{expense.expenseDate && format(new Date(expense.expenseDate), 'd LLL')}</p>
         </div>
       </Link>
     </ListItem>

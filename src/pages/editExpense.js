@@ -11,9 +11,10 @@ const EditExpense = () => {
   const expense = useSelector(state => state.expenses.expenses.find(item => item._id === expenseId))
   const loading = useSelector(state => state.expenses.loading)
   const dispatch = useDispatch()
-
-  const editExpenseHandler = async (title, description, amount) => {
+  
+  const editExpenseHandler = async (title, description, amount, date) => {
     const updates = {}
+    updates.expenseDate = date
     if (title !== expense.title) {
       updates.title = title
     }
@@ -34,7 +35,13 @@ const EditExpense = () => {
   return (
     <div className="margin-r-l">
       <h2>Edit expense</h2>
-      <ExpenseForm titleExpense={expense.title} descriptionExpense={expense.description} amountExpense={expense.amount} handleSubmit={editExpenseHandler}/>
+      <ExpenseForm 
+        titleExpense={expense.title} 
+        descriptionExpense={expense.description} 
+        amountExpense={expense.amount} 
+        dateExpense={expense.expenseDate}
+        handleSubmit={editExpenseHandler}
+      />
     </div>
   )
 }
