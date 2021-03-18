@@ -11,6 +11,7 @@ import setAuthToken from './lib/setAuthToken'
 import history from './lib/history'
 
 import Register from './pages/register'
+import Login from './pages/login'
 import AddExpense from './pages/addExpense'
 import EditExpense from './pages/editExpense'
 import Expenses from './pages/expenses'
@@ -62,6 +63,10 @@ function App() {
 
             <Route path="/register" exact>
               <Register />
+            </Route>
+
+            <Route path="/login" exact>
+              <Login />
             </Route>
 
             <Route path="/">

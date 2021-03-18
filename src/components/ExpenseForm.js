@@ -31,9 +31,8 @@ const FormContainer = styled.div`
   }
 `
 
-const ExpenseForm = ({ expenseId, titleExpense = '', descriptionExpense = '', amountExpense = '', handleSubmit, dateExpense, categoryExpense, loading }) => {
+const ExpenseForm = ({ expenseId, titleExpense = '', descriptionExpense = '', amountExpense = '', handleSubmit, dateExpense, categoryExpense = 'other', loading }) => {
   const categories = useSelector(state => state.user.userData.categories)
-  const history = useHistory()
   const [title, setTitle] = useState(titleExpense)
   const [description, setDescription] = useState(descriptionExpense)
   const [amount, setAmount] = useState(amountExpense && amountExpense / 100)
@@ -78,7 +77,7 @@ const ExpenseForm = ({ expenseId, titleExpense = '', descriptionExpense = '', am
           />
           <select name="category" value={category} onChange={e => setCategory(e.target.value)}>
             {/* below turnary is for local mobile testing purposes */}
-            {categories ? categories.map(item => (
+            {categories?.length ? categories.map(item => (
               <option key={item} value={item}>{item}</option>
             )) : (
                 <option value="other">Other</option>
