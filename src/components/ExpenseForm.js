@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import DatePicker from 'react-date-picker'
+import { useSelector } from 'react-redux'
 
 import { BigButton } from './styles/BigButton'
 
@@ -29,18 +30,20 @@ const FormContainer = styled.div`
   }
 `
 
-const ExpenseForm = ({ titleExpense = '', descriptionExpense = '', amountExpense = '', handleSubmit, dateExpense }) => {
+const ExpenseForm = ({ titleExpense = '', descriptionExpense = '', amountExpense = '', handleSubmit, dateExpense, categoryExpense }) => {
+  const categories = useSelector(state => state.user.userData.categories)
   const [title, setTitle] = useState(titleExpense)
   const [description, setDescription] = useState(descriptionExpense)
   const [amount, setAmount] = useState(amountExpense && amountExpense / 100)
   const [expenseDate, setExpenseDate] = useState(dateExpense ? new Date(dateExpense) : new Date())
+  const [category, setCategory] = useState(categoryExpense)
 
   const formHandler = async e => {
     e.preventDefault()
     // simple validation
     if (!title || amount <= 0) return
 
-    await handleSubmit(title, description, amount, expenseDate)
+    await handleSubmit(title, description, amount, expenseDate, category)
   }
   return (
     <FormContainer>
@@ -62,14 +65,21 @@ const ExpenseForm = ({ titleExpense = '', descriptionExpense = '', amountExpense
           step="0.01" 
           required
         />
-        <DatePicker 
-          value={expenseDate} 
-          onChange={date => setExpenseDate(date)}  
-          clearIcon={false}
-          minDetail="year"
-          required
-          format="dd.MM.y"
-        />
+        <div>
+          <DatePicker 
+            value={expenseDate} 
+            onChange={date => setExpenseDate(date)}  
+            clearIcon={false}
+            minDetail="year"
+            required
+            format="dd.MM.y"
+          />
+          <select name="category" value={category} onChange={e => setCategory(e.target.value)}>
+            {categories?.map(item => (
+              <option key={item} value={item}>{item}</option>
+            ))}
+          </select>
+        </div>
         <textarea 
           className="textarea" 
           type="text" 

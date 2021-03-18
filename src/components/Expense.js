@@ -56,6 +56,8 @@ const Expense = ({ expenseId }) => {
       <h2 className="title">{expense.title}</h2>
       <p>Amount: {formatMoney(expense.amount)}</p>
       <p>Date: {format(new Date(expense.expenseDate), 'd LLL')}</p>
+      <p>Category: {expense.category}</p>
+      <p>{expense?.description}</p>
       <ButtonsContainer buttons={2}>
         <BigButton onClick={removeExpenseHandler} danger fontSize={1.2} >
           Delete

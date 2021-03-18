@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import ExpenseForm from '../components/ExpenseForm'
+import Loading from '../components/styles/Loading'
 
 import { editExpense } from '../store/actions/expenses'
 
@@ -12,7 +13,7 @@ const EditExpense = () => {
   const loading = useSelector(state => state.expenses.loading)
   const dispatch = useDispatch()
   
-  const editExpenseHandler = async (title, description, amount, date) => {
+  const editExpenseHandler = async (title, description, amount, date, category) => {
     const updates = {}
     updates.expenseDate = date
     if (title !== expense.title) {
@@ -25,12 +26,15 @@ const EditExpense = () => {
       const validAmount = Math.ceil(amount * 100)
       updates.amount = validAmount
     }
+    if (category !== expense.category) {
+      updates.category = category
+    }
     // save expense as whole number
     dispatch(editExpense(expenseId, updates)) 
-}
-  console.log(expense)
+  }
+  // console.log(expense)
   if (loading || !expense) {
-    return <div>Loading</div>
+    return <Loading />
   }
   return (
     <div className="margin-r-l">
@@ -40,6 +44,7 @@ const EditExpense = () => {
         descriptionExpense={expense.description} 
         amountExpense={expense.amount} 
         dateExpense={expense.expenseDate}
+        categoryExpense={expense.category}
         handleSubmit={editExpenseHandler}
       />
     </div>
