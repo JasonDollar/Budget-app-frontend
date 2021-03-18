@@ -1,7 +1,7 @@
 import * as types from '../actions/actionTypes'
 
 const initialState = {
-  loading: true,
+  loading: false,
   error: '',
   expenses: [{
     _id: '603e8a3bc4e77e04d869c708',

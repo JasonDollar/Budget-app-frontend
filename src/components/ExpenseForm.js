@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import DatePicker from 'react-date-picker'
 import { useSelector } from 'react-redux'
+import { Link, useHistory } from 'react-router-dom'
 
-import { BigButton } from './styles/BigButton'
+import { BigButton, ButtonsContainer } from './styles/BigButton'
 
 const FormContainer = styled.div`
   .form {
@@ -30,8 +31,9 @@ const FormContainer = styled.div`
   }
 `
 
-const ExpenseForm = ({ titleExpense = '', descriptionExpense = '', amountExpense = '', handleSubmit, dateExpense, categoryExpense, loading }) => {
+const ExpenseForm = ({ expenseId, titleExpense = '', descriptionExpense = '', amountExpense = '', handleSubmit, dateExpense, categoryExpense, loading }) => {
   const categories = useSelector(state => state.user.userData.categories)
+  const history = useHistory()
   const [title, setTitle] = useState(titleExpense)
   const [description, setDescription] = useState(descriptionExpense)
   const [amount, setAmount] = useState(amountExpense && amountExpense / 100)
@@ -90,7 +92,15 @@ const ExpenseForm = ({ titleExpense = '', descriptionExpense = '', amountExpense
           value={description} 
           onChange={e => setDescription(e.target.value)}
         />
-        <BigButton type="submit" disabled={loading}>Save expense</BigButton>
+        <ButtonsContainer buttons={2}>
+          <BigButton alert>
+            <Link to={`/expenses/${expenseId}`}>
+              Cancel
+            </Link>
+          </BigButton>
+          <BigButton type="submit" disabled={loading}>Save expense</BigButton>
+
+        </ButtonsContainer>
       </form>
     </FormContainer>
   )

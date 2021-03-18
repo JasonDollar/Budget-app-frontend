@@ -40,6 +40,7 @@ const EditExpense = () => {
     <div className="margin-r-l">
       <h2>Edit expense</h2>
       <ExpenseForm 
+        expenseId={expenseId}
         titleExpense={expense.title} 
         descriptionExpense={expense.description} 
         amountExpense={expense.amount} 

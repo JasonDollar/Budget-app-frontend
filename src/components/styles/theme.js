@@ -33,7 +33,7 @@ const theme = {
     textColorInverted: '#fff',
     textColorWhite: '#fff',
     colorDanger: '#d93f4e',
-    colorAlert: '#f5b800',
+    colorAlert: '#dba500',
   },
   blue: {
     id: 'blue',
