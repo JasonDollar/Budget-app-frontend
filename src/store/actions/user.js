@@ -16,6 +16,10 @@ const setUserToStore = (userData) => ({
   payload: userData
 })
 
+const clearUser = () => ({
+  type: types.CLEAR_USER
+})
+
 export const getUserData = () => async dispatch => {
   try {
     dispatch(loadingUserStart())
@@ -61,5 +65,18 @@ export const registerUser = (name, email, password, passwordConfirm, history) =>
     }
   } catch (e) {
 
+  }
+}
+
+export const logoutUser = (history) => async dispatch => {
+  dispatch(loadingUserStart())
+  const res = await axios.post(`${baseUrl}/users/logout`)
+  console.log(res)
+  if (res.statusText === 'OK') {
+    dispatch(clearUser())
+    dispatch(clearExpenses())
+    localStorage.removeItem('jwtToken')
+    setAuthToken(false)
+    history.push('/')
   }
 }

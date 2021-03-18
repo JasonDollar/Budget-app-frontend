@@ -7,3 +7,4 @@ export const CLEAR_EXPENSES = 'CLEAR_EXPENSES'
 
 export const LOADING_USER_START = 'LOADING_USER_START'
 export const SET_USER_DATA = 'SET_USER_DATA'
+export const CLEAR_USER = 'CLEAR_USER'
