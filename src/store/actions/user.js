@@ -3,7 +3,12 @@ import * as types from './actionTypes'
 import { baseUrl } from '../../config/apiUrl'
 // import history from '../../lib/history'
 
-import { loadingStart } from './shared'
+// import { loadingStart } from './shared'
+
+
+export const loadingUserStart = () => ({
+  type: types.LOADING_USER_START,
+})
 
 const setUserToStore = (userData) => ({
   type: types.SET_USER_DATA,
@@ -12,7 +17,7 @@ const setUserToStore = (userData) => ({
 
 export const getUserData = () => async dispatch => {
   try {
-    dispatch(loadingStart())
+    dispatch(loadingUserStart())
     const res = await axios.get(`${baseUrl}/users/userDetails`)
     if (res.statusText === 'OK') {
       const { user } = res.data

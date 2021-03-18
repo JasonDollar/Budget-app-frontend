@@ -15,8 +15,6 @@ const SettingContainer = styled.div`
     justify-content: space-evenly;
     margin: 1rem 0;
   }
-
-
 `
 
 const ThemeColor = styled.div`

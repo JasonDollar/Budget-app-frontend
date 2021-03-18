@@ -59,13 +59,13 @@ const Expense = ({ expenseId }) => {
       <p>Category: {expense.category}</p>
       <p>{expense?.description}</p>
       <ButtonsContainer buttons={2}>
-        <BigButton onClick={removeExpenseHandler} danger fontSize={1.2} >
-          Delete
-        </BigButton>
         <BigButton alert fontSize={1.2} >
           <Link to={`/expenses/edit/${expenseId}`}>
             Edit
           </Link>
+        </BigButton>
+        <BigButton onClick={removeExpenseHandler} danger fontSize={1.2} >
+          Delete
         </BigButton>
       </ButtonsContainer>
     </ExpenseContainer>

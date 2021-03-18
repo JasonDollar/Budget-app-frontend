@@ -3,7 +3,11 @@ import * as types from './actionTypes'
 import { baseUrl } from '../../config/apiUrl'
 import history from '../../lib/history'
 
-import { loadingStart } from './shared'
+// import { loadingStart } from './shared'
+
+export const loadingExpenseStart = () => ({
+  type: types.LOADING_EXPENSE_START,
+})
 
 const setExpensesToStore = expenses => ({
   type: types.SET_EXPENSES,
@@ -12,7 +16,7 @@ const setExpensesToStore = expenses => ({
 
 export const setExpenses = () => async dispatch => {
   try {
-    dispatch(loadingStart())
+    dispatch(loadingExpenseStart())
     const res = await axios.get(`${baseUrl}/expenses`)
     if (res.statusText === 'OK') {
       const expenses = res.data.expenses
@@ -68,6 +72,7 @@ const editExpenseInStore = expense => ({
 })
 
 export const editExpense = (id, updates) => async dispatch => {
+  dispatch(loadingExpenseStart())
   try {
     const res = await axios.patch(`${baseUrl}/expenses/${id}`, updates)
     // console.log(res)

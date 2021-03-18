@@ -30,7 +30,7 @@ const FormContainer = styled.div`
   }
 `
 
-const ExpenseForm = ({ titleExpense = '', descriptionExpense = '', amountExpense = '', handleSubmit, dateExpense, categoryExpense }) => {
+const ExpenseForm = ({ titleExpense = '', descriptionExpense = '', amountExpense = '', handleSubmit, dateExpense, categoryExpense, loading }) => {
   const categories = useSelector(state => state.user.userData.categories)
   const [title, setTitle] = useState(titleExpense)
   const [description, setDescription] = useState(descriptionExpense)
@@ -75,9 +75,12 @@ const ExpenseForm = ({ titleExpense = '', descriptionExpense = '', amountExpense
             format="dd.MM.y"
           />
           <select name="category" value={category} onChange={e => setCategory(e.target.value)}>
-            {categories?.map(item => (
+            {/* below turnary is for local mobile testing purposes */}
+            {categories ? categories.map(item => (
               <option key={item} value={item}>{item}</option>
-            ))}
+            )) : (
+                <option value="other">Other</option>
+            )}
           </select>
         </div>
         <textarea 
@@ -87,7 +90,7 @@ const ExpenseForm = ({ titleExpense = '', descriptionExpense = '', amountExpense
           value={description} 
           onChange={e => setDescription(e.target.value)}
         />
-        <BigButton type="submit">Save expense</BigButton>
+        <BigButton type="submit" disabled={loading}>Save expense</BigButton>
       </form>
     </FormContainer>
   )

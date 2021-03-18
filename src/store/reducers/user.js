@@ -8,7 +8,7 @@ const initialState = {
 
 const userReducer = (state = initialState, action) => {
   switch(action.type) {
-    case types.LOADING_START:
+    case types.LOADING_USER_START:
       return {
         ...state,
         error: '',

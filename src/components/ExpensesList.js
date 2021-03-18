@@ -17,6 +17,7 @@ const ExpensesList = () => {
   if (expensesLoading) {
     return <Loading />
   }
+  
   return (
     <div>
       <List className="margin-r-l">

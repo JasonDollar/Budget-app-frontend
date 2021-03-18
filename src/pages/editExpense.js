@@ -32,8 +32,8 @@ const EditExpense = () => {
     // save expense as whole number
     dispatch(editExpense(expenseId, updates)) 
   }
-  // console.log(expense)
-  if (loading || !expense) {
+
+  if (!expense) {
     return <Loading />
   }
   return (
@@ -46,6 +46,7 @@ const EditExpense = () => {
         dateExpense={expense.expenseDate}
         categoryExpense={expense.category}
         handleSubmit={editExpenseHandler}
+        loading={loading}
       />
     </div>
   )

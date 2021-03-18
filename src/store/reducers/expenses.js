@@ -1,7 +1,7 @@
 import * as types from '../actions/actionTypes'
 
 const initialState = {
-  loading: false,
+  loading: true,
   error: '',
   expenses: [{
     _id: '603e8a3bc4e77e04d869c708',
@@ -11,6 +11,8 @@ const initialState = {
     owner: '603d436854bb723cac11917a',
     createdAt: '2021-03-02T18:55:55.542Z',
     updatedAt: '2021-03-02T18:55:55.542Z',
+    expenseDate: '2021-03-02T18:55:55.542Z',
+    category: 'other',
     __v: 0
   }, {
     _id: '603e8a3bc4e77e04d869c709',
@@ -20,6 +22,8 @@ const initialState = {
     owner: '603d436854bb723cac11917a',
     createdAt: '2021-03-12T18:55:55.542Z',
     updatedAt: '2021-03-12T18:55:55.542Z',
+    expenseDate: '2021-03-12T18:55:55.542Z',
+    category: 'other',
   }]
 }
 
@@ -56,7 +60,7 @@ const expenseReducer = (state = initialState, action) => {
         error: '',
         expenses: mappedExpenses
       }
-    case types.LOADING_START:
+    case types.LOADING_EXPENSE_START:
       return {
         ...state,
         loading: true,

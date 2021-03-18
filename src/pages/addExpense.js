@@ -11,9 +11,9 @@ const Header = styled.h2``
 const AddExpensePage = () => {
   const dispatch = useDispatch()
   const addExpenseHandler = async (title, description, amount, date, category) => {
-      // save expense as whole number
-      const validAmount = Math.ceil(amount * 100)
-      dispatch(addExpense({title, description, amount: validAmount, expenseDate: date, category})) 
+    // save expense as whole number
+    const validAmount = Math.ceil(amount * 100)
+    dispatch(addExpense({title, description, amount: validAmount, expenseDate: date, category})) 
   }
   
   return (
