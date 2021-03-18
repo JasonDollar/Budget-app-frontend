@@ -58,6 +58,10 @@ const Header = ({ totalComponentHeight }) => {
     }
     toggleNavOpen(true)
   }
+  const handleLinkClick = e => {
+    if (navOpen === false) return
+    if (e.target.nodeName.toLowerCase() === 'a') toggleNavOpen(false)
+  }
   return (
     <Container bottomAdditionalSpace={totalComponentHeight}>
       <header className="desktopContainer header">
@@ -69,7 +73,7 @@ const Header = ({ totalComponentHeight }) => {
           <span></span>
           <span></span>
         </div>
-        <Nav isOpen={navOpen} toggleNavOpen={handleNavToggling}/>
+        <Nav isOpen={navOpen} toggleNavOpen={handleNavToggling} handleLinkClick={handleLinkClick}/>
       </header>
     </Container>
   )

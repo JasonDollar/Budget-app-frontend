@@ -76,11 +76,11 @@ const Backdrop = styled.div`
   display: ${props => props.isOpen ? 'static' : 'none'};
 `
 
-const Nav = ({ isOpen, toggleNavOpen }) => {
+const Nav = ({ isOpen, toggleNavOpen, handleLinkClick }) => {
   return (
     <>
       <Backdrop isOpen={isOpen} onClick={toggleNavOpen}/>
-      <NavList className={isOpen ? 'open' : ''}>
+      <NavList className={isOpen ? 'open' : ''} onClick={handleLinkClick}>
         <li className="onlyMobile">
           <button onClick={toggleNavOpen} className="closeMenu">Close</button>
         </li>
