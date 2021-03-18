@@ -11,8 +11,7 @@ const LoginPage = () => {
 
   const formSubmitHandler = async e => {
     e.preventDefault()
-    dispatch(loginUser(email, password))
-    history.push('/expenses')
+    dispatch(loginUser(email, password, history))
   }
 
   return (

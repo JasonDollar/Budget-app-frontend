@@ -65,6 +65,12 @@ const expenseReducer = (state = initialState, action) => {
         ...state,
         loading: true,
       }
+    case types.CLEAR_EXPENSES:
+      return {
+        expenses: [],
+        loading: false,
+        error: ''
+      }
     default:
       return state
   }

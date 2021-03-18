@@ -14,6 +14,10 @@ const setExpensesToStore = expenses => ({
   payload: expenses
 })
 
+export const clearExpenses = () => ({
+  type: types.CLEAR_EXPENSES
+})
+
 export const setExpenses = () => async dispatch => {
   try {
     dispatch(loadingExpenseStart())
