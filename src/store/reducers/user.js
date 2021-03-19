@@ -35,6 +35,14 @@ const userReducer = (state = initialState, action) => {
           settings: action.payload
         }
       }
+    case types.CHANGE_CATEGORIES:
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          categories: action.payload
+        }
+      }
     default:
       return state
   }

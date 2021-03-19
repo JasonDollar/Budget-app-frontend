@@ -99,3 +99,16 @@ export const changeCurrency = (newCurrency) => async dispatch => {
 
   }
 }
+
+export const removeCategory = (category) => async dispatch => {
+  try {
+    const res = await axios.delete(`${baseUrl}/users/category/${category}`)
+    if (res.statusText === 'OK') {
+      const { categories } = res.data
+      dispatch({
+        type: types.CHANGE_CATEGORIES,
+        payload: categories
+      })
+    }
+  } catch (e) {}
+}
