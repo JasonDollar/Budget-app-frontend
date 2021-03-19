@@ -14,7 +14,7 @@ const User = ({ changeAppTheme, themeId }) => {
       <h1>{user.name}</h1>
       <UserSettings changeAppTheme={changeAppTheme} themeId={themeId}/>
       {/* logout below is for testing */}
-      <button onClick={() => dispatch(logoutUser(history))}>Logout</button>
+      <button disabled onClick={() => dispatch(logoutUser(history))}>Logout</button>
     </div>
   )
 }

@@ -59,7 +59,7 @@ const Total = ({ totalComponentHeight, setTotalComponentHeight }) => {
   const [totalAmount, setTotalAmount] = useState('')
   const [todayAmount, setTodayAmount] = useState('')
   const expenses = useSelector(state => state.expenses.expenses)
-  const currency = useSelector(state => state.user.userData.settings.currency)
+  const currency = useSelector(state => state.user.userData?.settings?.currency)
   const boxRef = useRef()
 
   useEffect(() => {

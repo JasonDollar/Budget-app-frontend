@@ -1,0 +1,1 @@
+export const availableCurrencies = ['USD', 'EUR', 'PLN']
