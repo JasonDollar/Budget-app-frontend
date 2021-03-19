@@ -40,6 +40,7 @@ const ExpenseContainer = styled.div`
 
 const Expense = ({ expenseId }) => {
   const expense = useSelector(state => state.expenses.expenses.find(item => item._id === expenseId))
+  const currency = useSelector(state => state.user.userData.settings.currency)
   const dispatch = useDispatch()
 
   const removeExpenseHandler = () => {
@@ -54,7 +55,7 @@ const Expense = ({ expenseId }) => {
   return (
     <ExpenseContainer className="margin-r-l">
       <h2 className="title">{expense.title}</h2>
-      <p>Amount: {formatMoney(expense.amount)}</p>
+      <p>Amount: {formatMoney(expense.amount, currency)}</p>
       <p>Date: {format(new Date(expense.expenseDate), 'd LLL')}</p>
       <p>Category: {expense.category}</p>
       <p>{expense?.description}</p>

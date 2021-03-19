@@ -60,7 +60,7 @@ function App() {
           <Header totalComponentHeight={totalComponentHeight}/>
           <div className="desktopContainer">
           <Switch>
-
+          
             <Route path="/register" exact>
               <Register />
             </Route>

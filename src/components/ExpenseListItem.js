@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { format } from 'date-fns'
 
 import formatMoney from '../lib/formatMoney'
+import { useSelector } from 'react-redux'
 
 const ListItem = styled.li`
   margin: 1rem 0;
@@ -40,13 +41,14 @@ const ListItem = styled.li`
 `
 
 const ExpenseListItem = ({expense}) => {
+  const currency = useSelector(state => state.user.userData.settings.currency)
   
   return (
     <ListItem>
       <Link to={`/expenses/${expense._id}`} className="expenseLink">
         <h2 className="expense">{expense.title}</h2>
         <div className="details">
-          <p className="amount">{formatMoney(expense.amount)}</p>
+          <p className="amount">{formatMoney(expense.amount, currency)}</p>
           <p className="date">{expense.expenseDate && format(new Date(expense.expenseDate), 'd LLL')}</p>
         </div>
       </Link>

@@ -93,7 +93,7 @@ const ExpenseForm = ({ expenseId, titleExpense = '', descriptionExpense = '', am
         />
         <ButtonsContainer buttons={2}>
           <BigButton alert>
-            <Link to={`/expenses/${expenseId}`}>
+            <Link to={expenseId ? `/expenses/${expenseId}` : '/expenses'}>
               Cancel
             </Link>
           </BigButton>

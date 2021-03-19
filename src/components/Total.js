@@ -59,6 +59,7 @@ const Total = ({ totalComponentHeight, setTotalComponentHeight }) => {
   const [totalAmount, setTotalAmount] = useState('')
   const [todayAmount, setTodayAmount] = useState('')
   const expenses = useSelector(state => state.expenses.expenses)
+  const currency = useSelector(state => state.user.userData.settings.currency)
   const boxRef = useRef()
 
   useEffect(() => {
@@ -77,14 +78,14 @@ const Total = ({ totalComponentHeight, setTotalComponentHeight }) => {
       <p className="header">Total</p>
       <div className="main">
         <div className="total">
-          {formatMoney(totalAmount)}
+          {formatMoney(totalAmount, 'USD')}
         </div>
         <Link to='/addExpense' className="link">
           <span>+</span>
         </Link>
       </div>
       <p className="today">
-        {formatMoney(todayAmount)} today
+        {formatMoney(todayAmount, currency)} today
       </p>
     </TotalBox>
   )
