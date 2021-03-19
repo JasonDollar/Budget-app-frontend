@@ -3,7 +3,12 @@ import * as types from '../actions/actionTypes'
 const initialState = {
   loadingUser: false,
   errorUser: '',
-  userData: {}
+  userData: {
+    settings: {
+      currency: 'USD',
+      locale: 'en-US'
+    }
+  }
 }
 
 const userReducer = (state = initialState, action) => {
@@ -22,6 +27,14 @@ const userReducer = (state = initialState, action) => {
       }
     case types.CLEAR_USER:
       return initialState
+    case types.CHANGE_CURRENCY:
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          settings: action.payload
+        }
+      }
     default:
       return state
   }

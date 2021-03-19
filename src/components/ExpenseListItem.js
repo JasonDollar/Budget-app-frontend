@@ -41,14 +41,14 @@ const ListItem = styled.li`
 `
 
 const ExpenseListItem = ({expense}) => {
-  const currency = useSelector(state => state.user.userData.settings.currency)
-  
+  const { currency, locale } = useSelector(state => state.user.userData?.settings)
+
   return (
     <ListItem>
       <Link to={`/expenses/${expense._id}`} className="expenseLink">
         <h2 className="expense">{expense.title}</h2>
         <div className="details">
-          <p className="amount">{formatMoney(expense.amount, currency)}</p>
+          <p className="amount">{formatMoney(expense.amount, currency, locale)}</p>
           <p className="date">{expense.expenseDate && format(new Date(expense.expenseDate), 'd LLL')}</p>
         </div>
       </Link>

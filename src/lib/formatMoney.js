@@ -1,4 +1,4 @@
-const formatMoney = (amount, currency = 'USD') => {
+const formatMoney = (amount, currency = 'USD', locale = 'en-US') => {
   const options = {
     style: 'currency',
     currency,
@@ -6,7 +6,7 @@ const formatMoney = (amount, currency = 'USD') => {
   };
 
   if (amount % 100 === 0) options.minimumFractionDigits = 0;
-  const formatter = new Intl.NumberFormat('en-US', options);
+  const formatter = new Intl.NumberFormat(locale, options);
   return formatter.format(amount / 100);
 }
 

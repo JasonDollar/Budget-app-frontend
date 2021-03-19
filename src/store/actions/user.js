@@ -80,3 +80,22 @@ export const logoutUser = (history) => async dispatch => {
     history.push('/')
   }
 }
+
+export const changeCurrency = (newCurrency) => async dispatch => {
+  try {
+    console.log(newCurrency)
+    const res = await axios.patch(`${baseUrl}/users/currency`, { newCurrency })
+    if (res.statusText === 'OK') {
+      const { currency } = res.data
+    
+      dispatch({
+        type: types.CHANGE_CURRENCY,
+        payload: currency
+      })
+      console.log(res)
+    }
+
+  } catch (e) {
+
+  }
+}

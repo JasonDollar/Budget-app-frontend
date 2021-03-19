@@ -1,1 +1,1 @@
-export const availableCurrencies = ['USD', 'EUR', 'PLN']
+export const availableCurrencies = ['USD', 'EUR', 'PLN', 'GBP']
