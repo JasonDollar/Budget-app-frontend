@@ -78,14 +78,14 @@ const Total = ({ totalComponentHeight, setTotalComponentHeight }) => {
       <p className="header">Total</p>
       <div className="main">
         <div className="total">
-          {loading ? '-' : formatMoney(totalAmount, currency, locale)}
+          {formatMoney(totalAmount, currency, locale)}
         </div>
         <Link to='/addExpense' className="link">
           <span>+</span>
         </Link>
       </div>
       <p className="today">
-        {loading ? '-' : formatMoney(todayAmount, currency, locale)} today
+        {formatMoney(todayAmount, currency, locale)} today
       </p>
     </TotalBox>
   )
