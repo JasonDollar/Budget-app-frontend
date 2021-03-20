@@ -6,6 +6,8 @@ import { format } from 'date-fns'
 import formatMoney from '../lib/formatMoney'
 import { useSelector } from 'react-redux'
 
+import { selectUserSettings } from '../store/selectors/user'
+
 const ListItem = styled.li`
   margin: 1rem 0;
   padding: 1.2rem 1rem;
@@ -41,7 +43,7 @@ const ListItem = styled.li`
 `
 
 const ExpenseListItem = ({expense}) => {
-  const { currency, locale } = useSelector(state => state.user.userData?.settings)
+  const { currency, locale } = useSelector(selectUserSettings)
 
   return (
     <ListItem>

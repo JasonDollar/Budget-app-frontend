@@ -3,10 +3,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import { logoutUser } from '../store/actions/user'
 import { useHistory } from 'react-router-dom'
 
+import { selectUserData } from '../store/selectors/user'
+
 import UserSettings from './UserSetings/UserSettings'
 
 const User = ({ changeAppTheme, themeId }) => {
-  const user = useSelector(state => state.user.userData)
+  const user = useSelector(selectUserData)
   const dispatch = useDispatch()
   const history = useHistory()
   return (

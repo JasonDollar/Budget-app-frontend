@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { format } from 'date-fns'
 
 import { removeExpense } from '../store/actions/expenses'
+import { selectUserSettings } from '../store/selectors/user'
 import formatMoney from '../lib/formatMoney'
 
 import Loading from './styles/Loading'
@@ -40,7 +41,7 @@ const ExpenseContainer = styled.div`
 
 const Expense = ({ expenseId }) => {
   const expense = useSelector(state => state.expenses.expenses.find(item => item._id === expenseId))
-  const { currency, locale } = useSelector(state => state.user.userData?.settings)
+  const { currency, locale } = useSelector(selectUserSettings)
   const dispatch = useDispatch()
 
   const removeExpenseHandler = () => {

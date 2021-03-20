@@ -7,6 +7,8 @@ import CategoriesSettings from './CategoriesSettings'
 import CurrencySettings from './CurrencySettings'
 import ThemeSettings from './ThemeSettings'
 
+import { selectUserSettings, selectUserCategories } from '../../store/selectors/user'
+
 const SettingContainer = styled.div`
   .appTheme {
     @media (min-width: 768px) {
@@ -24,8 +26,8 @@ const SettingContainer = styled.div`
 
 const UserSettings = ({ changeAppTheme, themeId }) => {
   const [themes] = useState(() => getThemeData())
-  const settings = useSelector(state => state.user.userData?.settings)
-  const categories = useSelector(state => state.user.userData?.categories)
+  const settings = useSelector(selectUserSettings)
+  const categories = useSelector(selectUserCategories)
 
   return (
     <SettingContainer>

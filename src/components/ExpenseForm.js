@@ -6,6 +6,8 @@ import { Link, useHistory } from 'react-router-dom'
 
 import { BigButton, ButtonsContainer } from './styles/BigButton'
 
+import { selectUserCategories } from '../store/selectors/user'
+
 const FormContainer = styled.div`
   .form {
     display: flex;
@@ -32,7 +34,7 @@ const FormContainer = styled.div`
 `
 
 const ExpenseForm = ({ expenseId, titleExpense = '', descriptionExpense = '', amountExpense = '', handleSubmit, dateExpense, categoryExpense = 'other', loading }) => {
-  const categories = useSelector(state => state.user.userData.categories)
+  const categories = useSelector(selectUserCategories)
   const [title, setTitle] = useState(titleExpense)
   const [description, setDescription] = useState(descriptionExpense)
   const [amount, setAmount] = useState(amountExpense && amountExpense / 100)

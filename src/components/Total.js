@@ -5,6 +5,8 @@ import styled from 'styled-components'
 import { calculateTotal, calculateTodayExpenses } from '../lib/calcMoney'
 import formatMoney from '../lib/formatMoney'
 
+import { selectUserSettings } from '../store/selectors/user'
+
 const TotalBox = styled.div`
   margin: 0 1.5rem;
   margin-top: -${props => props?.boxSize / 2}px;
@@ -59,7 +61,7 @@ const Total = ({ totalComponentHeight, setTotalComponentHeight }) => {
   const [totalAmount, setTotalAmount] = useState('')
   const [todayAmount, setTodayAmount] = useState('')
   const { expenses, loading} = useSelector(state => state.expenses)
-  const { currency, locale } = useSelector(state => state.user.userData?.settings)
+  const { currency, locale } = useSelector(selectUserSettings)
   const boxRef = useRef()
 
   useEffect(() => {
