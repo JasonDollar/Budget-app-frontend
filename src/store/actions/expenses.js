@@ -3,7 +3,7 @@ import * as types from './actionTypes'
 import { baseUrl } from '../../config/apiUrl'
 import history from '../../lib/history'
 
-// import { loadingStart } from './shared'
+import { apiCallStart, apiCallFinishSuccess, apiCallFinishFail } from './ui'
 
 export const loadingExpenseStart = () => ({
   type: types.LOADING_EXPENSE_START,
@@ -36,15 +36,18 @@ const addExpenseToStore = (expense) => ({
   payload: expense
 })
 
-export const addExpense = (expenseData) => async dispatch => {
+export const addExpense = (expenseData, uiAction) => async dispatch => {
+  dispatch(apiCallStart(uiAction))
   try {
     const res = await axios.post(`${baseUrl}/expenses`, expenseData)
     if (res.statusText === 'Created') {
       const expense = res.data.expense
       dispatch(addExpenseToStore(expense))
+      dispatch(apiCallFinishSuccess(uiAction))
       history.push('/expenses')
     }
   } catch (e) {
+    dispatch(apiCallFinishFail(uiAction, e))
     // add error handling
     console.log(e.response)
     console.log(e.message)

@@ -1,10 +1,12 @@
 import {combineReducers} from 'redux'
 import expenseReducer from './expenses'
 import userReducer from './user'
+import uiReducer from './ui'
 
 const rootReducer = combineReducers({
   expenses: expenseReducer,
-  user: userReducer
+  user: userReducer,
+  ui: uiReducer
 })
 
 export default rootReducer
