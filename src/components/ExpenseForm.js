@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import DatePicker from 'react-date-picker'
 import { useSelector } from 'react-redux'
@@ -32,14 +32,24 @@ const FormContainer = styled.div`
   }
 `
 
-const ExpenseForm = ({ expenseId, titleExpense = '', descriptionExpense = '', amountExpense = '', handleSubmit, dateExpense, categoryExpense = 'other', apiCallState }) => {
+const ExpenseForm = ({ expenseId, titleExpense = '', descriptionExpense = '', amountExpense = '', handleSubmit, dateExpense, categoryExpense , apiCallState }) => {
   
   const categories = useSelector(selectUserCategories)
   const [title, setTitle] = useState(titleExpense)
   const [description, setDescription] = useState(descriptionExpense)
   const [amount, setAmount] = useState(amountExpense && amountExpense / 100)
   const [expenseDate, setExpenseDate] = useState(dateExpense ? new Date(dateExpense) : new Date())
-  const [category, setCategory] = useState(categoryExpense)
+  const [category, setCategory] = useState()
+  
+  useEffect(() => {
+    if (categoryExpense) {
+      setCategory(categoryExpense)
+    } else if (categories.length) {
+      setCategory(categories[0])
+    } else {
+      setCategory('other')
+    }
+  }, [categories, categoryExpense])
 
   const formHandler = async e => {
     e.preventDefault()
