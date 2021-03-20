@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const ThemeColor = styled.div`
-flex: 1;
+  flex: 1;
   margin: 0 2rem;
   display: flex;
   flex-direction: column;
@@ -11,27 +11,27 @@ flex: 1;
 
   .themeName {
     margin-top: .5rem;
-    color: ${props => props.chosenColor ? props.theme.textColor : props.theme.textGreyColor}
+    color: ${props => props.theme.textColor}
   }
   .colorCircle {
     .outer {
-    background: #fff;
-    border: 1px solid ${props => props.chosenColor ? props.backColor : '#fff'};
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 3rem;
-    width: 3rem;
-    border-radius: 50%;
-  }
-  .inner {
-    padding: 1rem;
-    display: block;
-    height: 2rem;
-    width: 2rem;
-    border-radius: 50%;
-    background-color: ${props => props.backColor};
-  }
+      background: #fff;
+      border: 1px solid ${props => props.chosenColor ? props.backColor : '#fff'};
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 3rem;
+      width: 3rem;
+      border-radius: 50%;
+    }
+    .inner {
+      padding: 1rem;
+      display: block;
+      height: 2rem;
+      width: 2rem;
+      border-radius: 50%;
+      background-color: ${props => props.backColor};
+    }
   }
 `
 

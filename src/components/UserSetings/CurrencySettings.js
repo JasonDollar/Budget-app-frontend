@@ -10,10 +10,9 @@ const CurrencySettings = ({ userCurrency }) => {
 
   const changeCurrencyHandler = () => {
     if (!currency) { return }
-
     dispatch(changeCurrency(currency))
   }
-  // console.log(userCurrency, currency)
+  
   return (
     <div>
       <label htmlFor="currency">Choose currency:</label>

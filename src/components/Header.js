@@ -51,7 +51,6 @@ const Container = styled.div`
 const Header = ({ totalComponentHeight }) => {
   const [navOpen, toggleNavOpen] = useState(false)
   const handleNavToggling = () => {
-    console.log(navOpen)
     if (navOpen) {
       toggleNavOpen(false)
       return

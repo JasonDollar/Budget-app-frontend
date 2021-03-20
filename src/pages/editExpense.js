@@ -2,14 +2,15 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
+import { selectSingleExpense } from '../store/selectors/expenses'
+import { editExpense } from '../store/actions/expenses'
+
 import ExpenseForm from '../components/ExpenseForm'
 import Loading from '../components/styles/Loading'
 
-import { editExpense } from '../store/actions/expenses'
-
 const EditExpense = () => {
   const { expenseId } = useParams()
-  const expense = useSelector(state => state.expenses.expenses.find(item => item._id === expenseId))
+  const expense = useSelector(state => selectSingleExpense(expenseId)(state))
   const loading = useSelector(state => state.expenses.loading)
   const dispatch = useDispatch()
   
@@ -36,6 +37,7 @@ const EditExpense = () => {
   if (!expense) {
     return <Loading />
   }
+  
   return (
     <div className="margin-r-l">
       <h2>Edit expense</h2>

@@ -1,10 +1,9 @@
 import axios from 'axios'
 import * as types from './actionTypes'
-import { baseUrl } from '../../config/apiUrl'
+import { baseUrl } from '../../config/config'
 import setAuthToken from '../../lib/setAuthToken'
 
 import { setExpenses, clearExpenses } from './expenses'
-// import { loadingStart } from './shared'
 
 
 export const loadingUserStart = () => ({
@@ -54,7 +53,7 @@ export const registerUser = (name, email, password, passwordConfirm, history) =>
   dispatch(clearExpenses())
   try {
     const res = await axios.post(`${baseUrl}/users`, { name, email, password, passwordConfirm })
-    console.log(res)
+
     if (res.statusText === 'Created') {
       const { userData } = res.data
       const { user, token } = userData
@@ -71,7 +70,7 @@ export const registerUser = (name, email, password, passwordConfirm, history) =>
 export const logoutUser = (history) => async dispatch => {
   dispatch(loadingUserStart())
   const res = await axios.post(`${baseUrl}/users/logout`)
-  console.log(res)
+
   if (res.statusText === 'OK') {
     dispatch(clearUser())
     dispatch(clearExpenses())
@@ -83,7 +82,6 @@ export const logoutUser = (history) => async dispatch => {
 
 export const changeCurrency = (newCurrency) => async dispatch => {
   try {
-    console.log(newCurrency)
     const res = await axios.patch(`${baseUrl}/users/currency`, { newCurrency })
     if (res.statusText === 'OK') {
       const { currency } = res.data
@@ -92,9 +90,7 @@ export const changeCurrency = (newCurrency) => async dispatch => {
         type: types.CHANGE_CURRENCY,
         payload: currency
       })
-      console.log(res)
     }
-
   } catch (e) {
 
   }

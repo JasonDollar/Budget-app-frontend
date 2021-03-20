@@ -25,7 +25,7 @@ import Total from './components/Total'
 
 function App() {
   const [totalComponentHeight, setTotalComponentHeight] = useState(0)
-  const [userLogged, setUserLogged] = useState()
+  // const [userLogged, setUserLogged] = useState()
   const [themeId, changeThemeId] = useState(() => {
     const themeIdFromLS = localStorage.getItem('theme')
     if (themeIdFromLS) return themeIdFromLS

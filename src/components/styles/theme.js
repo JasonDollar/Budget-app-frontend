@@ -64,5 +64,4 @@ export const getThemeData = () => {
     }
   })
   return themeData
-  // console.log(themeData)
 }

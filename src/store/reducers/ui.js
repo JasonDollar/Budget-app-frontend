@@ -7,11 +7,9 @@ const initialState = {
 const uiReducer = (state = initialState, action) => {
   switch(action.type) {
     case types.API_CALL_START:
-      console.log(action)
       return {
         ...state,
         apiCalls: state.apiCalls.map(item => {
-          console.log(item.name !== action.payload.name)
           if (item.name !== action.payload.name) { return item }
           return {
             ...item,

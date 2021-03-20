@@ -10,5 +10,5 @@ export const selectAllExpenses = createSelector(
 
 export const selectSingleExpense = id => createSelector(
   [selectAllExpenses],
-  expenses => console.log(id) || (expenses ? expenses.find(item => item._id === id) : null),
+  expenses => (expenses ? expenses.find(item => item._id === id) : null),
 )
