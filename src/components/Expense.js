@@ -11,7 +11,7 @@ import formatMoney from '../lib/formatMoney'
 import Loading from './styles/Loading'
 import { BigButton, ButtonsContainer } from './styles/BigButton'
 
-import { selectAllExpenses } from '../store/selectors/expenses'
+import { selectSingleExpense } from '../store/selectors/expenses'
 
 const ExpenseContainer = styled.div`
   .title {
@@ -23,8 +23,7 @@ const ExpenseContainer = styled.div`
 `
 
 const Expense = ({ expenseId }) => {
-  const expenses = useSelector(selectAllExpenses)
-  const expense = expenses.find(item => item._id === expenseId)
+  const expense = useSelector(state => selectSingleExpense(expenseId)(state))
   const { currency, locale } = useSelector(selectUserSettings)
   const dispatch = useDispatch()
 
