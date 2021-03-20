@@ -3,7 +3,7 @@ import styled from 'styled-components'
 const ButtonsContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   @media(min-width: 576px) {
     justify-content: center;
   }
@@ -14,10 +14,7 @@ const ButtonsContainer = styled.div`
       margin: 0 2rem;
     }
   }
-  a {
-    display: block;
-    width: 100%;
-  }
+
 `
 
 const BigButton = styled.button`
@@ -29,12 +26,16 @@ const BigButton = styled.button`
     return props.theme.mainThemeColor
   }};
   color: ${props => props.theme.textColorInverted};
-  padding: 1rem 2rem;
+
   border: none;
   border-radius: 10px;
   box-shadow: ${props => props.theme.boxShadow};
   /* min-width: 10rem; */
   width: ${props => props.wide ? 100 : 'auto'}%;
+  & a {
+    display: block;
+    padding: 1rem 2rem;
+  }
 `
 
 export { BigButton, ButtonsContainer }
