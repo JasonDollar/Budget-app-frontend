@@ -5,6 +5,7 @@ import setAuthToken from '../../lib/setAuthToken'
 
 import { setExpenses, clearExpenses } from './expenses'
 
+import { apiCallStart, apiCallFinishSuccess, apiCallFinishFail } from './ui'
 
 export const loadingUserStart = () => ({
   type: types.LOADING_USER_START,
@@ -80,7 +81,8 @@ export const logoutUser = (history) => async dispatch => {
   }
 }
 
-export const changeCurrency = (newCurrency) => async dispatch => {
+export const changeCurrency = (newCurrency, uiAction) => async dispatch => {
+  dispatch(apiCallStart(uiAction))
   try {
     const res = await axios.patch(`${baseUrl}/users/currency`, { newCurrency })
     if (res.statusText === 'OK') {
@@ -90,13 +92,15 @@ export const changeCurrency = (newCurrency) => async dispatch => {
         type: types.CHANGE_CURRENCY,
         payload: currency
       })
+      dispatch(apiCallFinishSuccess(uiAction))
     }
   } catch (e) {
-
+    dispatch(apiCallFinishFail(uiAction, e))
   }
 }
 
-export const removeCategory = (category) => async dispatch => {
+export const removeCategory = (category, uiAction) => async dispatch => {
+  dispatch(apiCallStart(uiAction))
   try {
     const res = await axios.delete(`${baseUrl}/users/category/${category}`)
     if (res.statusText === 'OK') {
@@ -105,6 +109,10 @@ export const removeCategory = (category) => async dispatch => {
         type: types.CHANGE_CATEGORIES,
         payload: categories
       })
+      dispatch(apiCallFinishSuccess(uiAction))
     }
-  } catch (e) {}
+  } catch (e) {
+    console.log(e.response)
+    dispatch(apiCallFinishFail(uiAction, e))
+  }
 }

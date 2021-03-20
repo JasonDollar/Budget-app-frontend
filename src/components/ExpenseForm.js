@@ -32,7 +32,7 @@ const FormContainer = styled.div`
   }
 `
 
-const ExpenseForm = ({ expenseId, titleExpense = '', descriptionExpense = '', amountExpense = '', handleSubmit, dateExpense, categoryExpense = 'other', saveButtonState }) => {
+const ExpenseForm = ({ expenseId, titleExpense = '', descriptionExpense = '', amountExpense = '', handleSubmit, dateExpense, categoryExpense = 'other', apiCallState }) => {
   
   const categories = useSelector(selectUserCategories)
   const [title, setTitle] = useState(titleExpense)
@@ -99,10 +99,10 @@ const ExpenseForm = ({ expenseId, titleExpense = '', descriptionExpense = '', am
               Cancel
             </Link>
           </BigButton>
-          <BigButton type="submit" disabled={saveButtonState?.loading}>Save expense</BigButton>
-
+          <BigButton type="submit" disabled={apiCallState?.loading}>Save expense</BigButton>
         </ButtonsContainer>
-        {saveButtonState?.error?.message}
+              {apiCallState?.loading && <p>Saving</p>}
+        {apiCallState?.error?.message}
       </form>
     </FormContainer>
   )

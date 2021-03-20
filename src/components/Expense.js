@@ -23,12 +23,13 @@ const ExpenseContainer = styled.div`
 `
 
 const Expense = ({ expenseId }) => {
+  const { loading, error } = useSelector(state => state.ui.apiCalls.find(item => item.name === 'remove-expense'))
   const expense = useSelector(state => selectSingleExpense(expenseId)(state))
   const { currency, locale } = useSelector(selectUserSettings)
   const dispatch = useDispatch()
 
   const removeExpenseHandler = () => {
-    dispatch(removeExpense(expenseId))
+    dispatch(removeExpense(expenseId, 'remove-expense'))
   }
   
   if (!expense || !currency) {
@@ -49,10 +50,11 @@ const Expense = ({ expenseId }) => {
             Edit
           </Link>
         </BigButton>
-        <BigButton onClick={removeExpenseHandler} danger fontSize={1.2} >
+        <BigButton onClick={removeExpenseHandler} danger fontSize={1.2} disabled={loading}>
           Delete
         </BigButton>
       </ButtonsContainer>
+      {loading && <span>Removing</span>}
     </ExpenseContainer>
   )
 }

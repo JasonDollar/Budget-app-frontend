@@ -12,6 +12,7 @@ const EditExpense = () => {
   const { expenseId } = useParams()
   const expense = useSelector(state => selectSingleExpense(expenseId)(state))
   const loading = useSelector(state => state.expenses.loading)
+  const saveEditExpenseApiState = useSelector(state => state.ui.apiCalls.find(item => item.name === 'save-edit-expense'))
   const dispatch = useDispatch()
   
   const editExpenseHandler = async (title, description, amount, date, category) => {
@@ -31,7 +32,7 @@ const EditExpense = () => {
       updates.category = category
     }
     // save expense as whole number
-    dispatch(editExpense(expenseId, updates)) 
+    dispatch(editExpense(expenseId, updates, 'save-edit-expense')) 
   }
 
   if (!expense) {
@@ -50,6 +51,7 @@ const EditExpense = () => {
         categoryExpense={expense.category}
         handleSubmit={editExpenseHandler}
         loading={loading}
+        apiCallState={saveEditExpenseApiState}
       />
     </div>
   )

@@ -60,16 +60,18 @@ const removeExpenseFromStore = id => ({
   payload: id
 })
 
-export const removeExpense = (id) => async dispatch => {
+export const removeExpense = (id, uiAction) => async dispatch => {
+  dispatch(apiCallStart(uiAction))
   try {
     const res = await axios.delete(`${baseUrl}/expenses/${id}`)
 
     if (res.statusText === 'OK') {
       dispatch(removeExpenseFromStore(id))
+      dispatch(apiCallFinishSuccess(uiAction))
       history.push('/expenses')
     }
   } catch (e) {
-
+    dispatch(apiCallFinishFail(uiAction, e))
   }
 }
 
@@ -79,16 +81,18 @@ const editExpenseInStore = expense => ({
   payload: expense
 })
 
-export const editExpense = (id, updates) => async dispatch => {
+export const editExpense = (id, updates, uiAction) => async dispatch => {
+  dispatch(apiCallStart(uiAction))
   dispatch(loadingExpenseStart())
   try {
     const res = await axios.patch(`${baseUrl}/expenses/${id}`, updates)
 
     if (res.statusText === 'OK') {
       dispatch(editExpenseInStore(res.data.expense))
+      dispatch(apiCallFinishSuccess(uiAction))
       history.push('/expenses')
     }
   } catch (e) {
-
+    dispatch(apiCallFinishFail(uiAction, e))
   }
 }

@@ -10,7 +10,7 @@ const Header = styled.h2``
 
 const AddExpensePage = () => {
   const dispatch = useDispatch()
-  const saveNewExpenseButtonState = useSelector(state => state.ui.apiCalls.find(item => item.name === 'save-new-expense'))
+  const saveNewExpenseApiState = useSelector(state => state.ui.apiCalls.find(item => item.name === 'save-new-expense'))
   const addExpenseHandler = async (title, description, amount, date, category) => {
     // save expense as whole number
     const validAmount = Math.ceil(amount * 100)
@@ -20,7 +20,7 @@ const AddExpensePage = () => {
   return (
     <div className="margin-r-l">
       <Header>Add Expense</Header>
-      <ExpenseForm handleSubmit={addExpenseHandler} saveButtonState={saveNewExpenseButtonState}/>
+      <ExpenseForm handleSubmit={addExpenseHandler} apiCallState={saveNewExpenseApiState}/>
     </div>
   )
 }
