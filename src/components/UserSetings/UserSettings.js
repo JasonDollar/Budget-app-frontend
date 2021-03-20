@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
+import { selectUserSettings, selectUserCategories } from '../../store/selectors/user'
+
 import { getThemeData } from '../styles/theme'
 import CategoriesSettings from './CategoriesSettings'
 import CurrencySettings from './CurrencySettings'
 import ThemeSettings from './ThemeSettings'
-
-import { selectUserSettings, selectUserCategories } from '../../store/selectors/user'
 
 const SettingContainer = styled.div`
   .appTheme {

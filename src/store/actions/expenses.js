@@ -38,6 +38,7 @@ const addExpenseToStore = (expense) => ({
 
 export const addExpense = (expenseData, uiAction) => async dispatch => {
   dispatch(apiCallStart(uiAction))
+  
   try {
     const res = await axios.post(`${baseUrl}/expenses`, expenseData)
     if (res.statusText === 'Created') {

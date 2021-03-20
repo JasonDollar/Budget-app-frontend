@@ -2,9 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { format } from 'date-fns'
+import { useSelector } from 'react-redux'
 
 import formatMoney from '../lib/formatMoney'
-import { useSelector } from 'react-redux'
 
 import { selectUserSettings } from '../store/selectors/user'
 
@@ -42,7 +42,7 @@ const ListItem = styled.li`
   }
 `
 
-const ExpenseListItem = ({expense}) => {
+const ExpenseListItem = ({ expense }) => {
   const { currency, locale } = useSelector(selectUserSettings)
 
   return (

@@ -35,7 +35,7 @@ flex: 1;
   }
 `
 
-const ThemeSettings = ({themes, themeId, changeAppTheme}) => {
+const ThemeSettings = ({ themes, themeId, changeAppTheme }) => {
   return (
     <>
       {themes?.map(item => {

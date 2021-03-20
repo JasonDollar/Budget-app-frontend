@@ -9,12 +9,11 @@ const ButtonsContainer = styled.div`
   }
   & > * {
     width: ${props => props.buttons ? (100 - 5) / props.buttons : 100}%;
-    @media(min-width: 576px) {
-      width: ${props => props.buttons > 5 ? (100 - 5) / props.buttons : 20}%;
+    @media(min-width: 768px) {
+      width: ${props => props.buttons > 5 ? (100 - 5) / props.buttons : (100 - 30) / props.buttons}%;
       margin: 0 2rem;
     }
   }
-
 `
 
 const BigButton = styled.button`
@@ -26,8 +25,7 @@ const BigButton = styled.button`
     return props.theme.mainThemeColor
   }};
   color: ${props => props.theme.textColorInverted};
-
-  border: ${props => props.disabled ? '10px solid blue' : 'none'};
+  border: none;
   border-radius: 10px;
   box-shadow: ${props => props.theme.boxShadow};
   /* min-width: 10rem; */

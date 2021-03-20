@@ -4,9 +4,9 @@ import DatePicker from 'react-date-picker'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { BigButton, ButtonsContainer } from './styles/BigButton'
-
 import { selectUserCategories } from '../store/selectors/user'
+
+import { BigButton, ButtonsContainer } from './styles/BigButton'
 
 const FormContainer = styled.div`
   .form {
@@ -33,7 +33,7 @@ const FormContainer = styled.div`
 `
 
 const ExpenseForm = ({ expenseId, titleExpense = '', descriptionExpense = '', amountExpense = '', handleSubmit, dateExpense, categoryExpense = 'other', saveButtonState }) => {
-  console.log(saveButtonState)
+  
   const categories = useSelector(selectUserCategories)
   const [title, setTitle] = useState(titleExpense)
   const [description, setDescription] = useState(descriptionExpense)
@@ -99,10 +99,10 @@ const ExpenseForm = ({ expenseId, titleExpense = '', descriptionExpense = '', am
               Cancel
             </Link>
           </BigButton>
-          <BigButton type="submit" disabled={saveButtonState.loading}>Save expense</BigButton>
+          <BigButton type="submit" disabled={saveButtonState?.loading}>Save expense</BigButton>
 
         </ButtonsContainer>
-        {saveButtonState.error.message}
+        {saveButtonState?.error?.message}
       </form>
     </FormContainer>
   )

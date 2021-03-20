@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
-import ExpenseListItem from './ExpenseListItem'
-
-import Loading from './styles/Loading'
 
 import { selectAllExpenses } from '../store/selectors/expenses'
+
+import ExpenseListItem from './ExpenseListItem'
+import Loading from './styles/Loading'
 
 const List = styled.ul`
   list-style: none;

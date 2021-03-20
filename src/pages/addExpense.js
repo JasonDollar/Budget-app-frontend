@@ -16,7 +16,7 @@ const AddExpensePage = () => {
     const validAmount = Math.ceil(amount * 100)
     dispatch(addExpense({title, description, amount: validAmount, expenseDate: date, category}, 'save-new-expense')) 
   }
-  console.log(saveNewExpenseButtonState)
+  
   return (
     <div className="margin-r-l">
       <Header>Add Expense</Header>

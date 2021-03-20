@@ -6,12 +6,12 @@ import { format } from 'date-fns'
 
 import { removeExpense } from '../store/actions/expenses'
 import { selectUserSettings } from '../store/selectors/user'
+import { selectSingleExpense } from '../store/selectors/expenses'
 import formatMoney from '../lib/formatMoney'
 
 import Loading from './styles/Loading'
 import { BigButton, ButtonsContainer } from './styles/BigButton'
 
-import { selectSingleExpense } from '../store/selectors/expenses'
 
 const ExpenseContainer = styled.div`
   .title {
