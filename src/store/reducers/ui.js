@@ -47,8 +47,8 @@ const uiReducer = (state = initialState, action) => {
             name: action.payload.name,
             loading: false,
             error: {
-              message: action.payload.error.message,
-              errorData: action.payload.error.response.data
+              message: action.payload.error?.message,
+              errorData: action.payload.error?.response?.data
             }
           }
         })
