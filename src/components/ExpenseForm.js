@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import DatePicker from 'react-date-picker'
 import { useSelector } from 'react-redux'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { BigButton, ButtonsContainer } from './styles/BigButton'
 
@@ -23,7 +23,6 @@ const FormContainer = styled.div`
     height: 50px;
     font-size: 1.8rem;
     font-family: inherit;
-    /* font-size: $font-size-large; */
     font-weight: 300;
     padding: 1rem;
   }
@@ -33,7 +32,8 @@ const FormContainer = styled.div`
   }
 `
 
-const ExpenseForm = ({ expenseId, titleExpense = '', descriptionExpense = '', amountExpense = '', handleSubmit, dateExpense, categoryExpense = 'other', loading }) => {
+const ExpenseForm = ({ expenseId, titleExpense = '', descriptionExpense = '', amountExpense = '', handleSubmit, dateExpense, categoryExpense = 'other', saveButtonState }) => {
+  console.log(saveButtonState)
   const categories = useSelector(selectUserCategories)
   const [title, setTitle] = useState(titleExpense)
   const [description, setDescription] = useState(descriptionExpense)
@@ -99,9 +99,10 @@ const ExpenseForm = ({ expenseId, titleExpense = '', descriptionExpense = '', am
               Cancel
             </Link>
           </BigButton>
-          <BigButton type="submit" disabled={loading}>Save expense</BigButton>
+          <BigButton type="submit" disabled={saveButtonState.loading}>Save expense</BigButton>
 
         </ButtonsContainer>
+        {saveButtonState.error.message}
       </form>
     </FormContainer>
   )

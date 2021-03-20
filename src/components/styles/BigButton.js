@@ -27,7 +27,7 @@ const BigButton = styled.button`
   }};
   color: ${props => props.theme.textColorInverted};
 
-  border: none;
+  border: ${props => props.disabled ? '10px solid blue' : 'none'};
   border-radius: 10px;
   box-shadow: ${props => props.theme.boxShadow};
   /* min-width: 10rem; */
