@@ -11,6 +11,8 @@ import formatMoney from '../lib/formatMoney'
 import Loading from './styles/Loading'
 import { BigButton, ButtonsContainer } from './styles/BigButton'
 
+import { selectAllExpenses } from '../store/selectors/expenses'
+
 const ExpenseContainer = styled.div`
   .title {
     text-align: center;
@@ -18,29 +20,11 @@ const ExpenseContainer = styled.div`
   p {
     margin: .5rem 0;
   }
-
-  /* .buttons {
-    display: flex;
-    justify-content: space-between;
-    @media(min-width: 576px) {
-      justify-content: center;
-    }
-    & > * {
-      width: 45%;
-      @media(min-width: 576px) {
-        width: 20%;
-        margin: 0 2rem;
-      }
-    }
-    a {
-      display: block;
-      width: 100%;
-    } */
-  /* } */
 `
 
 const Expense = ({ expenseId }) => {
-  const expense = useSelector(state => state.expenses.expenses.find(item => item._id === expenseId))
+  const expenses = useSelector(selectAllExpenses)
+  const expense = expenses.find(item => item._id === expenseId)
   const { currency, locale } = useSelector(selectUserSettings)
   const dispatch = useDispatch()
 

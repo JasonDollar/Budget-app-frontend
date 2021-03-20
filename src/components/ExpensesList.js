@@ -5,13 +5,15 @@ import ExpenseListItem from './ExpenseListItem'
 
 import Loading from './styles/Loading'
 
+import { selectAllExpenses } from '../store/selectors/expenses'
+
 const List = styled.ul`
   list-style: none;
   padding: 0;
 `
 
 const ExpensesList = () => {
-  const expenses = useSelector(state => state.expenses.expenses)
+  const expenses = useSelector(selectAllExpenses)
   const expensesLoading = useSelector(state => state.expenses.loading)
 
   if (expensesLoading) {

@@ -6,6 +6,7 @@ import { calculateTotal, calculateTodayExpenses } from '../lib/calcMoney'
 import formatMoney from '../lib/formatMoney'
 
 import { selectUserSettings } from '../store/selectors/user'
+import { selectAllExpenses } from '../store/selectors/expenses'
 
 const TotalBox = styled.div`
   margin: 0 1.5rem;
@@ -60,7 +61,7 @@ const TotalBox = styled.div`
 const Total = ({ totalComponentHeight, setTotalComponentHeight }) => {
   const [totalAmount, setTotalAmount] = useState('')
   const [todayAmount, setTodayAmount] = useState('')
-  const { expenses, loading} = useSelector(state => state.expenses)
+  const expenses = useSelector(selectAllExpenses)
   const { currency, locale } = useSelector(selectUserSettings)
   const boxRef = useRef()
 
