@@ -44,7 +44,7 @@ const ExpenseForm = ({ expenseId, titleExpense = '', descriptionExpense = '', am
   useEffect(() => {
     if (categoryExpense) {
       setCategory(categoryExpense)
-    } else if (categories.length) {
+    } else if (categories?.length) {
       setCategory(categories[0])
     } else {
       setCategory('other')

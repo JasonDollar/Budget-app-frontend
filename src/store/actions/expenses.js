@@ -28,6 +28,7 @@ export const setExpenses = () => async dispatch => {
     }
   } catch (e) {
     console.log(e.message)
+    dispatch(setExpensesToStore([]))
   }
 }
 
