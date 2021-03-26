@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import styled from 'styled-components'
 import { calculateTotal, calculateTodayExpenses } from '../lib/calcMoney'
 import formatMoney from '../lib/formatMoney'
 
