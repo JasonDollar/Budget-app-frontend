@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { selectSingleExpense } from '../store/selectors/expenses'
 import { editExpense } from '../store/actions/expenses'
+import { selectSingleApiCall } from '../store/selectors/ui'
 
 import ExpenseForm from '../components/ExpenseForm'
 import Loading from '../components/styles/Loading'
@@ -12,7 +13,7 @@ const EditExpense = () => {
   const { expenseId } = useParams()
   const expense = useSelector(state => selectSingleExpense(expenseId)(state))
   const loading = useSelector(state => state.expenses.loading)
-  const saveEditExpenseApiState = useSelector(state => state.ui.apiCalls.find(item => item.name === 'save-edit-expense'))
+  const saveEditExpenseApiState = useSelector(state => selectSingleApiCall('save-edit-expense')(state))
   const dispatch = useDispatch()
   
   const editExpenseHandler = async (title, description, amount, date, category) => {

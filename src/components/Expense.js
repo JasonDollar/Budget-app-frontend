@@ -7,6 +7,7 @@ import { format } from 'date-fns'
 import { removeExpense } from '../store/actions/expenses'
 import { selectUserSettings } from '../store/selectors/user'
 import { selectSingleExpense } from '../store/selectors/expenses'
+import { selectSingleApiCall } from '../store/selectors/ui'
 import formatMoney from '../lib/formatMoney'
 
 import Loading from './styles/Loading'
@@ -23,7 +24,7 @@ const ExpenseContainer = styled.div`
 `
 
 const Expense = ({ expenseId }) => {
-  const { loading, error } = useSelector(state => state.ui.apiCalls.find(item => item.name === 'remove-expense'))
+  const { loading, error } = useSelector(state => selectSingleApiCall('remove-expense')(state))
   const expense = useSelector(state => selectSingleExpense(expenseId)(state))
   const { currency, locale } = useSelector(selectUserSettings)
   const dispatch = useDispatch()

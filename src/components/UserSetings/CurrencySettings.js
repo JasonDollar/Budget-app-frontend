@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { availableCurrencies } from '../../config/config'
 
 import { changeCurrency } from '../../store/actions/user'
+import { selectSingleApiCall } from '../../store/selectors/ui'
 
 const CurrencySettings = ({ userCurrency }) => {
   const [currency, setCurrency] = useState()
   const dispatch = useDispatch()
-  const saveCurrencyApiState = useSelector(state => state.ui.apiCalls.find(item => item.name === 'save-currency'))
+  const saveCurrencyApiState = useSelector(state => selectSingleApiCall('save-currency')(state))
 
   const changeCurrencyHandler = () => {
     if (!currency) { return }

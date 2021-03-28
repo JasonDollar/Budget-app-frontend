@@ -5,12 +5,13 @@ import ExpenseForm from '../components/ExpenseForm'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { addExpense } from '../store/actions/expenses'
+import { selectSingleApiCall } from '../store/selectors/ui'
 
 const Header = styled.h2``
 
 const AddExpensePage = () => {
   const dispatch = useDispatch()
-  const saveNewExpenseApiState = useSelector(state => state.ui.apiCalls.find(item => item.name === 'save-new-expense'))
+  const saveNewExpenseApiState = useSelector(state => selectSingleApiCall('save-new-expense')(state))
   const addExpenseHandler = async (title, description, amount, date, category) => {
     // save expense as whole number
     const validAmount = Math.ceil(amount * 100)

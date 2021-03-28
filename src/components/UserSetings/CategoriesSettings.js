@@ -1,10 +1,11 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeCategory } from '../../store/actions/user'
+import { selectSingleApiCall } from '../../store/selectors/ui'
 
 const CategoriesSettings = ({ categories }) => {
   const dispatch = useDispatch()
-  const { loading, error } = useSelector(state => state.ui.apiCalls.find(item => item.name === 'remove-category'))
+  const { loading, error } = useSelector(state => selectSingleApiCall('remove-category')(state))
   console.log(error)
   return (
     <div>
