@@ -7,7 +7,14 @@ const initialState = {
     { name: 'remove-expense', loading: false, error: '' },
     { name: 'save-currency', loading: false, error: '' },
     { name: 'remove-category', loading: false, error: '' },
-  ]
+  ],
+  filter: {
+    search: '',
+    dateRangeStart: '',
+    dateRangeEnd: '',
+    sortBy: 'DATE',
+    sortDirection: 'ASC'
+  }
 }
 
 const uiReducer = (state = initialState, action) => {
@@ -52,6 +59,14 @@ const uiReducer = (state = initialState, action) => {
             }
           }
         })
+      }
+    case types.UPDATE_FILTER:
+      return {
+        ...state,
+        filter: {
+          ...state.filter,
+          ...action.payload
+        }
       }
     default:
       return state

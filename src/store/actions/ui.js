@@ -14,3 +14,8 @@ export const apiCallFinishFail = (name, error) => ({
   type: types.API_CALL_FINISH_FAIL,
   payload : { name, error }
 })
+
+export const updateFilter = updates => ({
+  type: types.UPDATE_FILTER,
+  payload: updates
+})
