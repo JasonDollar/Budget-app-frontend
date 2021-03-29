@@ -1,10 +1,13 @@
 import { createSelector } from 'reselect'
+import { selectFilters } from './ui'
+
+import expenseFilter from '../../lib/expenseFilter'
 
 const selectExpenses = state => state.expenses
 
 export const selectAllExpenses = createSelector(
-  [selectExpenses],
-  state => state.expenses
+  [selectExpenses, selectFilters],
+  (state, filters) => expenseFilter(state.expenses, filters)
 )
 
 

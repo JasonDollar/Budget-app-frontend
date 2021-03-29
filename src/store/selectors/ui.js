@@ -11,3 +11,9 @@ export const selectSingleApiCall = eventName => createSelector(
   [selectApiCalls],
   apiCalls => apiCalls.find(item => item.name === eventName)
 )
+
+export const selectFilters = createSelector(
+  [selectUi],
+  state => state.filter
+)
+
