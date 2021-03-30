@@ -28,7 +28,7 @@ const Total = ({ totalComponentHeight, setTotalComponentHeight }) => {
   }, [])
   
   return (
-    <TotalBox ref={boxRef} boxSize={totalComponentHeight}>
+    <TotalBox ref={boxRef} boxSize={totalComponentHeight} totalAmountLength={totalAmount.toString().length}>
       <p className="header">Total</p>
       <div className="main">
         <div className="total">

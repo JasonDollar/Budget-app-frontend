@@ -14,6 +14,11 @@ const Filter = () => {
     dispatch(updateFilter(update))
   }
 
+  const toggleSortDirection = currentDirection => {
+    if (currentDirection === 'ASC') return 'DESC'
+    return 'ASC'
+  }
+
   return (
     <div className="margin-r-l">
       Search: <input type="text" value={search} onChange={e => handleChange({search: e.target.value})}/>
@@ -30,7 +35,7 @@ const Filter = () => {
         <option value="AMOUNT">Amount</option>
       </select>
 
-      <button onClick={() => handleChange({sortDirection: sortDirection === 'ASC' ? 'DESC' : 'ASC'})}>{sortDirection === 'ASC' ? 'DESC' : 'ASC'}</button>
+      <button onClick={() => handleChange({sortDirection: toggleSortDirection(sortDirection)})}>{toggleSortDirection(!sortDirection)}</button>
     </div>
   )
 }

@@ -25,7 +25,11 @@ const TotalBox = styled.div`
 
   .total {
     font-size: 4.5rem;
+    
     color: ${props => props.theme.mainThemeColor};
+    @media (max-width: 576px) {
+      font-size: ${props => 4.5 / 100 * (100 - props.totalAmountLength * 3)}rem;
+    }
   }
 
   .link {
