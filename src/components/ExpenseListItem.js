@@ -10,12 +10,14 @@ import { selectUserSettings } from '../store/selectors/user'
 
 const ListItem = styled.li`
   margin: 1rem 0;
-  padding: 1.2rem 1rem;
   border-radius: 1rem;
 
   background: #fff;
   box-shadow: ${props => props.theme.boxShadow};
+
   .expenseLink {
+    display: block;
+    padding: 1.2rem 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
