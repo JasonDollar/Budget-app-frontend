@@ -13,7 +13,8 @@ const initialState = {
     dateRangeStart: '',
     dateRangeEnd: '',
     sortBy: 'DATE',
-    sortDirection: 'ASC'
+    sortDirection: 'ASC',
+    category: ''
   }
 }
 

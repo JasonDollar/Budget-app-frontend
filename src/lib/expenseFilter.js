@@ -1,9 +1,11 @@
 import { isAfter, isBefore } from 'date-fns'
 
-const expenseFilter = (expenses, { search, dateRangeStart, dateRangeEnd, sortBy, sortDirection}) => {
+const expenseFilter = (expenses, { search, category, dateRangeStart, dateRangeEnd, sortBy, sortDirection}) => {
   return expenses.filter(item => {
     const expenseDate = new Date(item.expenseDate)
     const textMatch = item.title.toLowerCase().includes(search.toLowerCase()) || item.description.toLowerCase().includes(search.toLowerCase())
+    const categoryMatch = category ? item.category.toLowerCase() === category.toLowerCase()  :true
+
     let dateMatch = true
     if (dateRangeStart) {
       dateMatch = isAfter(expenseDate, new Date(dateRangeStart))
@@ -11,7 +13,7 @@ const expenseFilter = (expenses, { search, dateRangeStart, dateRangeEnd, sortBy,
     if (dateRangeEnd) {
       dateMatch = isBefore(expenseDate, new Date(dateRangeEnd))
     }
-    return textMatch && dateMatch
+    return textMatch && dateMatch && categoryMatch
   })
   .sort((a, b) => {
     if (sortBy === 'DATE') {
