@@ -1,12 +1,14 @@
 import * as types from '../actions/actionTypes'
 
+import { apiCallsNames as api } from '../../config/config'
+
 const initialState = {
   apiCalls: [
-    { name: 'save-new-expense', loading: false, error: '' },
-    { name: 'save-edit-expense', loading: false, error: '' },
-    { name: 'remove-expense', loading: false, error: '' },
-    { name: 'save-currency', loading: false, error: '' },
-    { name: 'remove-category', loading: false, error: '' },
+    { name: api.saveNewExpense, loading: false, error: '' },
+    { name: api.saveEditExpense, loading: false, error: '' },
+    { name: api.removeExpense, loading: false, error: '' },
+    { name: api.saveCurrency, loading: false, error: '' },
+    { name: api.removeCategory, loading: false, error: '' },
   ],
   filter: {
     search: '',
