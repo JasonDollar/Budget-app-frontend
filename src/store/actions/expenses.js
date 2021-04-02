@@ -1,7 +1,6 @@
 import axios from 'axios'
 import * as types from './actionTypes'
 import { baseUrl, apiCallsNames as api } from '../../config/config'
-import history from '../../lib/history'
 
 import { apiCallStart, apiCallFinishSuccess, apiCallFinishFail } from './ui'
 
@@ -39,7 +38,7 @@ const addExpenseToStore = (expense) => ({
   payload: expense
 })
 
-export const addExpense = (expenseData, uiAction) => async dispatch => {
+export const addExpense = (expenseData, uiAction, history) => async dispatch => {
   dispatch(apiCallStart(uiAction))
 
   try {
@@ -63,7 +62,7 @@ const removeExpenseFromStore = id => ({
   payload: id
 })
 
-export const removeExpense = (id, uiAction) => async dispatch => {
+export const removeExpense = (id, uiAction, history) => async dispatch => {
   dispatch(apiCallStart(uiAction))
   try {
     const res = await axios.delete(`${baseUrl}/expenses/${id}`)
@@ -84,7 +83,7 @@ const editExpenseInStore = expense => ({
   payload: expense
 })
 
-export const editExpense = (id, updates, uiAction) => async dispatch => {
+export const editExpense = (id, updates, uiAction, history) => async dispatch => {
   dispatch(apiCallStart(uiAction))
   dispatch(loadingExpenseStart())
   try {

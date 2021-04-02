@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { selectSingleExpense } from '../store/selectors/expenses'
@@ -12,6 +12,7 @@ import { apiCallsNames as api } from '../config/config'
 
 const EditExpense = () => {
   const { expenseId } = useParams()
+  const history = useHistory()
   const expense = useSelector(state => selectSingleExpense(expenseId)(state))
   const loading = useSelector(state => state.expenses.loading)
   const saveEditExpenseApiState = useSelector(state => selectSingleApiCall(api.saveEditExpense)(state))
@@ -34,7 +35,7 @@ const EditExpense = () => {
       updates.category = category
     }
     // save expense as whole number
-    dispatch(editExpense(expenseId, updates, api.saveEditExpense)) 
+    dispatch(editExpense(expenseId, updates, api.saveEditExpense, history)) 
   }
 
   if (!expense) {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import jwt_decode from 'jwt-decode'
-import { Router, Route, Redirect, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
 import { Provider } from "react-redux"
 import { ThemeProvider } from 'styled-components'
 
@@ -8,7 +8,6 @@ import store from './store'
 import { setExpenses } from './store/actions/expenses'
 import { getUserData } from './store/actions/user'
 import setAuthToken from './lib/setAuthToken'
-import history from './lib/history'
 
 import Register from './pages/register'
 import Login from './pages/login'
@@ -56,7 +55,7 @@ function App() {
     <Provider store={store}>
       <ThemeProvider theme={() => getTheme(themeId)} >
         <GlobalStyle />
-        <Router history={history}>
+        <BrowserRouter>
           <Header totalComponentHeight={totalComponentHeight}/>
           <div className="desktopContainer">
           <Switch>
@@ -95,7 +94,7 @@ function App() {
             </Route>
           </Switch>
           </div> 
-        </Router>
+        </BrowserRouter>
       </ThemeProvider>
     </Provider>
   );

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import { format } from 'date-fns'
 
@@ -25,13 +25,14 @@ const ExpenseContainer = styled.div`
 `
 
 const Expense = ({ expenseId }) => {
+  const history = useHistory()
   const { loading, error } = useSelector(state => selectSingleApiCall(api.removeExpense)(state))
   const expense = useSelector(state => selectSingleExpense(expenseId)(state))
   const { currency, locale } = useSelector(selectUserSettings)
   const dispatch = useDispatch()
 
   const removeExpenseHandler = () => {
-    dispatch(removeExpense(expenseId, api.removeExpense))
+    dispatch(removeExpense(expenseId, api.removeExpense, history))
   }
   
   if (!expense || !currency) {

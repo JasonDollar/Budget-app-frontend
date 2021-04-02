@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeCategory } from '../../store/actions/user'
 import { selectSingleApiCall } from '../../store/selectors/ui'
-import { aapiCallsNames as api } from '../../config/config'
+import { apiCallsNames as api } from '../../config/config'
 
 const CategoriesSettings = ({ categories }) => {
   const dispatch = useDispatch()
