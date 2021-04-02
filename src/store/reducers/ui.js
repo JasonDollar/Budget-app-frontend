@@ -11,6 +11,8 @@ const initialState = {
     { name: api.removeCategory, loading: false, error: '' },
     { name: api.fetchExpenses, loading: false, error: '' },
     { name: api.fetchUser, loading: false, error: '' },
+    { name: api.loginUser, loading: false, error: '' },
+    { name: api.registerUser, loading: false, error: '' },
   ],
   filter: {
     search: '',

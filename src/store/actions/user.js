@@ -35,7 +35,7 @@ export const getUserData = () => async dispatch => {
 }
 
 export const loginUser = (email, password, history) => async dispatch => {
-  dispatch(loadingUserStart())
+  dispatch(apiCallStart(api.loginUser))
   try {
     const res = await axios.post(`${baseUrl}/users/login`, { email, password })
     if (res.statusText === 'OK') {
@@ -44,16 +44,17 @@ export const loginUser = (email, password, history) => async dispatch => {
       dispatch(setUserToStore(user))
       localStorage.setItem('jwtToken', token)
       setAuthToken(token)
+      dispatch(apiCallFinishSuccess(api.loginUser))
       dispatch(setExpenses())
       history.push('/expenses')
     }
   } catch (e) {
-
+    dispatch(apiCallFinishFail(api.loginUser, e))
   }
 }
 
 export const registerUser = (name, email, password, passwordConfirm, history) => async dispatch => {
-  dispatch(loadingUserStart())
+  dispatch(apiCallStart(api.registerUser))
   dispatch(clearExpenses())
   try {
     const res = await axios.post(`${baseUrl}/users`, { name, email, password, passwordConfirm })
@@ -64,15 +65,16 @@ export const registerUser = (name, email, password, passwordConfirm, history) =>
       dispatch(setUserToStore(user))
       localStorage.setItem('jwtToken', token)
       setAuthToken(token)
+      dispatch(apiCallFinishSuccess(api.registerUser))
       history.push('/expenses')
     }
   } catch (e) {
-
+    dispatch(apiCallFinishFail(api.registerUser, e))
   }
 }
 
 export const logoutUser = (history) => async dispatch => {
-  dispatch(loadingUserStart())
+  dispatch(apiCallStart(api.logoutUser))
   const res = await axios.post(`${baseUrl}/users/logout`)
 
   if (res.statusText === 'OK') {
@@ -80,6 +82,7 @@ export const logoutUser = (history) => async dispatch => {
     dispatch(clearExpenses())
     localStorage.removeItem('jwtToken')
     setAuthToken(false)
+    dispatch(apiCallFinishSuccess(api.logoutUser))
     history.push('/')
   }
 }

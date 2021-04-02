@@ -9,5 +9,8 @@ export const apiCallsNames = {
   saveCurrency: 'save-currency',
   removeCategory: 'remove-category',
   fetchExpenses: 'FETCH_EXPENSES',
-  fetchUser: 'FETCH_USER'
+  fetchUser: 'FETCH_USER',
+  loginUser: 'LOGIN_USER',
+  registerUser: 'REGISTER_USER',
+  logoutUser: 'LOGOUT_USER',
 }
