@@ -6,7 +6,7 @@ import { selectSingleApiCall } from '../../store/selectors/ui'
 const CategoriesSettings = ({ categories }) => {
   const dispatch = useDispatch()
   const { loading, error } = useSelector(state => selectSingleApiCall('remove-category')(state))
-  console.log(error)
+  // console.log(error)
   return (
     <div>
       Your categories:
