@@ -1,8 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
+import { apiCallsNames as api } from '../config/config'
 
 import { selectAllExpenses } from '../store/selectors/expenses'
+import { selectSingleApiCall } from '../store/selectors/ui'
 
 import ExpenseListItem from './ExpenseListItem'
 import Loading from './styles/Loading'
@@ -14,9 +16,9 @@ const List = styled.ul`
 
 const ExpensesList = () => {
   const expenses = useSelector(selectAllExpenses)
-  const expensesLoading = useSelector(state => state.expenses.loading)
+  const expensesApi = useSelector(state => selectSingleApiCall(api.fetchExpenses)(state))
 
-  if (expensesLoading) {
+  if (expensesApi.loading) {
     return <Loading />
   }
   

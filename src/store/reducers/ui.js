@@ -9,6 +9,8 @@ const initialState = {
     { name: api.removeExpense, loading: false, error: '' },
     { name: api.saveCurrency, loading: false, error: '' },
     { name: api.removeCategory, loading: false, error: '' },
+    { name: api.fetchExpenses, loading: false, error: '' },
+    { name: api.fetchUser, loading: false, error: '' },
   ],
   filter: {
     search: '',

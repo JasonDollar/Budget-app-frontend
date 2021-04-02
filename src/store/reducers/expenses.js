@@ -1,8 +1,8 @@
 import * as types from '../actions/actionTypes'
 
 const initialState = {
-  loading: false,
-  error: '',
+  // loading: false,
+  // error: '',
   expenses: [{
     _id: '603e8a3bc4e77e04d869c708',
     title: 'Pizza',
@@ -31,21 +31,15 @@ const expenseReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.SET_EXPENSES:
       return {
-        loading: false,
-        error: '',
         expenses: action.payload
       }
     case types.ADD_EXPENSE:
       return {
-        loading: false,
-        error: '',
         expenses: [...state.expenses, action.payload]
       }
     case types.REMOVE_EXPENSE:
       const filteredExpenses = state.expenses.filter(item => item._id !== action.payload)
       return {
-        loading: false,
-        error: '',
         expenses: filteredExpenses
       }
     case types.EDIT_EXPENSE:
@@ -56,20 +50,11 @@ const expenseReducer = (state = initialState, action) => {
         return item
       })
       return {
-        loading: false,
-        error: '',
         expenses: mappedExpenses
-      }
-    case types.LOADING_EXPENSE_START:
-      return {
-        ...state,
-        loading: true,
       }
     case types.CLEAR_EXPENSES:
       return {
         expenses: [],
-        loading: false,
-        error: ''
       }
     default:
       return state

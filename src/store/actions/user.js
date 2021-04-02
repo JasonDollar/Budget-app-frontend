@@ -1,6 +1,6 @@
 import axios from 'axios'
 import * as types from './actionTypes'
-import { baseUrl } from '../../config/config'
+import { baseUrl, apiCallsNames as api } from '../../config/config'
 import setAuthToken from '../../lib/setAuthToken'
 
 import { setExpenses, clearExpenses } from './expenses'
@@ -22,13 +22,16 @@ const clearUser = () => ({
 
 export const getUserData = () => async dispatch => {
   try {
-    dispatch(loadingUserStart())
+    dispatch(apiCallStart(api.fetchUser))
     const res = await axios.get(`${baseUrl}/users/userDetails`)
     if (res.statusText === 'OK') {
       const { user } = res.data
-       dispatch(setUserToStore(user))
+      dispatch(setUserToStore(user))
+      dispatch(apiCallFinishSuccess(api.fetchUser))
     }
-  } catch (e) {}
+  } catch (e) {
+    dispatch(apiCallFinishFail(api.fetchUser, e))
+  }
 }
 
 export const loginUser = (email, password, history) => async dispatch => {

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import * as types from './actionTypes'
-import { baseUrl } from '../../config/config'
+import { baseUrl, apiCallsNames as api } from '../../config/config'
 import history from '../../lib/history'
 
 import { apiCallStart, apiCallFinishSuccess, apiCallFinishFail } from './ui'
@@ -20,15 +20,17 @@ export const clearExpenses = () => ({
 
 export const setExpenses = () => async dispatch => {
   try {
-    dispatch(loadingExpenseStart())
+    dispatch(apiCallStart(api.fetchExpenses))
     const res = await axios.get(`${baseUrl}/expenses`)
     if (res.statusText === 'OK') {
       const expenses = res.data.expenses
-       dispatch(setExpensesToStore(expenses))
+      dispatch(setExpensesToStore(expenses))
+      dispatch(apiCallFinishSuccess(api.fetchExpenses))
     }
   } catch (e) {
     console.log(e.message)
     dispatch(setExpensesToStore([]))
+    dispatch(apiCallFinishFail(api.fetchExpenses, e))
   }
 }
 
