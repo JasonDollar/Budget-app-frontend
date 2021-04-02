@@ -9,6 +9,7 @@ import { selectUserSettings } from '../store/selectors/user'
 import { selectSingleExpense } from '../store/selectors/expenses'
 import { selectSingleApiCall } from '../store/selectors/ui'
 import formatMoney from '../lib/formatMoney'
+import { apiCallsNames as api } from '../config/config'
 
 import Loading from './styles/Loading'
 import { BigButton, ButtonsContainer } from './styles/BigButton'
@@ -24,13 +25,13 @@ const ExpenseContainer = styled.div`
 `
 
 const Expense = ({ expenseId }) => {
-  const { loading, error } = useSelector(state => selectSingleApiCall('remove-expense')(state))
+  const { loading, error } = useSelector(state => selectSingleApiCall(api.removeExpense)(state))
   const expense = useSelector(state => selectSingleExpense(expenseId)(state))
   const { currency, locale } = useSelector(selectUserSettings)
   const dispatch = useDispatch()
 
   const removeExpenseHandler = () => {
-    dispatch(removeExpense(expenseId, 'remove-expense'))
+    dispatch(removeExpense(expenseId, api.removeExpense))
   }
   
   if (!expense || !currency) {

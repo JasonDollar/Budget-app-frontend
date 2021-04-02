@@ -8,12 +8,13 @@ import { selectSingleApiCall } from '../store/selectors/ui'
 
 import ExpenseForm from '../components/ExpenseForm'
 import Loading from '../components/styles/Loading'
+import { apiCallsNames as api } from '../config/config'
 
 const EditExpense = () => {
   const { expenseId } = useParams()
   const expense = useSelector(state => selectSingleExpense(expenseId)(state))
   const loading = useSelector(state => state.expenses.loading)
-  const saveEditExpenseApiState = useSelector(state => selectSingleApiCall('save-edit-expense')(state))
+  const saveEditExpenseApiState = useSelector(state => selectSingleApiCall(api.saveEditExpense)(state))
   const dispatch = useDispatch()
   
   const editExpenseHandler = async (title, description, amount, date, category) => {
@@ -33,7 +34,7 @@ const EditExpense = () => {
       updates.category = category
     }
     // save expense as whole number
-    dispatch(editExpense(expenseId, updates, 'save-edit-expense')) 
+    dispatch(editExpense(expenseId, updates, api.saveEditExpense)) 
   }
 
   if (!expense) {
