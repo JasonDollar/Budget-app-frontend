@@ -11,13 +11,23 @@ export const loadingUserStart = () => ({
   type: types.LOADING_USER_START,
 })
 
-const setUserToStore = (userData) => ({
+export const setUserToStore = (userData) => ({
   type: types.SET_USER_DATA,
   payload: userData
 })
 
-const clearUser = () => ({
+export const clearUser = () => ({
   type: types.CLEAR_USER
+})
+
+export const changeCurrencyInStore = (newCurrency) => ({
+  type: types.CHANGE_CURRENCY,
+  payload: newCurrency
+})
+
+export const changeCategoriesInStore = categories => ({
+  type: types.CHANGE_CATEGORIES,
+  payload: categories
 })
 
 export const getUserData = () => async dispatch => {
@@ -94,10 +104,7 @@ export const changeCurrency = (newCurrency, uiAction) => async dispatch => {
     if (res.statusText === 'OK') {
       const { currency } = res.data
     
-      dispatch({
-        type: types.CHANGE_CURRENCY,
-        payload: currency
-      })
+      dispatch(changeCurrencyInStore(currency))
       dispatch(apiCallFinishSuccess(uiAction))
     }
   } catch (e) {
@@ -111,10 +118,7 @@ export const removeCategory = (category, uiAction) => async dispatch => {
     const res = await axios.delete(`${baseUrl}/users/category/${category}`)
     if (res.statusText === 'OK') {
       const { categories } = res.data
-      dispatch({
-        type: types.CHANGE_CATEGORIES,
-        payload: categories
-      })
+      dispatch(changeCategoriesInStore(categories))
       dispatch(apiCallFinishSuccess(uiAction))
     }
   } catch (e) {
