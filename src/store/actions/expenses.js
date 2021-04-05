@@ -8,7 +8,7 @@ export const loadingExpenseStart = () => ({
   type: types.LOADING_EXPENSE_START,
 })
 
-const setExpensesToStore = expenses => ({
+export const setExpensesToStore = expenses => ({
   type: types.SET_EXPENSES,
   payload: expenses
 })
@@ -33,7 +33,7 @@ export const setExpenses = () => async dispatch => {
   }
 }
 
-const addExpenseToStore = (expense) => ({
+export const addExpenseToStore = (expense) => ({
   type: types.ADD_EXPENSE,
   payload: expense
 })
@@ -57,7 +57,7 @@ export const addExpense = (expenseData, uiAction, history) => async dispatch => 
   }
 }
 
-const removeExpenseFromStore = id => ({
+export const removeExpenseFromStore = id => ({
   type: types.REMOVE_EXPENSE,
   payload: id
 })
@@ -78,7 +78,7 @@ export const removeExpense = (id, uiAction, history) => async dispatch => {
 }
 
 
-const editExpenseInStore = expense => ({
+export const editExpenseInStore = expense => ({
   type: types.EDIT_EXPENSE,
   payload: expense
 })
