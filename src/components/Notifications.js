@@ -6,6 +6,10 @@ const Noti = styled.div`
   position: fixed;
   left: 1rem;
   bottom: 1rem;
+  @media (min-width: 768px) {
+    left: 3rem;
+    bottom: 2rem;
+  }
 `
 
 const Notifications = ({ notifications }) => {

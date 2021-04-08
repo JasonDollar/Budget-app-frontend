@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { dismissNotification } from '../store/actions/ui'
 
 const ItemDiv = styled.div`
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   position: relative;
   border: 1px solid rgba(200,200,200, .6);
   border-radius: 7px;
@@ -14,10 +14,11 @@ const ItemDiv = styled.div`
   overflow: hidden;
   display: flex;
   align-items: center;
-
+  background: ${props => props.theme.backgroundColor};
+  padding: 1rem 1.5rem;
+  
   span {
     display: block;
-    padding: .8rem 1rem;
   }
 
   &::after {
@@ -30,8 +31,8 @@ const ItemDiv = styled.div`
     background: ${props => props.theme.mainThemeColor};
   }
   button {
-    margin: 0 .3rem;
-    margin-left: 0;
+    /* margin: 0 .3rem; */
+    /* margin-left: 0; */
     border: none;
     background: none;
   }

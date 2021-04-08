@@ -10,6 +10,7 @@ const theme = {
     textColorWhite: '#fff',
     colorDanger: '#d93f4e',
     colorAlert: '#f5b800',
+    backgroundColor: '#fff',
   },
   pumpkin: {
     id: 'pumpkin',
@@ -22,6 +23,7 @@ const theme = {
     textColorWhite: '#fff',
     colorDanger: '#d93f4e',
     colorAlert: '#f5b800',
+    backgroundColor: '#fff',
   },
   sea: {
     id: 'sea',
@@ -34,6 +36,7 @@ const theme = {
     textColorWhite: '#fff',
     colorDanger: '#d93f4e',
     colorAlert: '#dba500',
+    backgroundColor: '#fff',
   },
   blue: {
     id: 'blue',
@@ -46,6 +49,7 @@ const theme = {
     textColorWhite: '#fff',
     colorDanger: '#d93f4e',
     colorAlert: '#f5b800',
+    backgroundColor: '#fff',
   },
 }
 
