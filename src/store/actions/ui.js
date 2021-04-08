@@ -30,17 +30,11 @@ export const showNotification = (message) => dispatch => {
     }
   })
   setTimeout(() => {
-    dispatch({
-      type: types.REMOVE_NOTIFICATION,
-      payload: id
-    })
+    dispatch(dismissNotification(id))
   }, 4000)
 }
 
-
-
-// ({
-//   type: types.ADD_NOTIFICATION,
-//   id: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
-//   message
-// })
+export const dismissNotification = id => ({
+  type: types.REMOVE_NOTIFICATION,
+  payload: id
+})
