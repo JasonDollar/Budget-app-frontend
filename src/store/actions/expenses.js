@@ -63,7 +63,7 @@ export const removeExpenseFromStore = id => ({
   payload: id
 })
 
-export const removeExpense = (id, uiAction, history) => async dispatch => {
+export const removeExpense = (id, uiAction, history, notification) => async dispatch => {
   dispatch(apiCallStart(uiAction))
   try {
     const res = await axios.delete(`${baseUrl}/expenses/${id}`)
@@ -71,6 +71,7 @@ export const removeExpense = (id, uiAction, history) => async dispatch => {
     if (res.statusText === 'OK') {
       dispatch(removeExpenseFromStore(id))
       dispatch(apiCallFinishSuccess(uiAction))
+      if (notification) { dispatch(showNotification(notification)) }
       history.push('/expenses')
     }
   } catch (e) {
@@ -84,7 +85,7 @@ export const editExpenseInStore = expense => ({
   payload: expense
 })
 
-export const editExpense = (id, updates, uiAction, history) => async dispatch => {
+export const editExpense = (id, updates, uiAction, history, notification) => async dispatch => {
   dispatch(apiCallStart(uiAction))
   dispatch(loadingExpenseStart())
   try {
@@ -93,6 +94,7 @@ export const editExpense = (id, updates, uiAction, history) => async dispatch =>
     if (res.statusText === 'OK') {
       dispatch(editExpenseInStore(res.data.expense))
       dispatch(apiCallFinishSuccess(uiAction))
+      if (notification) { dispatch(showNotification(notification)) }
       history.push('/expenses')
     }
   } catch (e) {

@@ -32,7 +32,7 @@ const Expense = ({ expenseId }) => {
   const dispatch = useDispatch()
 
   const removeExpenseHandler = () => {
-    dispatch(removeExpense(expenseId, api.removeExpense, history))
+    dispatch(removeExpense(expenseId, api.removeExpense, history, 'Expense deleted'))
   }
   
   if (!expense || !currency) {

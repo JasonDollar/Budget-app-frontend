@@ -35,7 +35,7 @@ const EditExpense = () => {
       updates.category = category
     }
     // save expense as whole number
-    dispatch(editExpense(expenseId, updates, api.saveEditExpense, history)) 
+    dispatch(editExpense(expenseId, updates, api.saveEditExpense, history, 'Expense saved')) 
   }
 
   if (!expense) {

@@ -5,7 +5,7 @@ import setAuthToken from '../../lib/setAuthToken'
 
 import { setExpenses, clearExpenses } from './expenses'
 
-import { apiCallStart, apiCallFinishSuccess, apiCallFinishFail } from './ui'
+import { apiCallStart, apiCallFinishSuccess, apiCallFinishFail, showNotification } from './ui'
 
 export const loadingUserStart = () => ({
   type: types.LOADING_USER_START,
@@ -56,6 +56,7 @@ export const loginUser = (email, password, history) => async dispatch => {
       setAuthToken(token)
       dispatch(apiCallFinishSuccess(api.loginUser))
       dispatch(setExpenses())
+      dispatch(showNotification('Logged in succesfully'))
       history.push('/expenses')
     }
   } catch (e) {
@@ -106,6 +107,7 @@ export const changeCurrency = (newCurrency, uiAction) => async dispatch => {
     
       dispatch(changeCurrencyInStore(currency))
       dispatch(apiCallFinishSuccess(uiAction))
+      dispatch(showNotification(`Currency changed to ${newCurrency}`))
     }
   } catch (e) {
     dispatch(apiCallFinishFail(uiAction, e))
