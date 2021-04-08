@@ -21,7 +21,8 @@ const initialState = {
     sortBy: 'DATE',
     sortDirection: 'ASC',
     category: ''
-  }
+  },
+  notifications: []
 }
 
 const uiReducer = (state = initialState, action) => {
@@ -74,6 +75,16 @@ const uiReducer = (state = initialState, action) => {
           ...state.filter,
           ...action.payload
         }
+      }
+    case types.ADD_NOTIFICATION: 
+      return {
+        ...state,
+        notifications: [...state.notifications, action.payload]
+      }
+    case types.REMOVE_NOTIFICATION: 
+      return {
+        ...state,
+        notifications: state.notifications.filter(item => item.id !== action.payload )
       }
     default:
       return state

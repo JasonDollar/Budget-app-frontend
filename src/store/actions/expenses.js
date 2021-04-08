@@ -2,7 +2,7 @@ import axios from 'axios'
 import * as types from './actionTypes'
 import { baseUrl, apiCallsNames as api } from '../../config/config'
 
-import { apiCallStart, apiCallFinishSuccess, apiCallFinishFail } from './ui'
+import { apiCallStart, apiCallFinishSuccess, apiCallFinishFail, showNotification } from './ui'
 
 export const loadingExpenseStart = () => ({
   type: types.LOADING_EXPENSE_START,
@@ -38,7 +38,7 @@ export const addExpenseToStore = (expense) => ({
   payload: expense
 })
 
-export const addExpense = (expenseData, uiAction, history) => async dispatch => {
+export const addExpense = (expenseData, uiAction, history, notification) => async dispatch => {
   dispatch(apiCallStart(uiAction))
 
   try {
@@ -47,6 +47,7 @@ export const addExpense = (expenseData, uiAction, history) => async dispatch => 
       const expense = res.data.expense
       dispatch(addExpenseToStore(expense))
       dispatch(apiCallFinishSuccess(uiAction))
+      if (notification) { dispatch(showNotification(notification)) }
       history.push('/expenses')
     }
   } catch (e) {

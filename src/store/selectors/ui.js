@@ -17,3 +17,7 @@ export const selectFilters = createSelector(
   state => state.filter
 )
 
+export const selectNotifications = createSelector(
+  [selectUi],
+  state => state.notifications
+)

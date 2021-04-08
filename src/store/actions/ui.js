@@ -19,3 +19,28 @@ export const updateFilter = updates => ({
   type: types.UPDATE_FILTER,
   payload: updates
 })
+
+export const showNotification = (message) => dispatch => {
+  const id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+  dispatch({
+    type: types.ADD_NOTIFICATION,
+    payload: {
+      id,
+      message
+    }
+  })
+  setTimeout(() => {
+    dispatch({
+      type: types.REMOVE_NOTIFICATION,
+      payload: id
+    })
+  }, 4000)
+}
+
+
+
+// ({
+//   type: types.ADD_NOTIFICATION,
+//   id: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+//   message
+// })
