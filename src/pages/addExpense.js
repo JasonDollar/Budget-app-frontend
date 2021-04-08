@@ -18,7 +18,7 @@ const AddExpensePage = () => {
   const addExpenseHandler = async (title, description, amount, date, category) => {
     // save expense as whole number
     const validAmount = Math.ceil(amount * 100)
-    dispatch(addExpense({title, description, amount: validAmount, expenseDate: date, category}, api.saveNewExpense, history)) 
+    dispatch(addExpense({title, description, amount: validAmount, expenseDate: date, category}, api.saveNewExpense, history, 'Expense added')) 
   }
   
   return (

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import jwt_decode from 'jwt-decode'
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
-import { Provider } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { ThemeProvider } from 'styled-components'
 
-import store from './store'
+
 import { setExpenses } from './store/actions/expenses'
 import { getUserData } from './store/actions/user'
 import setAuthToken from './lib/setAuthToken'
@@ -16,14 +16,20 @@ import EditExpense from './pages/editExpense'
 import Expenses from './pages/expenses'
 import Expense from './pages/expense'
 import User from './pages/user'
+import Notifications from './components/Notifications'
 
 import { GlobalStyle } from './components/styles/globalStyles'
 import { getTheme } from './components/styles/theme'
 import Header from './components/Header'
 import Total from './components/Total'
+import { selectNotifications } from './store/selectors/ui'
+import { showNotification } from './store/actions/ui'
 
 function App() {
   const [totalComponentHeight, setTotalComponentHeight] = useState(0)
+  const notifications = useSelector(selectNotifications)
+  const dispatch = useDispatch()
+  // console.log(lol)
   // const [userLogged, setUserLogged] = useState()
   const [themeId, changeThemeId] = useState(() => {
     const themeIdFromLS = localStorage.getItem('theme')
@@ -41,8 +47,8 @@ function App() {
       const decoded = jwt_decode(token)
       console.log(decoded)
       setAuthToken(token)
-      store.dispatch(setExpenses())
-      store.dispatch(getUserData())
+      dispatch(setExpenses())
+      dispatch(getUserData())
     }
   }
 
@@ -52,7 +58,7 @@ function App() {
   }
 
   return (
-    <Provider store={store}>
+    
       <ThemeProvider theme={() => getTheme(themeId)} >
         <GlobalStyle />
         <BrowserRouter>
@@ -93,10 +99,12 @@ function App() {
               </Switch>
             </Route>
           </Switch>
+          <button onClick={e => dispatch(showNotification('message'))}>Add</button>
+          {notifications && <Notifications notifications={notifications} />}
           </div> 
         </BrowserRouter>
       </ThemeProvider>
-    </Provider>
+
   );
 }
 
