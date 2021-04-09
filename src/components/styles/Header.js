@@ -12,7 +12,7 @@ const HeaderBox = styled.div`
     color: #fff;
     font-weight: 300;
     @media (min-width: 768px) {
-      padding: 3rem 1.5rem;
+      padding: 2rem 1.5rem;
     }
   }
 

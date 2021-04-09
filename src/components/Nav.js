@@ -14,7 +14,7 @@ const Nav = ({ isOpen, toggleNavOpen, handleLinkClick }) => {
         <li>
           <NavLink to="/user">User</NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink to="/">Menu item 2</NavLink>
         </li>
         <li>
@@ -25,7 +25,7 @@ const Nav = ({ isOpen, toggleNavOpen, handleLinkClick }) => {
         </li>
         <li>
           <NavLink to="/">Menu item 5</NavLink>
-        </li>
+        </li> */}
       </NavList>
     </>
   )

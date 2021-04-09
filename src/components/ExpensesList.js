@@ -8,11 +8,8 @@ import { selectSingleApiCall } from '../store/selectors/ui'
 
 import ExpenseListItem from './ExpenseListItem'
 import Loading from './styles/Loading'
-
-const List = styled.ul`
-  list-style: none;
-  padding: 0;
-`
+import ErrorMessage from './ErrorMessage'
+import List from './styles/List'
 
 const ExpensesList = () => {
   const expenses = useSelector(selectAllExpenses)
@@ -29,6 +26,7 @@ const ExpensesList = () => {
           <ExpenseListItem key={item._id} expense={item}/>
         ))}
       </List>
+      {expensesApi.error && <ErrorMessage error={expensesApi.error} />}
     </div>
   )
 }

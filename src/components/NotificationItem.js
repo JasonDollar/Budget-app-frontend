@@ -31,8 +31,6 @@ const ItemDiv = styled.div`
     background: ${props => props.theme.mainThemeColor};
   }
   button {
-    /* margin: 0 .3rem; */
-    /* margin-left: 0; */
     border: none;
     background: none;
   }

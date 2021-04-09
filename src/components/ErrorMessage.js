@@ -18,7 +18,7 @@ const ErrorMessage = ({ error }) => {
 
   return (
     <div>
-      An error occured
+      <p>An error occured</p>
     </div>
   )
 }

@@ -13,6 +13,7 @@ import { apiCallsNames as api } from '../config/config'
 
 import Loading from './styles/Loading'
 import { BigButton, ButtonsContainer } from './styles/BigButton'
+import ErrorMessage from './ErrorMessage'
 
 
 const ExpenseContainer = styled.div`
@@ -58,6 +59,7 @@ const Expense = ({ expenseId }) => {
         </BigButton>
       </ButtonsContainer>
       {loading && <span>Removing</span>}
+      {error && <ErrorMessage error={error} />}
     </ExpenseContainer>
   )
 }

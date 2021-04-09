@@ -3,20 +3,30 @@ import { useDispatch, useSelector } from 'react-redux'
 import { removeCategory } from '../../store/actions/user'
 import { selectSingleApiCall } from '../../store/selectors/ui'
 import { apiCallsNames as api } from '../../config/config'
+import styled from 'styled-components'
+import ErrorMessage from '../ErrorMessage'
+import List from '../styles/List'
+
+const ListElement = styled.li`
+  &::first-letter {
+    text-transform: uppercase;
+  }
+`
 
 const CategoriesSettings = ({ categories }) => {
   const dispatch = useDispatch()
   const { loading, error } = useSelector(state => selectSingleApiCall(api.removeCategory)(state))
-  // console.log(error)
+
   return (
     <div>
       Your categories:
-      <ul>
+      <List>
         {categories?.map(item => (
-          <li key={item}>{item} <button onClick={() => dispatch(removeCategory(item, api.removeCategory))} disabled={loading}>X</button> </li>
+          <ListElement key={item}>{item} <button onClick={() => dispatch(removeCategory(item, api.removeCategory))} disabled={loading}>X</button> </ListElement>
         ))}
-      </ul>
+      </List>
       { loading && <span>Removing</span> }
+      {error && <ErrorMessage error={error} />}
     </div>
   )
 }

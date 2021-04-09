@@ -14,7 +14,6 @@ const EditExpense = () => {
   const { expenseId } = useParams()
   const history = useHistory()
   const expense = useSelector(state => selectSingleExpense(expenseId)(state))
-  const loading = useSelector(state => state.expenses.loading)
   const saveEditExpenseApiState = useSelector(state => selectSingleApiCall(api.saveEditExpense)(state))
   const dispatch = useDispatch()
   
@@ -53,7 +52,6 @@ const EditExpense = () => {
         dateExpense={expense.expenseDate}
         categoryExpense={expense.category}
         handleSubmit={editExpenseHandler}
-        loading={loading}
         apiCallState={saveEditExpenseApiState}
       />
     </div>

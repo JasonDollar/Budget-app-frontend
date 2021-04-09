@@ -33,7 +33,16 @@ const FormContainer = styled.div`
   }
 `
 
-const ExpenseForm = ({ expenseId, titleExpense = '', descriptionExpense = '', amountExpense = '', handleSubmit, dateExpense, categoryExpense , apiCallState }) => {
+const ExpenseForm = ({ 
+  expenseId, 
+  titleExpense = '', 
+  descriptionExpense = '', 
+  amountExpense = '', 
+  handleSubmit, 
+  dateExpense, 
+  categoryExpense , 
+  apiCallState 
+}) => {
   
   const categories = useSelector(selectUserCategories)
   const [title, setTitle] = useState(titleExpense)

@@ -4,6 +4,7 @@ import { availableCurrencies, apiCallsNames as api } from '../../config/config'
 
 import { changeCurrency } from '../../store/actions/user'
 import { selectSingleApiCall } from '../../store/selectors/ui'
+import ErrorMessage from '../ErrorMessage'
 
 const CurrencySettings = ({ userCurrency }) => {
   const [currency, setCurrency] = useState()
@@ -26,6 +27,7 @@ const CurrencySettings = ({ userCurrency }) => {
       </select>
       <button disabled={userCurrency === currency || !currency || saveCurrencyApiState.loading} onClick={changeCurrencyHandler}>Save</button>
       {saveCurrencyApiState.loading && <p>Saving</p>}
+      {saveCurrencyApiState.error && <ErrorMessage error={saveCurrencyApiState.error} />}
     </div>
   )
 }
