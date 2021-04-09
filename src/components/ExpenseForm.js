@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import { selectUserCategories } from '../store/selectors/user'
 
 import { BigButton, ButtonsContainer } from './styles/BigButton'
+import ErrorMessage from './ErrorMessage'
 
 const FormContainer = styled.div`
   .form {
@@ -111,8 +112,8 @@ const ExpenseForm = ({ expenseId, titleExpense = '', descriptionExpense = '', am
           </BigButton>
           <BigButton type="submit" disabled={apiCallState?.loading}>Save expense</BigButton>
         </ButtonsContainer>
-              {apiCallState?.loading && <p>Saving</p>}
-        {apiCallState?.error?.message}
+        {apiCallState?.loading && <p>Saving</p>}
+        {apiCallState.error && <ErrorMessage error={apiCallState.error} />}
       </form>
     </FormContainer>
   )
