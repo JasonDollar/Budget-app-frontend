@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import Expense from '../components/Expense'
 
 const ExpensePage = () => {
-  const { expenseId } = useParams()
+  const { expenseId } = useParams<{ expenseId: string }>()
   return (
     <div>
       <Expense expenseId={expenseId}/>

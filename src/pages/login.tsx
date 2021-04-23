@@ -9,7 +9,7 @@ const LoginPage = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const formSubmitHandler = async e => {
+  const formSubmitHandler = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
     dispatch(loginUser(email, password, history))
   }

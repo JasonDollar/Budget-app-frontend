@@ -12,8 +12,11 @@ const RegisterPage = () => {
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
 
-  const formSubmitHandler = async e => {
+  const formSubmitHandler = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
+    if (password !== passwordConfirm) {
+      return
+    }
     dispatch(registerUser(name, email, password, passwordConfirm, history))
   }
 
