@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const ButtonsContainer = styled.div`
+const ButtonsContainer = styled.div<{ buttons: number }>`
   display: flex;
   justify-content: space-between;
   @media(min-width: 576px) {
@@ -15,7 +15,7 @@ const ButtonsContainer = styled.div`
   }
 `
 
-const BigButton = styled.button`
+const BigButton = styled.button<{danger?: boolean, alert?: boolean, fontSize?: number, wide?: boolean}>`
   cursor: pointer;
   font-size: ${props => props.fontSize ? props.fontSize * 2 : 2}rem;
   background: ${props => {

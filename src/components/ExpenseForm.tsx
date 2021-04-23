@@ -9,6 +9,8 @@ import { selectUserCategories } from '../store/selectors/user'
 import { BigButton, ButtonsContainer } from './styles/BigButton'
 import ErrorMessage from './ErrorMessage'
 
+import { IApiCallState } from '../interfaces/ui'
+
 const FormContainer = styled.div`
   .form {
     display: flex;
@@ -33,11 +35,22 @@ const FormContainer = styled.div`
   }
 `
 
-const ExpenseForm = ({ 
+interface Props {
+  expenseId?: string
+  titleExpense?: string
+  descriptionExpense?: string
+  amountExpense?: number
+  handleSubmit: (title: string, description: string, amount: number, date: Date, category: string) => {}
+  dateExpense?: Date
+  categoryExpense?: string
+  apiCallState: IApiCallState
+}
+
+const ExpenseForm: React.FC<Props> = ({ 
   expenseId, 
   titleExpense = '', 
   descriptionExpense = '', 
-  amountExpense = '', 
+  amountExpense = 0, 
   handleSubmit, 
   dateExpense, 
   categoryExpense , 
@@ -47,9 +60,9 @@ const ExpenseForm = ({
   const categories = useSelector(selectUserCategories)
   const [title, setTitle] = useState(titleExpense)
   const [description, setDescription] = useState(descriptionExpense)
-  const [amount, setAmount] = useState(amountExpense && amountExpense / 100)
+  const [amount, setAmount] = useState(amountExpense && +amountExpense / 100)
   const [expenseDate, setExpenseDate] = useState(dateExpense ? new Date(dateExpense) : new Date())
-  const [category, setCategory] = useState()
+  const [category, setCategory] = useState('')
   
   useEffect(() => {
     if (categoryExpense) {
@@ -61,7 +74,7 @@ const ExpenseForm = ({
     }
   }, [categories, categoryExpense])
 
-  const formHandler = async e => {
+  const formHandler = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
     // simple validation
     if (!title || amount <= 0) return
@@ -84,22 +97,22 @@ const ExpenseForm = ({
           type="number" 
           placeholder="Amount" 
           value={amount} 
-          onChange={e => setAmount(e.target.value)} 
+          onChange={e => setAmount(+e.target.value)} 
           step="0.01" 
           required
         />
         <div>
           <DatePicker 
             value={expenseDate} 
-            onChange={date => setExpenseDate(date)}  
-            clearIcon={false}
+            onChange={date => setExpenseDate(date as Date)}  
+            clearIcon={null}
             minDetail="year"
             required
             format="dd.MM.y"
           />
           <select name="category" value={category} onChange={e => setCategory(e.target.value)}>
             {/* below turnary is for local mobile testing purposes */}
-            {categories?.length ? categories.map(item => (
+            {categories?.length ? categories.map((item: string) => (
               <option key={item} value={item}>{item}</option>
             )) : (
                 <option value="other">Other</option>
@@ -108,7 +121,6 @@ const ExpenseForm = ({
         </div>
         <textarea 
           className="textarea" 
-          type="text" 
           placeholder="Add a short note to you expense" 
           value={description} 
           onChange={e => setDescription(e.target.value)}
