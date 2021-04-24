@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const HeaderBox = styled.div`
+const HeaderBox = styled.div<{ bottomAdditionalSpace: number }>`
   max-height: 30rem;
   background: ${props => props.theme.mainThemeColor};
   margin: 0;

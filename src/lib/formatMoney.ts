@@ -1,4 +1,4 @@
-const formatMoney = (amount, currency = 'USD', locale = 'en-US') => {
+const formatMoney = (amount: number, currency = 'USD', locale = 'en-US') => {
   const options = {
     style: 'currency',
     currency,

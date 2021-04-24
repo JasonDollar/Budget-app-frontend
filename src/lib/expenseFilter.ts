@@ -1,6 +1,16 @@
 import { isAfter, isBefore } from 'date-fns'
+import { IExpense } from '../interfaces/expense'
 
-const expenseFilter = (expenses, { search, category, dateRangeStart, dateRangeEnd, sortBy, sortDirection }) => {
+interface Filter { 
+  search: string
+  category: string
+  dateRangeStart?: Date
+  dateRangeEnd?: Date
+  sortBy: 'DATE' | 'AMOUNT'
+  sortDirection: 'ASC' | 'DESC' 
+}
+
+const expenseFilter = (expenses: IExpense[], { search, category, dateRangeStart, dateRangeEnd, sortBy, sortDirection }: Filter) => {
   return expenses.filter(item => {
     const expenseDate = new Date(item.expenseDate)
     const textMatch = item.title.toLowerCase().includes(search.toLowerCase()) || (
@@ -19,6 +29,7 @@ const expenseFilter = (expenses, { search, category, dateRangeStart, dateRangeEn
   })
   .sort((a, b) => {
     if (sortBy === 'DATE') {
+      if (a.expenseDate === b.expenseDate) return 0
       let sortExpression = a.expenseDate < b.expenseDate
       if (sortDirection === 'ASC') {
         sortExpression = a.expenseDate > b.expenseDate
@@ -29,6 +40,7 @@ const expenseFilter = (expenses, { search, category, dateRangeStart, dateRangeEn
     }
 
     if (sortBy === 'AMOUNT') {
+      if (a.amount === b.amount) return 0
       let sortExpression = a.amount < b.amount
       if (sortDirection === 'ASC') {
         sortExpression = a.amount > b.amount
@@ -37,6 +49,8 @@ const expenseFilter = (expenses, { search, category, dateRangeStart, dateRangeEn
       }
       return sortExpression ? 1 : -1
     }
+    // it should never reach it
+    return 0
   })
 }
 
