@@ -35,7 +35,7 @@ const Filter = () => {
         <option value="AMOUNT">Amount</option>
       </select>
 
-      <button onClick={() => handleChange({sortDirection: toggleSortDirection(sortDirection)})}>{toggleSortDirection(!sortDirection)}</button>
+      <button onClick={() => handleChange({sortDirection: toggleSortDirection(sortDirection)})}>{toggleSortDirection(sortDirection)}</button>
     </div>
   )
 }
