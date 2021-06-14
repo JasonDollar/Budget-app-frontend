@@ -1,6 +1,7 @@
 import axios from 'axios'
 import * as types from './actionTypes'
 import { baseUrl, apiCallsNames as api } from '../../config/config'
+import { IExpense } from '../../interfaces/expense'
 
 import { apiCallStart, apiCallFinishSuccess, apiCallFinishFail, showNotification } from './ui'
 
@@ -8,7 +9,7 @@ export const loadingExpenseStart = () => ({
   type: types.LOADING_EXPENSE_START,
 })
 
-export const setExpensesToStore = expenses => ({
+export const setExpensesToStore = (expenses: IExpense[]) => ({
   type: types.SET_EXPENSES,
   payload: expenses
 })
@@ -17,7 +18,7 @@ export const clearExpenses = () => ({
   type: types.CLEAR_EXPENSES
 })
 
-export const setExpenses = () => async dispatch => {
+export const setExpenses = () => async (dispatch: any) => {
   try {
     dispatch(apiCallStart(api.fetchExpenses))
     const res = await axios.get(`${baseUrl}/expenses`)
@@ -33,12 +34,12 @@ export const setExpenses = () => async dispatch => {
   }
 }
 
-export const addExpenseToStore = (expense) => ({
+export const addExpenseToStore = (expense: IExpense) => ({
   type: types.ADD_EXPENSE,
   payload: expense
 })
 
-export const addExpense = (expenseData, uiAction, history, notification) => async dispatch => {
+export const addExpense = (expenseData: any, uiAction: string, history: any, notification: string) => async (dispatch: any) => {
   dispatch(apiCallStart(uiAction))
 
   try {
@@ -58,12 +59,12 @@ export const addExpense = (expenseData, uiAction, history, notification) => asyn
   }
 }
 
-export const removeExpenseFromStore = id => ({
+export const removeExpenseFromStore = (id: string) => ({
   type: types.REMOVE_EXPENSE,
   payload: id
 })
 
-export const removeExpense = (id, uiAction, history, notification) => async dispatch => {
+export const removeExpense = (id: string, uiAction: string, history: any, notification: string) => async (dispatch: any) => {
   dispatch(apiCallStart(uiAction))
   try {
     const res = await axios.delete(`${baseUrl}/expenses/${id}`)
@@ -80,12 +81,12 @@ export const removeExpense = (id, uiAction, history, notification) => async disp
 }
 
 
-export const editExpenseInStore = expense => ({
+export const editExpenseInStore = (expense: IExpense) => ({
   type: types.EDIT_EXPENSE,
   payload: expense
 })
 
-export const editExpense = (id, updates, uiAction, history, notification) => async dispatch => {
+export const editExpense = (id: string, updates: any, uiAction: string, history: any, notification: string) => async (dispatch: any) => {
   dispatch(apiCallStart(uiAction))
   dispatch(loadingExpenseStart())
   try {
