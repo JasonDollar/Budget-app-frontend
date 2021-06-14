@@ -4,8 +4,9 @@ export interface IExpense {
   amount: number,
   description?: string,
   owner: string,
-  createdAt: Date,
-  updatedAt: Date,
-  expenseDate: Date,
+  createdAt: Date | string,
+  updatedAt: Date | string,
+  expenseDate: Date | string,
   category: string,
+  __v?: number
 }

@@ -15,6 +15,7 @@ import Loading from './styles/Loading'
 import { BigButton, ButtonsContainer } from './styles/BigButton'
 import ErrorMessage from './ErrorMessage'
 
+import {IApiCallState} from '../interfaces/ui'
 
 const ExpenseContainer = styled.div`
   .title {
@@ -25,7 +26,11 @@ const ExpenseContainer = styled.div`
   }
 `
 
-const Expense = ({ expenseId }) => {
+interface Props {
+  expenseId: string
+}
+
+const Expense: React.FC<Props> = ({ expenseId }) => {
   const history = useHistory()
   const { loading, error } = useSelector(state => selectSingleApiCall(api.removeExpense)(state))
   const expense = useSelector(state => selectSingleExpense(expenseId)(state))

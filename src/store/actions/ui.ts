@@ -1,40 +1,45 @@
-import * as types from './actionTypes'
+import { TAction } from './interface'
+import { EActionTypes } from './actionTypes'
+import { Dispatch } from 'redux'
 
-export const apiCallStart = (name: string) => ({
-  type: types.API_CALL_START,
+export const apiCallStart = (name: string): TAction => ({
+  type: EActionTypes.API_CALL_START,
   payload : { name }
 })
 
-export const apiCallFinishSuccess = (name: string) => ({
-  type: types.API_CALL_FINISH_SUCCESS,
+export const apiCallFinishSuccess = (name: string): TAction => ({
+  type: EActionTypes.API_CALL_FINISH_SUCCESS,
   payload : { name }
 })
 
-export const apiCallFinishFail = (name: string, error: any) => ({
-  type: types.API_CALL_FINISH_FAIL,
+export const apiCallFinishFail = (name: string, error: any): TAction => ({
+  type: EActionTypes.API_CALL_FINISH_FAIL,
   payload : { name, error }
 })
 
-export const updateFilter = (updates: any) => ({
-  type: types.UPDATE_FILTER,
+export const updateFilter = (updates: any): TAction => ({
+  type: EActionTypes.UPDATE_FILTER,
   payload: updates
 })
 
-export const showNotification = (message: string) => (dispatch: any) => {
+const addNotification = ({ id, message }: { id: string, message: string }): TAction => ({
+  type: EActionTypes.ADD_NOTIFICATION,
+  payload: { id, message }
+})
+
+export const showNotification = (message: string) => (dispatch: Dispatch<TAction>) => {
   const id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
-  dispatch({
-    type: types.ADD_NOTIFICATION,
-    payload: {
+  dispatch(addNotification({
       id,
       message
-    }
-  })
+    })
+  )
   setTimeout(() => {
     dispatch(dismissNotification(id))
   }, 4000)
 }
 
-export const dismissNotification = (id: string) => ({
-  type: types.REMOVE_NOTIFICATION,
+export const dismissNotification = (id: string): TAction => ({
+  type: EActionTypes.REMOVE_NOTIFICATION,
   payload: id
 })

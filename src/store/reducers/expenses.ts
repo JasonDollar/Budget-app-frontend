@@ -1,5 +1,5 @@
 import * as types from '../actions/actionTypes'
-
+import { IExpense } from '../../interfaces/expense'
 const initialState = {
   // loading: false,
   // error: '',
@@ -27,7 +27,11 @@ const initialState = {
   }]
 }
 
-const expenseReducer = (state = initialState, action) => {
+interface IExpenseState {
+  expenses: IExpense[]
+}
+
+const expenseReducer = (state: IExpenseState = initialState, action: any): IExpenseState => {
   switch (action.type) {
     case types.SET_EXPENSES:
       return {

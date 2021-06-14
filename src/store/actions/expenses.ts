@@ -1,7 +1,10 @@
 import axios from 'axios'
+import { Dispatch } from 'redux'
 import * as types from './actionTypes'
+import { EActionTypes } from './actionTypes'
 import { baseUrl, apiCallsNames as api } from '../../config/config'
 import { IExpense } from '../../interfaces/expense'
+import { TAction } from './interface'
 
 import { apiCallStart, apiCallFinishSuccess, apiCallFinishFail, showNotification } from './ui'
 
@@ -9,8 +12,8 @@ export const loadingExpenseStart = () => ({
   type: types.LOADING_EXPENSE_START,
 })
 
-export const setExpensesToStore = (expenses: IExpense[]) => ({
-  type: types.SET_EXPENSES,
+export const setExpensesToStore = (expenses: IExpense[]) : TAction => ({
+  type: EActionTypes.SET_EXPENSES,
   payload: expenses
 })
 
@@ -18,7 +21,7 @@ export const clearExpenses = () => ({
   type: types.CLEAR_EXPENSES
 })
 
-export const setExpenses = () => async (dispatch: any) => {
+export const setExpenses = () => async (dispatch: Dispatch<TAction>) => {
   try {
     dispatch(apiCallStart(api.fetchExpenses))
     const res = await axios.get(`${baseUrl}/expenses`)
@@ -34,8 +37,8 @@ export const setExpenses = () => async (dispatch: any) => {
   }
 }
 
-export const addExpenseToStore = (expense: IExpense) => ({
-  type: types.ADD_EXPENSE,
+export const addExpenseToStore = (expense: IExpense): TAction => ({
+  type: EActionTypes.ADD_EXPENSE,
   payload: expense
 })
 
