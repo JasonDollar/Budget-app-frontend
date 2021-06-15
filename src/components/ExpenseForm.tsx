@@ -40,8 +40,8 @@ interface Props {
   titleExpense?: string
   descriptionExpense?: string
   amountExpense?: number
-  handleSubmit: (title: string, description: string, amount: number, date: Date, category: string) => {}
-  dateExpense?: Date
+  handleSubmit: (title: string, description: string, amount: number, date: Date | string, category: string) => Promise<void>
+  dateExpense?: Date | string
   categoryExpense?: string
   apiCallState: IApiCallState
 }

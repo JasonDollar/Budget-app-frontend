@@ -11,14 +11,19 @@ import Loading from '../components/styles/Loading'
 import { apiCallsNames as api } from '../config/config'
 
 const EditExpense = () => {
-  const { expenseId } = useParams()
+  const { expenseId } = useParams<{expenseId: string}>()
   const history = useHistory()
   const expense = useSelector(state => selectSingleExpense(expenseId)(state))
   const saveEditExpenseApiState = useSelector(state => selectSingleApiCall(api.saveEditExpense)(state))
   const dispatch = useDispatch()
+
+  type Updates = {
+    title: string, description: string, amount: number, date: string, category: string, expenseDate?: string | Date
+  }
   
-  const editExpenseHandler = async (title, description, amount, date, category) => {
-    const updates = {}
+  const editExpenseHandler = async (title: string, description: string, amount: number, date: Date | string, category: string) => {
+    if (!expense) return
+    const updates = {} as Updates
     updates.expenseDate = date
     if (title !== expense.title) {
       updates.title = title
@@ -26,7 +31,7 @@ const EditExpense = () => {
     if (description !== expense.description) {
       updates.description = description
     }
-    if (amount !== expense.amount) {
+    if (amount !== expense.amount) { 
       const validAmount = Math.ceil(amount * 100)
       updates.amount = validAmount
     }
