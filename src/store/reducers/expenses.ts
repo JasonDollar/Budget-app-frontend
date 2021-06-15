@@ -1,4 +1,5 @@
-import * as types from '../actions/actionTypes'
+import { EActionTypes } from '../actions/actionTypes'
+import { TAction  } from '../actions/interface'
 import { IExpense } from '../../interfaces/expense'
 const initialState = {
   // loading: false,
@@ -31,22 +32,22 @@ interface IExpenseState {
   expenses: IExpense[]
 }
 
-const expenseReducer = (state: IExpenseState = initialState, action: any): IExpenseState => {
+const expenseReducer = (state: IExpenseState = initialState, action: TAction): IExpenseState => {
   switch (action.type) {
-    case types.SET_EXPENSES:
+    case EActionTypes.SET_EXPENSES:
       return {
         expenses: action.payload
       }
-    case types.ADD_EXPENSE:
+    case EActionTypes.ADD_EXPENSE:
       return {
         expenses: [...state.expenses, action.payload]
       }
-    case types.REMOVE_EXPENSE:
+    case EActionTypes.REMOVE_EXPENSE:
       const filteredExpenses = state.expenses.filter(item => item._id !== action.payload)
       return {
         expenses: filteredExpenses
       }
-    case types.EDIT_EXPENSE:
+    case EActionTypes.EDIT_EXPENSE:
       const mappedExpenses = state.expenses.map(item => {
         if (item._id === action.payload._id) {
           return action.payload
@@ -56,7 +57,7 @@ const expenseReducer = (state: IExpenseState = initialState, action: any): IExpe
       return {
         expenses: mappedExpenses
       }
-    case types.CLEAR_EXPENSES:
+    case EActionTypes.CLEAR_EXPENSES:
       return {
         expenses: [],
       }

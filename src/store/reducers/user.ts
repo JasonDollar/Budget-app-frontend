@@ -1,4 +1,6 @@
-import * as types from '../actions/actionTypes'
+import { EActionTypes } from '../actions/actionTypes'
+import { TAction  } from '../actions/interface'
+import { IUserData } from '../../interfaces/user'
 
 const initialState = {
   userData: {
@@ -9,16 +11,20 @@ const initialState = {
   }
 }
 
-const userReducer = (state = initialState, action) => {
+interface IUserState {
+  userData: IUserData
+}
+
+const userReducer = (state: IUserState = initialState, action: TAction) => {
   switch(action.type) {
-    case types.SET_USER_DATA:
+    case EActionTypes.SET_USER_DATA:
       return {
         ...state,
         userData: action.payload
       }
-    case types.CLEAR_USER:
+    case EActionTypes.CLEAR_USER:
       return initialState
-    case types.CHANGE_CURRENCY:
+    case EActionTypes.CHANGE_CURRENCY:
       return {
         ...state,
         userData: {
@@ -26,7 +32,7 @@ const userReducer = (state = initialState, action) => {
           settings: action.payload
         }
       }
-    case types.CHANGE_CATEGORIES:
+    case EActionTypes.CHANGE_CATEGORIES:
       return {
         ...state,
         userData: {

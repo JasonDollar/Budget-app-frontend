@@ -17,8 +17,8 @@ export const setExpensesToStore = (expenses: IExpense[]) : TAction => ({
   payload: expenses
 })
 
-export const clearExpenses = () => ({
-  type: types.CLEAR_EXPENSES
+export const clearExpenses = (): TAction => ({
+  type: EActionTypes.CLEAR_EXPENSES
 })
 
 export const setExpenses = () => async (dispatch: Dispatch<TAction>) => {
@@ -42,7 +42,7 @@ export const addExpenseToStore = (expense: IExpense): TAction => ({
   payload: expense
 })
 
-export const addExpense = (expenseData: any, uiAction: string, history: any, notification: string) => async (dispatch: any) => {
+export const addExpense = (expenseData: any, uiAction: string, history: any, notification: string) => async (dispatch: Dispatch<TAction | any>) => {
   dispatch(apiCallStart(uiAction))
 
   try {
@@ -62,12 +62,12 @@ export const addExpense = (expenseData: any, uiAction: string, history: any, not
   }
 }
 
-export const removeExpenseFromStore = (id: string) => ({
-  type: types.REMOVE_EXPENSE,
+export const removeExpenseFromStore = (id: string): TAction => ({
+  type: EActionTypes.REMOVE_EXPENSE,
   payload: id
 })
 
-export const removeExpense = (id: string, uiAction: string, history: any, notification: string) => async (dispatch: any) => {
+export const removeExpense = (id: string, uiAction: string, history: any, notification: string) => async (dispatch: Dispatch<TAction | any>) => {
   dispatch(apiCallStart(uiAction))
   try {
     const res = await axios.delete(`${baseUrl}/expenses/${id}`)
@@ -84,12 +84,12 @@ export const removeExpense = (id: string, uiAction: string, history: any, notifi
 }
 
 
-export const editExpenseInStore = (expense: IExpense) => ({
-  type: types.EDIT_EXPENSE,
+export const editExpenseInStore = (expense: IExpense): TAction => ({
+  type: EActionTypes.EDIT_EXPENSE,
   payload: expense
 })
 
-export const editExpense = (id: string, updates: any, uiAction: string, history: any, notification: string) => async (dispatch: any) => {
+export const editExpense = (id: string, updates: any, uiAction: string, history: any, notification: string) => async (dispatch: Dispatch<TAction | any>) => {
   dispatch(apiCallStart(uiAction))
   dispatch(loadingExpenseStart())
   try {

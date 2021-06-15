@@ -1,5 +1,6 @@
-import * as types from '../actions/actionTypes'
-
+import { EActionTypes } from '../actions/actionTypes'
+import { TAction  } from '../actions/interface'
+import { IFilter, IApiCallState, INotification } from '../../interfaces/ui'
 import { apiCallsNames as api } from '../../config/config'
 
 const initialState = {
@@ -25,9 +26,15 @@ const initialState = {
   notifications: []
 }
 
-const uiReducer = (state = initialState, action) => {
+interface IUiState {
+  apiCalls: IApiCallState[]
+  notifications: INotification[]
+  filter: IFilter
+}
+
+const uiReducer = (state: IUiState = initialState, action: TAction) => {
   switch(action.type) {
-    case types.API_CALL_START:
+    case EActionTypes.API_CALL_START:
       return {
         ...state,
         apiCalls: state.apiCalls.map(item => {
@@ -39,7 +46,7 @@ const uiReducer = (state = initialState, action) => {
           }
         })
       }
-    case types.API_CALL_FINISH_SUCCESS:
+    case EActionTypes.API_CALL_FINISH_SUCCESS:
       return {
         ...state,
         apiCalls: state.apiCalls.map(item => {
@@ -52,7 +59,7 @@ const uiReducer = (state = initialState, action) => {
           }
         })
       }
-    case types.API_CALL_FINISH_FAIL:
+    case EActionTypes.API_CALL_FINISH_FAIL:
       return {
         ...state,
         apiCalls: state.apiCalls.map(item => {
@@ -68,7 +75,7 @@ const uiReducer = (state = initialState, action) => {
           }
         })
       }
-    case types.UPDATE_FILTER:
+    case EActionTypes.UPDATE_FILTER:
       return {
         ...state,
         filter: {
@@ -76,12 +83,12 @@ const uiReducer = (state = initialState, action) => {
           ...action.payload
         }
       }
-    case types.ADD_NOTIFICATION: 
+    case EActionTypes.ADD_NOTIFICATION: 
       return {
         ...state,
         notifications: [...state.notifications, action.payload]
       }
-    case types.REMOVE_NOTIFICATION: 
+    case EActionTypes.REMOVE_NOTIFICATION: 
       return {
         ...state,
         notifications: state.notifications.filter(item => item.id !== action.payload )

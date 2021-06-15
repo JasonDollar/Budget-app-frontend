@@ -1,16 +1,9 @@
 import { isAfter, isBefore } from 'date-fns'
 import { IExpense } from '../interfaces/expense'
+import { IFilter } from '../interfaces/ui'
 
-interface Filter { 
-  search: string
-  category: string
-  dateRangeStart?: Date
-  dateRangeEnd?: Date
-  sortBy: 'DATE' | 'AMOUNT'
-  sortDirection: 'ASC' | 'DESC' 
-}
 
-const expenseFilter = (expenses: IExpense[], { search, category, dateRangeStart, dateRangeEnd, sortBy, sortDirection }: Filter) => {
+const expenseFilter = (expenses: IExpense[], { search, category, dateRangeStart, dateRangeEnd, sortBy, sortDirection }: IFilter) => {
   return expenses.filter(item => {
     const expenseDate = new Date(item.expenseDate)
     const textMatch = item.title.toLowerCase().includes(search.toLowerCase()) || (

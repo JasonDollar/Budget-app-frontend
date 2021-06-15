@@ -1,5 +1,8 @@
 import axios from 'axios'
-import * as types from './actionTypes'
+import { TAction } from './interface'
+import { EActionTypes } from './actionTypes'
+import { Dispatch } from 'redux'
+import { IUserData } from '../../interfaces/user'
 import { baseUrl, apiCallsNames as api } from '../../config/config'
 import setAuthToken from '../../lib/setAuthToken'
 
@@ -8,29 +11,31 @@ import { setExpenses, clearExpenses } from './expenses'
 import { apiCallStart, apiCallFinishSuccess, apiCallFinishFail, showNotification } from './ui'
 
 export const loadingUserStart = () => ({
-  type: types.LOADING_USER_START,
+  type: EActionTypes.LOADING_USER_START,
 })
 
-export const setUserToStore = (userData) => ({
-  type: types.SET_USER_DATA,
-  payload: userData
+export const setUserToStore = (userData: IUserData): TAction => {
+  return {
+    type: EActionTypes.SET_USER_DATA,
+    payload: userData
+  }
+}
+
+export const clearUser = (): TAction => ({
+  type: EActionTypes.CLEAR_USER
 })
 
-export const clearUser = () => ({
-  type: types.CLEAR_USER
-})
-
-export const changeCurrencyInStore = (newCurrency) => ({
-  type: types.CHANGE_CURRENCY,
+export const changeCurrencyInStore = (newCurrency: string): TAction => ({
+  type: EActionTypes.CHANGE_CURRENCY,
   payload: newCurrency
 })
 
-export const changeCategoriesInStore = categories => ({
-  type: types.CHANGE_CATEGORIES,
+export const changeCategoriesInStore = (categories: string): TAction => ({
+  type: EActionTypes.CHANGE_CATEGORIES,
   payload: categories
 })
 
-export const getUserData = () => async dispatch => {
+export const getUserData = () => async (dispatch: Dispatch<TAction>) => {
   try {
     dispatch(apiCallStart(api.fetchUser))
     const res = await axios.get(`${baseUrl}/users/userDetails`)
@@ -44,7 +49,7 @@ export const getUserData = () => async dispatch => {
   }
 }
 
-export const loginUser = (email, password, history) => async dispatch => {
+export const loginUser = (email: string, password: string, history: any) => async (dispatch: Dispatch<TAction | any>) => {
   dispatch(apiCallStart(api.loginUser))
   try {
     const res = await axios.post(`${baseUrl}/users/login`, { email, password })
@@ -64,7 +69,7 @@ export const loginUser = (email, password, history) => async dispatch => {
   }
 }
 
-export const registerUser = (name, email, password, passwordConfirm, history) => async dispatch => {
+export const registerUser = (name: string, email: string, password: string, passwordConfirm: string, history: any) => async (dispatch: Dispatch<TAction>) => {
   dispatch(apiCallStart(api.registerUser))
   dispatch(clearExpenses())
   try {
@@ -84,7 +89,7 @@ export const registerUser = (name, email, password, passwordConfirm, history) =>
   }
 }
 
-export const logoutUser = (history) => async dispatch => {
+export const logoutUser = (history: any) => async (dispatch: Dispatch<TAction>) => {
   dispatch(apiCallStart(api.logoutUser))
   const res = await axios.post(`${baseUrl}/users/logout`)
 
@@ -98,7 +103,7 @@ export const logoutUser = (history) => async dispatch => {
   }
 }
 
-export const changeCurrency = (newCurrency, uiAction) => async dispatch => {
+export const changeCurrency = (newCurrency: string, uiAction: string) => async (dispatch: Dispatch<TAction | any>) => {
   dispatch(apiCallStart(uiAction))
   try {
     const res = await axios.patch(`${baseUrl}/users/currency`, { newCurrency })
@@ -114,7 +119,7 @@ export const changeCurrency = (newCurrency, uiAction) => async dispatch => {
   }
 }
 
-export const removeCategory = (category, uiAction) => async dispatch => {
+export const removeCategory = (category: string, uiAction: string) => async (dispatch: Dispatch<TAction>) => {
   dispatch(apiCallStart(uiAction))
   try {
     const res = await axios.delete(`${baseUrl}/users/category/${category}`)

@@ -45,8 +45,38 @@ interface IUpdateFilter {
   payload: any
 }
 
+interface ISetUserToStore {
+  type: EActionTypes.SET_USER_DATA,
+  payload: any
+}
 
+interface IChangeCurrencyInStore {
+  type: EActionTypes.CHANGE_CURRENCY,
+  payload: any
+}
 
+interface IChangeCategoriesInStore {
+  type: EActionTypes.CHANGE_CATEGORIES,
+  payload: any
+}
+
+interface IClearUser {
+  type: EActionTypes.CLEAR_USER,
+}
+
+interface IClearExpenses {
+  type: EActionTypes.CLEAR_EXPENSES,
+}
+
+interface IEditExpense {
+  type: EActionTypes.EDIT_EXPENSE,
+  payload: IExpense
+}
+
+interface IRemoveExpense {
+  type: EActionTypes.REMOVE_EXPENSE,
+  payload: string
+}
 
 
 export type TAction =
@@ -58,3 +88,10 @@ export type TAction =
   | IApiCallFinishSuccess
   | IApiCallFinishFail
   | IUpdateFilter
+  | ISetUserToStore
+  | IChangeCurrencyInStore
+  | IChangeCategoriesInStore
+  | IClearUser
+  | IClearExpenses
+  | IEditExpense
+  | IRemoveExpense
