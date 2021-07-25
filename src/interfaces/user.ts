@@ -7,12 +7,17 @@
 // __v: 20
 // _id: "6054b82d5aaf592eec615eff"
 
+export interface IUserSettings {
+  currency: string,
+  locale: string
+}
+
 export interface IUserData {
   categories?: string[]
   createdAt?: string
   email?: string
   name?: string
-  settings: {currency: string, locale: string}
+  settings: IUserSettings
   updatedAt?: string
   __v?: number
   _id?: string

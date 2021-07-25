@@ -11,7 +11,7 @@ const initialState = {
   }
 }
 
-interface IUserState {
+export interface IUserState {
   userData: IUserData
 }
 

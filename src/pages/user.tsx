@@ -4,7 +4,7 @@ import User from '../components/User'
 
 interface Props {
   themeId: string
-  changeAppTheme: () => {}
+  changeAppTheme: (themeId: string) => void
 }
 
 const user: React.FC<Props> = ({ changeAppTheme, themeId }) => {

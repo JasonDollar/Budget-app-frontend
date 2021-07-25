@@ -5,7 +5,11 @@ import Nav from './Nav'
 
 import HeaderBox from './styles/Header'
 
-const Header = ({ totalComponentHeight }) => {
+interface Props {
+  totalComponentHeight: number
+}
+
+const Header: React.FC<Props> = ({ totalComponentHeight }) => {
   const [navOpen, toggleNavOpen] = useState(false)
   const handleNavToggling = () => {
     if (navOpen) {
@@ -14,9 +18,11 @@ const Header = ({ totalComponentHeight }) => {
     }
     toggleNavOpen(true)
   }
-  const handleLinkClick = e => {
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    console.log(e)
     if (navOpen === false) return
-    if (e.target.nodeName.toLowerCase() === 'a') toggleNavOpen(false)
+    toggleNavOpen(false)
+    // if (e.currentTarget.localName.toLowerCase() === 'a') toggleNavOpen(false)
   }
   return (
     <HeaderBox bottomAdditionalSpace={totalComponentHeight}>

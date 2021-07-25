@@ -1,7 +1,12 @@
 export interface IApiCallState {
   name: string,
   loading: boolean,
-  error?: null | string
+  error?:  {
+    message?: string
+    errorData?: {
+      message?: string
+    }
+  }
 }
 
 export interface IFilter { 
@@ -16,4 +21,18 @@ export interface IFilter {
 export interface INotification {
   id: string,
   message: string
+}
+
+export interface ITheme {
+  id: string
+  name: string
+  mainThemeColor: string
+  boxShadow: string 
+  textGreyColor: string
+  textColor: string
+  textColorInverted: string
+  textColorWhite: string
+  colorDanger: string
+  colorAlert: string
+  backgroundColor: string
 }

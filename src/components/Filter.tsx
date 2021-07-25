@@ -4,17 +4,19 @@ import { useSelector, useDispatch } from 'react-redux'
 import { selectFilters } from '../store/selectors/ui'
 import { updateFilter } from '../store/actions/ui'
 import { selectUserCategories } from '../store/selectors/user'
+import { IFilter } from '../interfaces/ui'
+import { RootState } from '../store' 
 
 const Filter = () => {
-  const { search, category, dateRangeStart, dateRangeEnd, sortBy, sortDirection } = useSelector(selectFilters)
+  const { search, category, dateRangeStart, dateRangeEnd, sortBy, sortDirection } = useSelector<RootState, IFilter>(selectFilters)
   const categories = useSelector(selectUserCategories)
   const dispatch = useDispatch()
 
-  const handleChange = update => {
+  const handleChange = (update: Partial<IFilter>) => {
     dispatch(updateFilter(update))
   }
 
-  const toggleSortDirection = currentDirection => {
+  const toggleSortDirection = (currentDirection: string | boolean): 'ASC' | 'DESC' => {
     if (currentDirection === 'ASC') return 'DESC'
     return 'ASC'
   }
@@ -25,7 +27,7 @@ const Filter = () => {
 
       <select value={category} onChange={e => handleChange({ category: e.target.value })}>
         <option value="">All categories</option>
-        {categories?.map(item => (
+        {categories?.map((item: string) => (
           <option key={item} value={item}>{item}</option>
         ))}
       </select>
@@ -35,7 +37,7 @@ const Filter = () => {
         <option value="AMOUNT">Amount</option>
       </select>
 
-      <button onClick={() => handleChange({sortDirection: toggleSortDirection(sortDirection)})}>{toggleSortDirection(!sortDirection)}</button>
+      <button onClick={() => handleChange({sortDirection: toggleSortDirection(sortDirection)})}>{sortDirection}</button>
     </div>
   )
 }

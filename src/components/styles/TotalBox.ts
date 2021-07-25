@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-const TotalBox = styled.div`
+const TotalBox = styled.div<{ boxSize?: number, totalAmountLength: number }>`
   margin: 0 1.5rem;
-  margin-top: -${props => props?.boxSize / 2}px;
+  margin-top: -${props => props?.boxSize ? props?.boxSize / 2 : 0}px;
   margin-bottom: 3rem;
   background: #fff;
   box-shadow: 0px 2px 20px -10px #999;

@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 import formatMoney from '../lib/formatMoney'
 
 import { selectUserSettings } from '../store/selectors/user'
+import { IExpense } from '../interfaces/expense'
 
 const ListItem = styled.li`
   margin: 1rem 0;
@@ -44,7 +45,11 @@ const ListItem = styled.li`
   }
 `
 
-const ExpenseListItem = ({ expense }) => {
+interface Props {
+  expense: IExpense
+}
+
+const ExpenseListItem: React.FC<Props> = ({ expense }) => {
   const { currency, locale } = useSelector(selectUserSettings)
 
   return (

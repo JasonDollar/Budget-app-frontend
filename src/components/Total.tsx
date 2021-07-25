@@ -9,12 +9,17 @@ import { selectAllExpenses } from '../store/selectors/expenses'
 
 import TotalBox from './styles/TotalBox'
 
-const Total = ({ totalComponentHeight, setTotalComponentHeight }) => {
-  const [totalAmount, setTotalAmount] = useState('')
-  const [todayAmount, setTodayAmount] = useState('')
+interface Props {
+  totalComponentHeight: number
+  setTotalComponentHeight: (height: number) => void
+}
+
+const Total: React.FC<Props> = ({ totalComponentHeight, setTotalComponentHeight }) => {
+  const [totalAmount, setTotalAmount] = useState(0)
+  const [todayAmount, setTodayAmount] = useState(0)
   const expenses = useSelector(selectAllExpenses)
   const { currency, locale } = useSelector(selectUserSettings)
-  const boxRef = useRef()
+  const boxRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const totalAmountCalc = calculateTotal(expenses)
@@ -24,6 +29,7 @@ const Total = ({ totalComponentHeight, setTotalComponentHeight }) => {
   }, [expenses])
   
   useEffect(() => {
+    if (!boxRef.current?.clientHeight) return
     setTotalComponentHeight(boxRef.current?.clientHeight)
   }, [])
   

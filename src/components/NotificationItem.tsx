@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import { dismissNotification } from '../store/actions/ui'
 
-const ItemDiv = styled.div`
+const ItemDiv = styled.div<{width: number}>`
   font-size: 1.8rem;
   position: relative;
   border: 1px solid rgba(200,200,200, .6);
@@ -35,8 +35,12 @@ const ItemDiv = styled.div`
     background: none;
   }
 `
+interface Props {
+  message: string
+  notificationId: string
+}
 
-const NotificationItem = ({ message, notificationId }) => {
+const NotificationItem: React.FC<Props> = ({ message, notificationId }) => {
   const dispatch = useDispatch()
   const [width, setWidth] = useState(100)
   useEffect(() => {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
+import { RootState } from '../../store'
 
 import { selectUserSettings, selectUserCategories } from '../../store/selectors/user'
 
@@ -23,11 +24,15 @@ const SettingContainer = styled.div`
   }
 `
 
+interface Props {
+  changeAppTheme: (themeId: string) => void
+  themeId: string
+}
 
-const UserSettings = ({ changeAppTheme, themeId }) => {
+const UserSettings: React.FC<Props> = ({ changeAppTheme, themeId }) => {
   const [themes] = useState(() => getThemeData())
-  const settings = useSelector(selectUserSettings)
-  const categories = useSelector(selectUserCategories)
+  const settings = useSelector<RootState, { currency: string, locale: string }>(selectUserSettings)
+  const categories = useSelector<RootState, string[] | undefined>(selectUserCategories)
 
   return (
     <SettingContainer>

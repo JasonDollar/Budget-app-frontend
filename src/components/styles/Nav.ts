@@ -63,7 +63,7 @@ export const NavList = styled.ul`
   }
 `
 
-export const Backdrop = styled.div`
+export const Backdrop = styled.div<{isOpen?: boolean}>`
   position: fixed;
   top: 0;
   bottom: 0;

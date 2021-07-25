@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { INotification } from '../interfaces/ui'
 import NotificationItem from './NotificationItem'
 
 const NotificationBox = styled.div`
@@ -12,7 +13,12 @@ const NotificationBox = styled.div`
   }
 `
 
-const Notifications = ({ notifications }) => {
+interface Props {
+  notifications: INotification[]
+}
+
+const Notifications: React.FC<Props> = ({ notifications }) => {
+  console.log(notifications)
   return (
     <NotificationBox>
       {notifications.map(item => (

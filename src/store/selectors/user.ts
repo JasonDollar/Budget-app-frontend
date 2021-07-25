@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect'
+import { RootState } from '..'
 
-const selectUser = state => state.user
+const selectUser = (state: RootState) => state.user
 
 export const selectUserData = createSelector(
   [selectUser],

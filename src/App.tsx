@@ -52,9 +52,14 @@ function App() {
     }
   }
 
-  const changeAppTheme = (themeId) => {
+  const changeAppTheme = (themeId: string) => {
     localStorage.setItem('theme', themeId)
     changeThemeId(themeId)
+  }
+
+  const setTotalComponentHeightFunc = (height?: number) => {
+    if (!height) return 
+    setTotalComponentHeight(height)
   }
 
   return (
@@ -75,7 +80,7 @@ function App() {
             </Route>
 
             <Route path="/">
-              <Total totalComponentHeight={totalComponentHeight} setTotalComponentHeight={setTotalComponentHeight}/>
+              <Total totalComponentHeight={totalComponentHeight} setTotalComponentHeight={setTotalComponentHeightFunc}/>
               {/* redirect to expenses page immediately */}
               <Switch>
                 <Route path="/" exact>

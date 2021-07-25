@@ -7,7 +7,12 @@ import { selectUserData } from '../store/selectors/user'
 
 import UserSettings from './UserSetings/UserSettings'
 
-const User = ({ changeAppTheme, themeId }) => {
+interface Props {
+  changeAppTheme: (themeId: string) => void
+  themeId: string
+}
+
+const User: React.FC<Props> = ({ changeAppTheme, themeId }) => {
   const user = useSelector(selectUserData)
   const dispatch = useDispatch()
   const history = useHistory()

@@ -1,6 +1,16 @@
 import React from 'react'
 
-const ErrorMessage = ({ error }) => {
+interface Props {
+  error: {
+    message?: string
+    errorData?: {
+      message?: string
+    }
+  }
+}
+
+const ErrorMessage: React.FC<Props> = ({ error }) => {
+  if (Object.values(error).length <= 0) return null
   if (error.errorData) {
     return (
       <div>

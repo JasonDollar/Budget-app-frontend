@@ -1,15 +1,17 @@
 import { createSelector } from 'reselect'
+// import { RootState } from '..'
+// import { IApiCallState } from '../../interfaces/ui'
 
-const selectUi = state => state.ui
+const selectUi = (state) => state.ui
 
 const selectApiCalls = createSelector(
   [selectUi],
   state => state.apiCalls
 )
 
-export const selectSingleApiCall = eventName => createSelector(
+export const selectSingleApiCall = (eventName) => createSelector(
   [selectApiCalls],
-  apiCalls => apiCalls.find(item => item.name === eventName)
+  apiCalls => apiCalls.find((item) => item.name === eventName)
 )
 
 export const selectFilters = createSelector(

@@ -4,7 +4,8 @@ import { IExpense } from '../../interfaces/expense'
 const initialState = {
   // loading: false,
   // error: '',
-  expenses: [{
+  expenses: [
+    {
     _id: '603e8a3bc4e77e04d869c708',
     title: 'Pizza',
     amount: 4000,
@@ -25,10 +26,11 @@ const initialState = {
     updatedAt: '2021-03-12T18:55:55.542Z',
     expenseDate: '2021-03-12T18:55:55.542Z',
     category: 'other',
-  }]
+  }
+]
 }
 
-interface IExpenseState {
+export interface IExpenseState {
   expenses: IExpense[]
 }
 

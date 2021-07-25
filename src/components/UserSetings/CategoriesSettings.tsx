@@ -6,6 +6,8 @@ import { apiCallsNames as api } from '../../config/config'
 import styled from 'styled-components'
 import ErrorMessage from '../ErrorMessage'
 import List from '../styles/List'
+import { IApiCallState } from '../../interfaces/ui'
+import { RootState } from '../../store'
 
 const ListElement = styled.li`
   &::first-letter {
@@ -13,9 +15,13 @@ const ListElement = styled.li`
   }
 `
 
-const CategoriesSettings = ({ categories }) => {
+interface Props {
+  categories?: string[]
+}
+
+const CategoriesSettings: React.FC<Props> = ({ categories }) => {
   const dispatch = useDispatch()
-  const { loading, error } = useSelector(state => selectSingleApiCall(api.removeCategory)(state))
+  const { loading, error } = useSelector<RootState, IApiCallState>(state => selectSingleApiCall(api.removeCategory)(state))
 
   return (
     <div>

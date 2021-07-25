@@ -5,15 +5,15 @@ import { apiCallsNames as api } from '../../config/config'
 
 const initialState = {
   apiCalls: [
-    { name: api.saveNewExpense, loading: false, error: '' },
-    { name: api.saveEditExpense, loading: false, error: '' },
-    { name: api.removeExpense, loading: false, error: '' },
-    { name: api.saveCurrency, loading: false, error: '' },
-    { name: api.removeCategory, loading: false, error: '' },
-    { name: api.fetchExpenses, loading: false, error: '' },
-    { name: api.fetchUser, loading: false, error: '' },
-    { name: api.loginUser, loading: false, error: '' },
-    { name: api.registerUser, loading: false, error: '' },
+    { name: api.saveNewExpense, loading: false, error: {} },
+    { name: api.saveEditExpense, loading: false, error: {} },
+    { name: api.removeExpense, loading: false, error: {} },
+    { name: api.saveCurrency, loading: false, error: {} },
+    { name: api.removeCategory, loading: false, error: {} },
+    { name: api.fetchExpenses, loading: false, error: {} },
+    { name: api.fetchUser, loading: false, error: {} },
+    { name: api.loginUser, loading: false, error: {} },
+    { name: api.registerUser, loading: false, error: {} },
   ],
   filter: {
     search: '',
@@ -26,7 +26,7 @@ const initialState = {
   notifications: []
 }
 
-interface IUiState {
+export interface IUiState {
   apiCalls: IApiCallState[]
   notifications: INotification[]
   filter: IFilter

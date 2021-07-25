@@ -1,12 +1,16 @@
 import {combineReducers} from 'redux'
-import expenseReducer from './expenses'
-import userReducer from './user'
-import uiReducer from './ui'
+import expenseReducer, { IExpenseState } from './expenses'
+import userReducer, { IUserState } from './user'
+import uiReducer, { IUiState } from './ui'
 
-const rootReducer = combineReducers({
+const rootReducer = combineReducers<{
+  expenses: IExpenseState,
+  user: IUserState,
+  ui: any
+}>({
   expenses: expenseReducer,
   user: userReducer,
-  ui: uiReducer
+  ui: uiReducer,
 })
 
 export default rootReducer

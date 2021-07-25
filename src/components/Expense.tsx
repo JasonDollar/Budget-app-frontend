@@ -15,7 +15,10 @@ import Loading from './styles/Loading'
 import { BigButton, ButtonsContainer } from './styles/BigButton'
 import ErrorMessage from './ErrorMessage'
 
-import {IApiCallState} from '../interfaces/ui'
+import { RootState } from '../store' 
+import { IApiCallState } from '../interfaces/ui'
+import { IExpense } from '../interfaces/expense'
+import { IUserSettings } from '../interfaces/user'
 
 const ExpenseContainer = styled.div`
   .title {
@@ -32,9 +35,9 @@ interface Props {
 
 const Expense: React.FC<Props> = ({ expenseId }) => {
   const history = useHistory()
-  const { loading, error } = useSelector(state => selectSingleApiCall(api.removeExpense)(state))
-  const expense = useSelector(state => selectSingleExpense(expenseId)(state))
-  const { currency, locale } = useSelector(selectUserSettings)
+  const { loading, error } = useSelector<RootState, IApiCallState>(state => selectSingleApiCall(api.removeExpense)(state))
+  const expense = useSelector<RootState, IExpense | null | undefined>(state => selectSingleExpense(expenseId)(state))
+  const { currency, locale } = useSelector<RootState, IUserSettings>(selectUserSettings)
   const dispatch = useDispatch()
 
   const removeExpenseHandler = () => {

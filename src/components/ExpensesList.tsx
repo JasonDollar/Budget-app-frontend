@@ -10,10 +10,13 @@ import ExpenseListItem from './ExpenseListItem'
 import Loading from './styles/Loading'
 import ErrorMessage from './ErrorMessage'
 import List from './styles/List'
+import { RootState } from '../store'
+import { IExpense } from '../interfaces/expense'
+import { IApiCallState } from '../interfaces/ui'
 
 const ExpensesList = () => {
-  const expenses = useSelector(selectAllExpenses)
-  const expensesApi = useSelector(state => selectSingleApiCall(api.fetchExpenses)(state))
+  const expenses = useSelector<RootState, IExpense[]>(selectAllExpenses)
+  const expensesApi = useSelector<RootState, IApiCallState>(state => selectSingleApiCall(api.fetchExpenses)(state))
 
   if (expensesApi.loading) {
     return <Loading />

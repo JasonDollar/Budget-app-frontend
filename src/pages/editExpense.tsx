@@ -9,12 +9,15 @@ import { selectSingleApiCall } from '../store/selectors/ui'
 import ExpenseForm from '../components/ExpenseForm'
 import Loading from '../components/styles/Loading'
 import { apiCallsNames as api } from '../config/config'
+import { IExpense } from '../interfaces/expense'
+import { RootState } from '../store'
+import { IApiCallState } from '../interfaces/ui'
 
 const EditExpense = () => {
   const { expenseId } = useParams<{expenseId: string}>()
   const history = useHistory()
-  const expense = useSelector(state => selectSingleExpense(expenseId)(state))
-  const saveEditExpenseApiState = useSelector(state => selectSingleApiCall(api.saveEditExpense)(state))
+  const expense = useSelector<RootState, IExpense | null | undefined>(state => selectSingleExpense(expenseId)(state))
+  const saveEditExpenseApiState = useSelector<RootState, IApiCallState>(state => selectSingleApiCall(api.saveEditExpense)(state))
   const dispatch = useDispatch()
 
   type Updates = {
