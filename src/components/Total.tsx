@@ -8,6 +8,9 @@ import { selectUserSettings } from '../store/selectors/user'
 import { selectAllExpenses } from '../store/selectors/expenses'
 
 import TotalBox from './styles/TotalBox'
+import { RootState } from '../store'
+import { IUserSettings } from '../interfaces/user'
+import { IExpense } from '../interfaces/expense'
 
 interface Props {
   totalComponentHeight: number
@@ -17,8 +20,8 @@ interface Props {
 const Total: React.FC<Props> = ({ totalComponentHeight, setTotalComponentHeight }) => {
   const [totalAmount, setTotalAmount] = useState(0)
   const [todayAmount, setTodayAmount] = useState(0)
-  const expenses = useSelector(selectAllExpenses)
-  const { currency, locale } = useSelector(selectUserSettings)
+  const expenses = useSelector<RootState, IExpense[]>(selectAllExpenses)
+  const { currency, locale } = useSelector<RootState, IUserSettings>(selectUserSettings)
   const boxRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {

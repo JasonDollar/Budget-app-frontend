@@ -9,7 +9,7 @@ import { RootState } from '../store'
 
 const Filter = () => {
   const { search, category, dateRangeStart, dateRangeEnd, sortBy, sortDirection } = useSelector<RootState, IFilter>(selectFilters)
-  const categories = useSelector(selectUserCategories)
+  const categories = useSelector<RootState, string[] | undefined>(selectUserCategories)
   const dispatch = useDispatch()
 
   const handleChange = (update: Partial<IFilter>) => {

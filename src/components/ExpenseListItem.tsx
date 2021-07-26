@@ -8,6 +8,8 @@ import formatMoney from '../lib/formatMoney'
 
 import { selectUserSettings } from '../store/selectors/user'
 import { IExpense } from '../interfaces/expense'
+import { RootState } from '../store'
+import { IUserSettings } from '../interfaces/user'
 
 const ListItem = styled.li`
   margin: 1rem 0;
@@ -50,7 +52,7 @@ interface Props {
 }
 
 const ExpenseListItem: React.FC<Props> = ({ expense }) => {
-  const { currency, locale } = useSelector(selectUserSettings)
+  const { currency, locale } = useSelector<RootState, IUserSettings>(selectUserSettings)
 
   return (
     <ListItem>

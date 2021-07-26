@@ -18,7 +18,6 @@ interface Props {
 }
 
 const Notifications: React.FC<Props> = ({ notifications }) => {
-  console.log(notifications)
   return (
     <NotificationBox>
       {notifications.map(item => (

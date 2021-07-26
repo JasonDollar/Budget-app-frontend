@@ -29,8 +29,7 @@ function App() {
   const [totalComponentHeight, setTotalComponentHeight] = useState(0)
   const notifications = useSelector(selectNotifications)
   const dispatch = useDispatch()
-  // console.log(lol)
-  // const [userLogged, setUserLogged] = useState()
+
   const [themeId, changeThemeId] = useState(() => {
     const themeIdFromLS = localStorage.getItem('theme')
     if (themeIdFromLS) return themeIdFromLS

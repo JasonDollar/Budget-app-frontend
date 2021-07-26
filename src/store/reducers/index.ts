@@ -6,7 +6,7 @@ import uiReducer, { IUiState } from './ui'
 const rootReducer = combineReducers<{
   expenses: IExpenseState,
   user: IUserState,
-  ui: any
+  ui: IUiState | any
 }>({
   expenses: expenseReducer,
   user: userReducer,

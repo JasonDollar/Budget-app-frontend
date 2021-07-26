@@ -6,6 +6,8 @@ import { useHistory } from 'react-router-dom'
 import { selectUserData } from '../store/selectors/user'
 
 import UserSettings from './UserSetings/UserSettings'
+import { RootState } from '../store'
+import { IUserData } from '../interfaces/user'
 
 interface Props {
   changeAppTheme: (themeId: string) => void
@@ -13,7 +15,7 @@ interface Props {
 }
 
 const User: React.FC<Props> = ({ changeAppTheme, themeId }) => {
-  const user = useSelector(selectUserData)
+  const user = useSelector<RootState, IUserData>(selectUserData)
   const dispatch = useDispatch()
   const history = useHistory()
   return (
