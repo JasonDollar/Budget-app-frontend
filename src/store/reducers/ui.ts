@@ -3,7 +3,7 @@ import { TAction  } from '../actions/interface'
 import { IFilter, IApiCallState, INotification } from '../../interfaces/ui'
 import { apiCallsNames as api } from '../../config/config'
 
-const initialState = {
+const initialState: IUiState = {
   apiCalls: [
     { name: api.saveNewExpense, loading: false, error: {} },
     { name: api.saveEditExpense, loading: false, error: {} },

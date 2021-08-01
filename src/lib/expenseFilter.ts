@@ -11,14 +11,14 @@ const expenseFilter = (expenses: IExpense[], { search, category, dateRangeStart,
       )
     const categoryMatch = category ? item.category.toLowerCase() === category.toLowerCase() : true
 
-    let dateMatch = true
+    let dateMatchStart = true, dateMatchEnd = true
     if (dateRangeStart) {
-      dateMatch = isAfter(expenseDate, new Date(dateRangeStart))
+      dateMatchStart = isAfter(expenseDate, new Date(dateRangeStart))
     }
     if (dateRangeEnd) {
-      dateMatch = isBefore(expenseDate, new Date(dateRangeEnd))
+      dateMatchEnd = isBefore(expenseDate, new Date(dateRangeEnd))
     }
-    return textMatch && dateMatch && categoryMatch
+    return textMatch && dateMatchStart && dateMatchEnd && categoryMatch
   })
   .sort((a, b) => {
     if (sortBy === 'DATE') {

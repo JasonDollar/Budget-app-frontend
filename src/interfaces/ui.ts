@@ -14,8 +14,8 @@ export interface IFilter {
   category: string
   dateRangeStart?: Date | string
   dateRangeEnd?: Date | string
-  sortBy: 'DATE' | 'AMOUNT' | string
-  sortDirection: 'ASC' | 'DESC' | string
+  sortBy: 'DATE' | 'AMOUNT'
+  sortDirection: 'ASC' | 'DESC'
 }
 
 export interface INotification {

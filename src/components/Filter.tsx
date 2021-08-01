@@ -16,7 +16,7 @@ const Filter = () => {
     dispatch(updateFilter(update))
   }
 
-  const toggleSortDirection = (currentDirection: string | boolean): 'ASC' | 'DESC' => {
+  const toggleSortDirection = (currentDirection: string): 'ASC' | 'DESC' => {
     if (currentDirection === 'ASC') return 'DESC'
     return 'ASC'
   }
@@ -32,7 +32,10 @@ const Filter = () => {
         ))}
       </select>
 
-      <select value={sortBy} onChange={(e) => handleChange({ sortBy: e.target.value })}>
+      <select value={sortBy} onChange={(e) => {
+          if (!e.target.value) return
+          handleChange({ sortBy: e.target.value as 'DATE' | 'AMOUNT'})
+      }}>
         <option value="DATE">Date</option>
         <option value="AMOUNT">Amount</option>
       </select>
