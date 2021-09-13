@@ -22,7 +22,7 @@ import { IUserSettings } from '../interfaces/user'
 
 const ExpenseContainer = styled.div`
   .title {
-    text-align: center;
+    /* text-align: center; */
   }
   p {
     margin: .5rem 0;

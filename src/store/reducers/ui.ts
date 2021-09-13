@@ -3,6 +3,12 @@ import { TAction  } from '../actions/interface'
 import { IFilter, IApiCallState, INotification } from '../../interfaces/ui'
 import { apiCallsNames as api } from '../../config/config'
 
+export interface IUiState {
+  apiCalls: IApiCallState[]
+  notifications: INotification[]
+  filter: IFilter
+}
+
 const initialState: IUiState = {
   apiCalls: [
     { name: api.saveNewExpense, loading: false, error: {} },
@@ -24,12 +30,6 @@ const initialState: IUiState = {
     category: ''
   },
   notifications: []
-}
-
-export interface IUiState {
-  apiCalls: IApiCallState[]
-  notifications: INotification[]
-  filter: IFilter
 }
 
 const uiReducer = (state: IUiState = initialState, action: TAction) => {

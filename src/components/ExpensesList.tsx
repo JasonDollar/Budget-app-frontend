@@ -23,7 +23,8 @@ const ExpensesList = () => {
   
   return (
     <div>
-      <List className="margin-r-l">
+      <h2 className="margin-r-l" style={{fontSize: '3.6rem', fontWeight: 600, letterSpacing: '.3px', marginBottom: '.5rem'}}>Expenses</h2>
+      <List>
         {expenses?.map(item => (
           <ExpenseListItem key={item._id} expense={item}/>
         ))}

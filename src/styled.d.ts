@@ -6,6 +6,7 @@ declare module 'styled-components' {
     name: string;
     mainThemeColor: string;
     boxShadow: string;
+    boxShadowColor: string;
     textGreyColor: string;
     textColor: string;
     textColorInverted: string;

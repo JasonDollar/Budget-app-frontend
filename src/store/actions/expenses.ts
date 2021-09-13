@@ -30,7 +30,7 @@ export const setExpenses = () => async (dispatch: Dispatch<TAction>) => {
       dispatch(setExpensesToStore(expenses))
       dispatch(apiCallFinishSuccess(api.fetchExpenses))
     }
-  } catch (e) {
+  } catch (e: any) {
     console.log(e.message)
     dispatch(setExpensesToStore([]))
     dispatch(apiCallFinishFail(api.fetchExpenses, e))
@@ -54,7 +54,7 @@ export const addExpense = (expenseData: any, uiAction: string, history: any, not
       if (notification) { dispatch(showNotification(notification)) }
       history.push('/expenses')
     }
-  } catch (e) {
+  } catch (e: any) {
     dispatch(apiCallFinishFail(uiAction, e))
     // add error handling
     console.log(e.response)
@@ -101,7 +101,7 @@ export const editExpense = (id: string, updates: any, uiAction: string, history:
       if (notification) { dispatch(showNotification(notification)) }
       history.push('/expenses')
     }
-  } catch (e) {
+  } catch (e: any) {
     dispatch(apiCallFinishFail(uiAction, e))
   }
 }

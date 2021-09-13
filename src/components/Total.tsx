@@ -35,6 +35,8 @@ const Total: React.FC<Props> = ({ totalComponentHeight, setTotalComponentHeight 
     if (!boxRef.current?.clientHeight) return
     setTotalComponentHeight(boxRef.current?.clientHeight)
   }, [])
+
+  // console.log(totalComponentHeight)
   
   return (
     <TotalBox ref={boxRef} boxSize={totalComponentHeight} totalAmountLength={totalAmount.toString().length}>

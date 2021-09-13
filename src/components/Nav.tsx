@@ -18,7 +18,7 @@ const Nav: React.FC<Props> = ({ isOpen, toggleNavOpen, handleLinkClick }) => {
           <button onClick={toggleNavOpen} className="closeMenu">Close</button>
         </li>
         <li>
-          <NavLink to="/" onClick={handleLinkClick}>Home</NavLink>
+          <NavLink to="/" onClick={handleLinkClick}>Expenses</NavLink>
         </li>
         <li>
           <NavLink to="/user" onClick={handleLinkClick}>User</NavLink>

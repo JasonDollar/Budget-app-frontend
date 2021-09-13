@@ -89,7 +89,7 @@ export const registerUser = (name: string, email: string, password: string, pass
   }
 }
 
-export const logoutUser = (history: any) => async (dispatch: Dispatch<TAction>) => {
+export const logoutUser = (history?: any) => async (dispatch: Dispatch<TAction>) => {
   dispatch(apiCallStart(api.logoutUser))
   const res = await axios.post(`${baseUrl}/users/logout`)
 
@@ -128,7 +128,7 @@ export const removeCategory = (category: string, uiAction: string) => async (dis
       dispatch(changeCategoriesInStore(categories))
       dispatch(apiCallFinishSuccess(uiAction))
     }
-  } catch (e) {
+  } catch (e: any) {
     console.log(e.response)
     dispatch(apiCallFinishFail(uiAction, e))
   }
