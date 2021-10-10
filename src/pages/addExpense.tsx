@@ -10,10 +10,7 @@ import { selectSingleApiCall } from '../store/selectors/ui'
 import { apiCallsNames as api } from '../config/config'
 import { RootState } from '../store'
 import { IApiCallState } from '../interfaces/ui'
-
-const Header = styled.h2`
-  font-size: 20px;
-`
+import PageName from '../components/styles/PageName'
 
 const AddExpensePage = () => {
   const dispatch = useDispatch()
@@ -27,7 +24,7 @@ const AddExpensePage = () => {
   
   return (
     <div className="margin-r-l">
-      <Header>Add Expense</Header>
+      <PageName className="no-margin">Add Expense</PageName>
       <ExpenseForm handleSubmit={addExpenseHandler} apiCallState={saveNewExpenseApiState}/>
     </div>
   )

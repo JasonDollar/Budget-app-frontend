@@ -12,6 +12,7 @@ import { apiCallsNames as api } from '../config/config'
 import { IExpense } from '../interfaces/expense'
 import { RootState } from '../store'
 import { IApiCallState } from '../interfaces/ui'
+import PageName from '../components/styles/PageName'
 
 const EditExpense = () => {
   const { expenseId } = useParams<{expenseId: string}>()
@@ -51,7 +52,7 @@ const EditExpense = () => {
   
   return (
     <div className="margin-r-l">
-      <h2>Edit expense</h2>
+      <PageName className="no-margin">Edit expense</PageName>
       <ExpenseForm 
         expenseId={expenseId}
         titleExpense={expense.title} 
