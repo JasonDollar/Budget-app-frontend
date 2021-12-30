@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { useIsUserLogged } from '../hooks/useIsUserLogged'
 
 import { NavList, Backdrop } from './styles/Nav'
 
@@ -10,6 +11,8 @@ interface Props {
 }
 
 const Nav: React.FC<Props> = ({ isOpen, toggleNavOpen, handleLinkClick }) => {
+  const userLogged = useIsUserLogged()
+
   return (
     <>
       <Backdrop isOpen={isOpen} onClick={toggleNavOpen}/>
@@ -17,12 +20,28 @@ const Nav: React.FC<Props> = ({ isOpen, toggleNavOpen, handleLinkClick }) => {
         <li className="onlyMobile">
           <button onClick={toggleNavOpen} className="closeMenu">Close</button>
         </li>
-        <li>
-          <NavLink to="/" onClick={handleLinkClick}>Expenses</NavLink>
-        </li>
-        <li>
-          <NavLink to="/user" onClick={handleLinkClick}>User</NavLink>
-        </li>
+        {userLogged ? (
+          <>
+            <li>
+              <NavLink to="/" onClick={handleLinkClick}>Expenses</NavLink>
+            </li>
+            <li>
+              <NavLink to="/user" onClick={handleLinkClick}>User</NavLink>
+            </li>
+          </>
+
+        ) : null}
+        {!userLogged ? (
+          <>
+            <li>
+              <NavLink to="/login" onClick={handleLinkClick}>Login</NavLink>
+            </li>
+            <li>
+              <NavLink to="/register" onClick={handleLinkClick}>Register</NavLink>
+            </li>
+          </>
+
+        ) : null}
         {/* <li>
           <NavLink to="/">Menu item 2</NavLink>
         </li>

@@ -23,14 +23,15 @@ import { getTheme } from './components/styles/theme'
 import Header from './components/Header'
 import Total from './components/Total'
 import { selectNotifications } from './store/selectors/ui'
-import { selectUserData } from './store/selectors/user'
+import { useIsUserLogged } from './hooks/useIsUserLogged'
+// import { selectUserData } from './store/selectors/user'
 // import { showNotification } from './store/actions/ui'
 
 function App() {
   const [totalComponentHeight, setTotalComponentHeight] = useState(0)
   // const [userExists, setUserExists] = useState(false)
   const notifications = useSelector(selectNotifications)
-  const user = useSelector(selectUserData)
+  const userLogged = useIsUserLogged()
   const dispatch = useDispatch()
 
   const [themeId, changeThemeId] = useState(() => {
@@ -77,7 +78,7 @@ function App() {
           <Header totalComponentHeight={totalComponentHeight}/>
           <div className="desktopContainer">
           <Switch>
-            {!user?.email ? (
+            {!userLogged ? (
               <>
                 <Route path="/register" exact>
                   <Register />
@@ -93,7 +94,7 @@ function App() {
 
             <Route path="/">
               {/* redirect to expenses page immediately */}
-              {user?.email ? (
+              {userLogged ? (
                 <>
                   <Total totalComponentHeight={totalComponentHeight} setTotalComponentHeight={setTotalComponentHeightFunc}/>
                   <Switch>
