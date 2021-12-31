@@ -20,6 +20,7 @@ const initialState: IUiState = {
     { name: api.fetchUser, loading: false, error: {} },
     { name: api.loginUser, loading: false, error: {} },
     { name: api.registerUser, loading: false, error: {} },
+    { name: api.resetPassword, loading: false, error: {} },
   ],
   filter: {
     search: '',
@@ -42,6 +43,7 @@ const uiReducer = (state: IUiState = initialState, action: TAction) => {
           return {
             ...item,
             loading: true,
+            successMessage: '',
             error: ''
           }
         })
@@ -54,6 +56,7 @@ const uiReducer = (state: IUiState = initialState, action: TAction) => {
           return {
             ...item,
             loading: false,
+            successMessage: '',
             error: ''
           }
         })
@@ -67,6 +70,7 @@ const uiReducer = (state: IUiState = initialState, action: TAction) => {
             ...item,
             name: action.payload.name,
             loading: false,
+            successMessage: action.payload.successMessage,
             error: ''
           }
         })
@@ -80,6 +84,7 @@ const uiReducer = (state: IUiState = initialState, action: TAction) => {
             ...item,
             name: action.payload.name,
             loading: false,
+            successMessage: '',
             error: {
               message: action.payload.error?.message,
               errorData: action.payload.error?.response?.data

@@ -13,4 +13,5 @@ export const apiCallsNames = {
   loginUser: 'LOGIN_USER',
   registerUser: 'REGISTER_USER',
   logoutUser: 'LOGOUT_USER',
+  resetPassword: 'RESET_PASSWORD',
 }

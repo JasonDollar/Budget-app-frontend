@@ -32,7 +32,7 @@ interface IApiCallStart {
 
 interface IApiCallFinishSuccess {
   type: EActionTypes.API_CALL_FINISH_SUCCESS,
-  payload: { name: string }
+  payload: { name: string, successMessage?: string }
 }
 
 interface IApiCallFinishFail {

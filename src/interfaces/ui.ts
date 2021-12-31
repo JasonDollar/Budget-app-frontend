@@ -1,6 +1,7 @@
 export interface IApiCallState {
   name: string,
   loading: boolean,
+  successMessage?: string,
   error?:  {
     message?: string
     errorData?: {

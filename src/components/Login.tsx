@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import {Redirect, Link, useHistory} from 'react-router-dom'
-import {useDispatch, useSelector} from 'react-redux'
+import { Redirect, Link, useHistory } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { useIsUserLogged } from '../hooks/useIsUserLogged'
 import { apiCallsNames as api } from '../config/config'
@@ -17,7 +17,7 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const { loading, error } = useSelector<RootState, IApiCallState>(state => selectSingleApiCall(api.loginUser)(state))
-  console.log(error)
+
   const userLogged = useIsUserLogged()
 
   useEffect(() => {
@@ -56,9 +56,9 @@ const Login = () => {
 
             <button type="submit" className="form__button">Login</button>
             <div className="form__link--container">
-              <button className="testAccount" onClick={previewAccountHandler} disabled={loading}>Use Preview Account</button>
+              <button className="testAccount" type="button" onClick={previewAccountHandler} disabled={loading}>Use Preview Account</button>
               <Link to="/register" className="form__link">New User? Create an account</Link>
-              <Link to="/reset" className="form__link">Forgot your password?</Link>
+              <Link to="/resetPassword" className="form__link">Forgot your password?</Link>
             </div>
           </form>
       </AuthForm>

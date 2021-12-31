@@ -27,6 +27,7 @@ const AuthForm = styled.div`
     padding: 2rem;
     background-color: white;
     border-radius: 8px;
+    min-width: 40%;
     @media (max-width: 576px) {
     transform: translateY(-2rem);
     width: 80%;
@@ -60,11 +61,11 @@ const AuthForm = styled.div`
   .form__button {
 
     color: white;
-    background: black;
+    background: ${props => props.theme.mainThemeColor};
     
     border: 1px solid #555;
     border-radius: 5px;
-    padding: .5rem 1.6rem;
+    padding: 1rem 1.6rem;
     font-size: 2rem;
     text-transform: uppercase;
     cursor: pointer;
@@ -92,12 +93,20 @@ const AuthForm = styled.div`
 
     /* text-decoration: underline; */
   }
-  .errorMessage {
+  .errorMessage,
+  .successMessage {
     display: block;
     margin: 1rem 0;
 
-        /*  */
-        color: black;
+        
+  }
+  .errorMessage {
+    color: #550000;
+  }
+
+  .successMessage {
+    /*  */
+    color: black;
   }
 
   .testAccount {

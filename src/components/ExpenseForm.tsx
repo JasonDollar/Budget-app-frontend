@@ -39,7 +39,7 @@ interface Props {
   expenseId?: string
   titleExpense?: string
   descriptionExpense?: string
-  amountExpense?: number
+  amountExpense?: number | string
   handleSubmit: (title: string, description: string, amount: number, date: Date | string, category: string) => Promise<void>
   dateExpense?: Date | string
   categoryExpense?: string
@@ -50,7 +50,7 @@ const ExpenseForm: React.FC<Props> = ({
   expenseId, 
   titleExpense = '', 
   descriptionExpense = '', 
-  amountExpense = 0, 
+  amountExpense = '', 
   handleSubmit, 
   dateExpense, 
   categoryExpense , 
@@ -77,10 +77,20 @@ const ExpenseForm: React.FC<Props> = ({
   const formHandler = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
     // simple validation
-    if (!title || amount <= 0) return
+    if (!title || (amount && amount <= 0) || !amount) return
 
     await handleSubmit(title, description, amount, expenseDate, category)
   }
+
+  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value?.toLowerCase() === 'e') return
+    const parsedAmount = Math.floor(Number(e.target.value) * 100) / 100
+
+    const newAmount = parsedAmount > 0 ? parsedAmount : ''
+
+    setAmount(newAmount)
+  }
+
   return (
     <FormContainer>
       <form onSubmit={formHandler} className="form">
@@ -97,7 +107,7 @@ const ExpenseForm: React.FC<Props> = ({
           type="number" 
           placeholder="Amount" 
           value={amount} 
-          onChange={e => setAmount(+e.target.value)} 
+          onChange={(e) => handleAmountChange(e)} 
           step="0.01" 
           required
         />

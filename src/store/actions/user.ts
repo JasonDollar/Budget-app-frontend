@@ -133,3 +133,18 @@ export const removeCategory = (category: string, uiAction: string) => async (dis
     dispatch(apiCallFinishFail(uiAction, e))
   }
 }
+
+export const resetUserPassword = (email: string, uiAction: string) => async (dispatch: Dispatch<TAction>) => {
+  dispatch(apiCallStart(uiAction))
+  try {
+    const res = await axios.post(`${baseUrl}/users/resetPassword`, { email })
+    if (res.statusText === 'OK') {
+      const { message } = res.data
+
+      dispatch(apiCallFinishSuccess(uiAction, message))
+    }
+  } catch (e: any) {
+    // console.log(e.response)
+    dispatch(apiCallFinishFail(uiAction, e))
+  }
+}

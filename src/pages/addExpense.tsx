@@ -1,5 +1,3 @@
-import React from 'react'
-import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
 import ExpenseForm from '../components/ExpenseForm'
 
@@ -18,7 +16,7 @@ const AddExpensePage = () => {
   const saveNewExpenseApiState = useSelector<RootState, IApiCallState>(state => selectSingleApiCall(api.saveNewExpense)(state))
   const addExpenseHandler = async (title: string, description: string, amount: number, date: Date | string, category: string) => {
     // save expense as whole number
-    const validAmount = Math.ceil(amount * 100)
+    const validAmount = Math.floor(amount * 100)
     dispatch(addExpense({title, description, amount: validAmount, expenseDate: date, category}, api.saveNewExpense, history, 'Expense added')) 
   }
   

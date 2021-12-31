@@ -7,9 +7,9 @@ export const apiCallStart = (name: string): TAction => ({
   payload : { name }
 })
 
-export const apiCallFinishSuccess = (name: string): TAction => ({
+export const apiCallFinishSuccess = (name: string, message?: string): TAction => ({
   type: EActionTypes.API_CALL_FINISH_SUCCESS,
-  payload : { name }
+  payload : { name, successMessage: message }
 })
 
 export const apiCallFinishFail = (name: string, error: any): TAction => ({

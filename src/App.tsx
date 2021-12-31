@@ -16,6 +16,7 @@ import EditExpense from './pages/editExpense'
 import Expenses from './pages/expenses'
 import Expense from './pages/expense'
 import User from './pages/user'
+import ResetPassword from './pages/resetPassword'
 import Notifications from './components/Notifications'
 
 import { GlobalStyle } from './components/styles/globalStyles'
@@ -90,6 +91,9 @@ function App() {
 
                 <Route path="/login" exact>
                   <Login />
+                </Route>
+                <Route path="/resetPassword" exact>
+                  <ResetPassword />
                 </Route>
               </>
             ) : (
