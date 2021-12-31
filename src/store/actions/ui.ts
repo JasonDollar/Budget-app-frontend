@@ -17,6 +17,11 @@ export const apiCallFinishFail = (name: string, error: any): TAction => ({
   payload : { name, error }
 })
 
+export const clearApiCall = (name: string): TAction => ({
+  type: EActionTypes.CLEAR_API_CALL,
+  payload : { name }
+})
+
 export const updateFilter = (updates: any): TAction => ({
   type: EActionTypes.UPDATE_FILTER,
   payload: updates

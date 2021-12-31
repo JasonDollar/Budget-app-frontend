@@ -1,26 +1,9 @@
-import React, {useState} from 'react'
-import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
-import { loginUser } from '../store/actions/user'
+import Login from '../components/Login'
 
 const LoginPage = () => {
-  const dispatch = useDispatch()
-  const history = useHistory()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-
-  const formSubmitHandler = async (e: React.ChangeEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    dispatch(loginUser(email, password, history))
-  }
-
   return (
     <div>
-      <form onSubmit={formSubmitHandler}>
-        <input type="text" value={email} onChange={e => setEmail(e.target.value)}/>
-        <input type="text" value={password} onChange={e => setPassword(e.target.value)}/>
-        <button type="submit">Login</button>
-      </form>
+      <Login />
     </div>
   )
 }

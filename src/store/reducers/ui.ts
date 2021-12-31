@@ -46,6 +46,18 @@ const uiReducer = (state: IUiState = initialState, action: TAction) => {
           }
         })
       }
+    case EActionTypes.CLEAR_API_CALL:
+      return {
+        ...state,
+        apiCalls: state.apiCalls.map(item => {
+          if (item.name !== action.payload.name) { return item }
+          return {
+            ...item,
+            loading: true,
+            error: ''
+          }
+        })
+      }
     case EActionTypes.API_CALL_FINISH_SUCCESS:
       return {
         ...state,

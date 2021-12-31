@@ -40,6 +40,11 @@ interface IApiCallFinishFail {
   payload: { name: string, error: any }
 }
 
+interface IClearApiCall {
+  type: EActionTypes.CLEAR_API_CALL,
+  payload: { name: string }
+}
+
 interface IUpdateFilter {
   type: EActionTypes.UPDATE_FILTER,
   payload: any
@@ -95,3 +100,4 @@ export type TAction =
   | IClearExpenses
   | IEditExpense
   | IRemoveExpense
+  | IClearApiCall
