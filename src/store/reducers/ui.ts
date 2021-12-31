@@ -53,7 +53,7 @@ const uiReducer = (state: IUiState = initialState, action: TAction) => {
           if (item.name !== action.payload.name) { return item }
           return {
             ...item,
-            loading: true,
+            loading: false,
             error: ''
           }
         })

@@ -1,6 +1,6 @@
 export const availableCurrencies = ['USD', 'EUR', 'PLN', 'GBP']
 
-export const baseUrl = 'http://localhost:3080/api/v1'
+export const baseUrl = '/api/v1'
 
 export const apiCallsNames = {
   saveNewExpense: 'save-new-expense',

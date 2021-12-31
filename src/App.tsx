@@ -80,6 +80,10 @@ function App() {
           <Switch>
             {!userLogged ? (
               <>
+                <Route path="/" exact>
+                    <Redirect to="login" />
+                  {/* maybe add landing page in the future? */}
+                  </Route>
                 <Route path="/register" exact>
                   <Register />
                 </Route>
