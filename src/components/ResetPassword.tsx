@@ -5,11 +5,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useIsUserLogged } from '../hooks/useIsUserLogged'
 import { apiCallsNames as api } from '../config/config'
 import AuthForm from './styles/AuthForm'
-import { loginUser, resetUserPassword } from '../store/actions/user'
+import { resetUserPassword } from '../store/actions/user'
 import { selectSingleApiCall } from '../store/selectors/ui'
 import { RootState } from '../store'
 import { IApiCallState } from '../interfaces/ui'
 import { clearApiCall } from '../store/actions/ui'
+import { isEmail } from '../lib/isEmail'
 
 const ResetPassword = () => {
   const dispatch = useDispatch()
@@ -17,7 +18,7 @@ const ResetPassword = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const { loading, error, successMessage } = useSelector<RootState, IApiCallState>(state => selectSingleApiCall(api.resetPassword)(state))
-  console.log(error)
+  // console.log(error)
   const userLogged = useIsUserLogged()
 
   useEffect(() => {
@@ -26,6 +27,11 @@ const ResetPassword = () => {
 
   const formSubmitResetHandler = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
+    const userEmailIsValid = isEmail(email)
+
+    if (!userEmailIsValid) {
+      return
+    }
     dispatch(resetUserPassword(email, api.resetPassword))
   }
 
