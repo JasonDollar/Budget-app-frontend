@@ -30,6 +30,7 @@ import { useIsUserLogged } from './hooks/useIsUserLogged'
 
 function App() {
   const [totalComponentHeight, setTotalComponentHeight] = useState(0)
+  const [firstLoading, setFirstLoading] = useState(true)
   // const [userExists, setUserExists] = useState(false)
   const notifications = useSelector(selectNotifications)
   const userLogged = useIsUserLogged()
@@ -54,6 +55,7 @@ function App() {
       setAuthToken(token)
       dispatch(setExpenses())
       dispatch(getUserData())
+      setFirstLoading(false)
       // setUserExists(true)
     } else {
       dispatch(clearUser())
@@ -81,10 +83,6 @@ function App() {
           <Switch>
             {!userLogged ? (
               <>
-                <Route path="/" exact>
-                    <Redirect to="login" />
-                  {/* maybe add landing page in the future? */}
-                  </Route>
                 <Route path="/register" exact>
                   <Register />
                 </Route>
@@ -94,6 +92,10 @@ function App() {
                 </Route>
                 <Route path="/resetPassword" exact>
                   <ResetPassword />
+                </Route>
+                <Route path="/">
+                  <Redirect to="login" />
+                  {/* maybe add landing page in the future? */}
                 </Route>
               </>
             ) : (
@@ -106,9 +108,7 @@ function App() {
                 <>
                   <Total totalComponentHeight={totalComponentHeight} setTotalComponentHeight={setTotalComponentHeightFunc}/>
                   <Switch>
-                  <Route path="/" exact>
-                    <Redirect to="expenses" />
-                  </Route>
+
                   <Route path="/user" >
                     <User changeAppTheme={changeAppTheme} themeId={themeId}/>
                   </Route>
@@ -123,6 +123,9 @@ function App() {
                   </Route>
                   <Route path="/expenses" exact>
                     <Expenses />
+                  </Route>
+                  <Route path="/">
+                    <Redirect to="expenses" />
                   </Route>
                 </Switch>
                 </>

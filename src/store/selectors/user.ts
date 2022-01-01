@@ -17,3 +17,8 @@ export const selectUserCategories = createSelector(
   [selectUserData],
   state => state.categories
 )
+
+export const selectUserId = createSelector(
+  [selectUserData],
+  state => state._id
+)
