@@ -1,36 +1,28 @@
 import styled from 'styled-components'
 
 const AuthForm = styled.div`
-
-  /* background: linear-gradient(to bottom right, rgba(0,0,0,.7), rgba(0,0,0,.3)), url('/images/bg_small.jpg'); */
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-position-x: 53%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: 80vh;
+
   width: 100%;
+  height: 100%;
   @media (min-height: 678px) {
-    /* background: linear-gradient(to bottom right, rgba(0,0,0,.7), rgba(0,0,0,.3)), url('/images/bg_big.jpg'); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position-x: 53%;
   }
-  /* @media (min-width: 576px) {
-    background-position: center;
-  } */
 
 
   .form {
+    margin-top: 5rem;
     padding: 2rem;
     background-color: white;
     border-radius: 8px;
     min-width: 40%;
     @media (max-width: 576px) {
-    transform: translateY(-2rem);
-    width: 80%;
+      margin-top: 4rem;
+      transform: translateY(-2rem);
+      width: 80%;
     }
   }
 
@@ -110,7 +102,6 @@ const AuthForm = styled.div`
   }
 
   .testAccount {
-    /* display: inline-block; */
     font-size: 2rem;
     cursor: pointer;
     margin-top: 1rem;
