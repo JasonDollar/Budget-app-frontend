@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import jwt_decode from 'jwt-decode'
-import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
+import { Route, Redirect, Switch, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux"
 import { ThemeProvider } from 'styled-components'
 
@@ -31,7 +31,7 @@ import { useIsUserLogged } from './hooks/useIsUserLogged'
 function App() {
   const [totalComponentHeight, setTotalComponentHeight] = useState(0)
   const [firstLoading, setFirstLoading] = useState(true)
-  // const [userExists, setUserExists] = useState(false)
+  const history = useHistory()
   const notifications = useSelector(selectNotifications)
   const userLogged = useIsUserLogged()
   const dispatch = useDispatch()
@@ -45,6 +45,14 @@ function App() {
   useEffect(() => {
     getJwtFromLS()
   }, [])
+
+  useEffect(() => {
+    console.log(userLogged)
+    if (!userLogged) {
+      setTotalComponentHeight(0)
+    }
+  }, [userLogged])
+
   
   const getJwtFromLS = () => {
     const token = localStorage.getItem('jwtToken')
@@ -77,7 +85,7 @@ function App() {
     
       <ThemeProvider theme={() => getTheme(themeId)} >
         <GlobalStyle />
-        <BrowserRouter>
+
           <Header totalComponentHeight={totalComponentHeight}/>
           <div className="desktopContainer">
           <Switch>
@@ -94,7 +102,7 @@ function App() {
                   <ResetPassword />
                 </Route>
                 <Route path="/">
-                  <Redirect to="login" />
+                  <Redirect to="/login" />
                   {/* maybe add landing page in the future? */}
                 </Route>
               </>
@@ -110,7 +118,7 @@ function App() {
                   <Switch>
 
                   <Route path="/user" >
-                    <User changeAppTheme={changeAppTheme} themeId={themeId}/>
+                    <User changeAppTheme={changeAppTheme} themeId={themeId} />
                   </Route>
                   <Route path="/addExpense" exact>
                     <AddExpense/>
@@ -137,7 +145,7 @@ function App() {
           {/* <button onClick={e => dispatch(showNotification('message'))}>Add</button> */}
           {notifications && <Notifications notifications={notifications} />}
           </div> 
-        </BrowserRouter>
+
       </ThemeProvider>
 
   );
