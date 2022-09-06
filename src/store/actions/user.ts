@@ -99,7 +99,7 @@ export const logoutUser = (history?: any) => async (dispatch: Dispatch<TAction>)
     localStorage.removeItem('jwtToken')
     setAuthToken(false)
     dispatch(apiCallFinishSuccess(api.logoutUser))
-    history.push('/')
+    history.push('/login')
   }
 }
 
