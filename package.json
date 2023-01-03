@@ -56,6 +56,7 @@
     "@types/axios": "^0.14.0",
     "@types/react-redux": "^7.1.16",
     "@types/react-router-dom": "^5.1.7",
-    "@types/styled-components": "^5.1.9"
+    "@types/styled-components": "^5.1.9",
+    "@types/testing-library__react": "^10.2.0"
   }
 }

@@ -4,6 +4,7 @@ import { IFilter } from '../interfaces/ui'
 
 
 const expenseFilter = (expenses: IExpense[], { search, category, dateRangeStart, dateRangeEnd, sortBy, sortDirection }: IFilter) => {
+  if (!expenses) return []
   return expenses.filter(item => {
     const expenseDate = new Date(item.expenseDate)
     const textMatch = item.title.toLowerCase().includes(search.toLowerCase()) || (

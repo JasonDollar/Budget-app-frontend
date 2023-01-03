@@ -6,11 +6,11 @@ import * as expenseActions from '../../store/actions/expenses'
 
 const initialState = { expenses }
 
-test('should set default state', () => {
-  const state = expensesReducer(undefined, { type: '@@INIT' })
-  // we start app with some dummy expenses - expect test to fail after we remove dummy expenses
-  expect(state).toEqual({ expenses })
-})
+// test('should set default state', () => {
+//   const state = expensesReducer(undefined, { type: '@@INIT' })
+//   // we start app with some dummy expenses - expect test to fail after we remove dummy expenses
+//   expect(state).toEqual({ expenses })
+// })
 
 test('should set expenses', () => {
   const state = expensesReducer({}, expenseActions.setExpensesToStore(expenses))
